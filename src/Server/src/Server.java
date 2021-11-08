@@ -1,143 +1,107 @@
-//socket with UDP
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
+import java.net.*;
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class Server {
+/**
+ * Main server thread and implementation
+ */
+public class Server implements Runnable {
+
     private static DatagramSocket ds;
+    private static String log;
     private static InetAddress serverIp;
-    private static int serverPort ;
-    private static DatagramPacket request, response;
+    private static int serverPort;
+    private static DatagramPacket request;
     private static byte[] receive = null;
-    private static byte[] responseByte = null;
-    private static Scanner sc;
+    private static Scanner sc = new Scanner(System.in);
+    public static ConcurrentHashMap<String,Object> requestMap = new ConcurrentHashMap<>();
+    ClientHandler clientHandler;
 
     /**
-     * associate port to server and open it to clients
-     * @param port to be opened
-     * @throws SocketException
+     * constructor that configs the server
      */
-    public Server(int port) throws  SocketException{
-        ds = new DatagramSocket(port);
+    public Server() {
+        serverConfig();
     }
 
     /**
-     * Main method
-     * run initialiseServer method
-     * @param args
-     * @throws IOException
+     * thread running the server
      */
-    public static void main(String[] args) throws IOException {
-        initialiseServer();
-    }
-
-    /**
-     * intialise IP and port number of the server
-     * Run server using UDPService
-     */
-    private static void initialiseServer(){
-        //scanner to read server input
-        sc = new Scanner(System.in);
-
-        try {
-
-            //ask and get port of server
-            System.out.println("Enter port number of the Server: ");
-            String port = sc.nextLine();
-            serverPort = Integer.parseInt(port);
-
-            // address of server
-            serverIp = InetAddress.getLocalHost();
-
-            System.out.println("opening port \n");
-            //open port to receive data
-            Server server = new Server(serverPort);
-
-            System.out.println("Server information: " +
-                    "\nIP: " +  serverIp.toString() +
-                    "\nPort: " + serverPort + "\n");
-
-            //start UDP
-            server.UDPService();
-
-        } catch (SocketException ex) {
-            System.out.println("Socket error: " + ex.getMessage());
-        } catch (IOException ex) {
-            System.out.println("I/O error: " + ex.getMessage());
-        }
-        finally {
-            System.out.println("\nClosing server....");
-            ds.close();
-        }
-    }
-
-    /**
-     * Collect data from clients and respond
-     * UDP service
-     * get a request and send a response to client
-     * @throws IOException
-     */
-    private void UDPService() throws IOException {
+    @Override
+    public void run() {
         //array to store message received
         receive = new byte[65535];
-        //array to store message sent
-        responseByte = new byte[65535];
 
+        //keep reading messages
         while (true) {
-            //receive request gotten from client
+            //receive request gotten from a client
             request = new DatagramPacket(receive, receive.length);
-            ds.receive(request);
+            try {
+                ds.receive(request);
 
-            // Get IP and Port of client
-            InetAddress clientIp = request.getAddress();
-            int clientPort = request.getPort();
+                // create a new thread for each request
+                clientHandler = new ClientHandler(request, ds);
 
-            String dataReceived = data(receive).toString();
-            System.out.println("Message from Client: " +
-                    "\nIP: " + clientIp.toString() +
-                    "\nPort: " + clientPort +
-                    "\nMessage: -" + dataReceived + "\n");
-
-            //create response message to client
-            String quote = "Message received: '" + dataReceived + "' from IP:" + clientIp.toString() +
-                    ", Port: " + clientPort;
-            responseByte = quote.getBytes();
-
-            //create and send response to client
-            response = new DatagramPacket(responseByte, responseByte.length, clientIp, clientPort);
-            ds.send(response);
-
-            System.out.println("Message sent to Client: " +
-                    "\nIP: " + clientIp +
-                    "\nPort: " + clientPort +
-                    "\nMessage: -" + quote + "\n");
-
-            // Clear the buffers after every message.
-            receive = new byte[65535];
-            responseByte = new byte[65535];
+            } catch (SocketTimeoutException ex) {
+                log = "SocketTimeoutException: " + ex.getMessage();
+                log(log);
+            } catch (IOException ex) {
+                log = "IOException " + ex.getMessage();
+                log(log);
+            }
         }
     }
 
     /**
-     * A method to convert the byte array data into a string representation.
-     * @param a byte array to transform to a string
-     * @return sstringbuilder from byte data
+     * configure server on startup
      */
-    public static StringBuilder data(byte[] a) {
-        if (a == null)
-            return null;
+    public void serverConfig() {
 
-        StringBuilder ret = new StringBuilder();
+        //ask and get port of server
+        System.out.println("Enter port number of the Server: ");
+        String port = sc.nextLine();
+        serverPort = Integer.parseInt(port);
 
-        int i = 0;
-        while (a[i] != 0)
-        {
-            ret.append((char) a[i]);
-            i++;
+        //continue asking until valid socket is received
+        while (true) {
+            try {
+                log = "opening port..... \n";
+                log(log);
+                ds = new DatagramSocket(serverPort);
+                break;
+            } catch (SocketException ex) {
+                ds.close();
+                log = "SocketException: " + ex.getMessage();
+                log(log);
+                //ask and get port of server
+                System.out.println("Enter port number of the Server: ");
+                port = sc.nextLine();
+                serverPort = Integer.parseInt(port);
+            }
         }
-        return ret;
+
+        //get IP of server
+        try {
+            serverIp = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+
+        //print information of the server
+        log = "Server information: " +
+                "\nIP: " +  serverIp.toString() +
+                "\nPort: " + serverPort + "\n";
+
+        log(log);
+    }
+
+    public void log(String logText)
+    {
+        try {
+            Writer.log(logText);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

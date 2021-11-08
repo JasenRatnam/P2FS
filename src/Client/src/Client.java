@@ -1,38 +1,38 @@
-//socket with UDP
 import java.io.IOException;
 import java.net.*;
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import static java.lang.System.exit;
 
+/**
+ * Main class thread
+ */
 public class Client {
-    private static InetAddress serverIp;
-    private static InetAddress clientIp;
-    private static int serverPort;
+    public static InetAddress serverIp;
+    public static InetAddress clientIp;
+    public static int serverPort;
+    public static int clientUDPPort;
+    public static int clientTCPPort = 3000;
     private static DatagramSocket ds;
-    private static DatagramPacket request,response;
-    private static byte[] receive = null;
-    private static byte[] requestByte = null;
-    private static Scanner sc;
+    private static Scanner sc = new Scanner(System.in);
+    public static AtomicInteger requestCounter = new AtomicInteger(0);
+    public static String ClientName;
+    public static ConcurrentHashMap<Integer,Object> requestMap = new ConcurrentHashMap<>();
+    public static boolean isRegistered = false;
+    private static String log;
 
-    public Client() throws  SocketException{
-        ds = new DatagramSocket();
+    /**
+     * constructor of a client
+     */
+    public Client() {
+        clientConfig();
     }
 
     /**
-     * Main method
-     * @param args
-     * @throws IOException
+     * configure server on startup
      */
-    public static void main(String args[]) {
-        initialiseClient();
-    }
-
-    /**
-     * intialise client and connect to server
-     */
-    private static void initialiseClient(){
-        //scanner to read client input
-        sc = new Scanner(System.in);
-
+    public void clientConfig() {
         try {
             //ask and get IP of server
             System.out.println("Enter IP address of the Server: ");
@@ -44,80 +44,109 @@ public class Client {
             String port = sc.nextLine();
             serverPort = Integer.parseInt(port);
 
-            System.out.println("Connecting to server \n");
-            //open port to receive data
-            Client client = new Client();
-            client.UDPService();
-
+            //connect to UDP socket
+            ds = new DatagramSocket();
             clientIp = InetAddress.getLocalHost();
-            System.out.println("Client information: \nIP: " +  clientIp + "\n");
+            clientUDPPort = ds.getLocalPort();
+
+            //client information
+            log = "Client information: " +
+                    "\nIP: " +  clientIp +
+                    "\nUDPPort: " + clientUDPPort +
+                    "\nTCPPort: " + clientTCPPort;
+            log(log);
 
         } catch (SocketException ex) {
-            System.out.println("Socket error: " + ex.getMessage());
+            log  = "Socket error: " + ex.getMessage();
+            log += "\nClosing client.... ";
+            log(log);
+            ds.close();
+            exit(1);
         } catch(UnknownHostException uhEx) {
-            System.out.println("HOST ID not found.. ");
-            System.exit(1);
+            log = "HOST ID not found.. ";
+            log += "\nClosing client.... ";
+            log(log);
+            ds.close();
+            exit(1);
+        }
+    }
+
+    /**
+     * start running the client
+     */
+    public void start() {
+        //threading listening to any message from the server.
+        ServerHandler receiver = new ServerHandler(ds);
+        Thread receiverThread = new Thread(receiver);
+        receiverThread.start();
+
+        //run UI of the client and get commands to send to server
+        ui();
+    }
+
+    /**
+     * UI of the client
+     * displays commands to server and handles them
+     */
+    public static void ui() {
+        String val = "";
+        while (!val.equals("exit")) {
+            System.out.println("\nEnter 'exit' to close client");
+            System.out.println("Possible commands:");
+            System.out.println("1-Register");
+            // need to add more commands
+
+            System.out.println("Enter number of wanted command: ");
+            val = sc.nextLine();
+
+            if (val.isEmpty()) {
+                val = "-1";
+            }
+            switch (val) {
+                case "1":
+                    log = "User selected Register";
+                    register(sc);
+                    break;
+                case "-1":
+                    log = "User selected Nothing";
+                    continue;
+                default:
+                    log = "User selected a not valid option";
+                    continue;
+            }
+            log(log);
+        }
+    }
+
+    /**
+     * Clients selects the register command
+     * send request to server
+     */
+    public static void register(Scanner s) {
+        //get name of client
+        System.out.print("\tEnter Username to register: ");
+        ClientName = s.next();
+
+        try {
+            //create a register request
+            RegisterRequest registerMessage = new RegisterRequest(requestCounter.incrementAndGet(), ClientName,
+                    clientIp.toString(), clientUDPPort, clientTCPPort);
+            //send request to server
+            Sender.sendTo(registerMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
+            log = registerMessage.toString();
+            log += "\nMessage sent to: " + serverIp + ": " + serverPort + "\n";
+            log(log);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            System.out.println("\nClosing client.... ");
-            ds.close();
         }
     }
 
-    private void UDPService() throws IOException {
-        //array to store message received
-        receive = new byte[65535];
-        requestByte = new byte[65535];
-
-        while (true) {
-            //ask and get message to be sent to server
-            System.out.println("Enter message for Server: ");
-            String inp = sc.nextLine();
-
-            //convert gotten message to a buffer of bytes and send it to the server
-            requestByte = inp.getBytes();
-            request = new DatagramPacket(requestByte, requestByte.length, serverIp, serverPort);
-            ds.send(request);
-
-            System.out.println("Message sent to Server: \nIP: " + serverIp.toString() + " \nPort: " +
-                    serverPort + "\nMessage: -" + inp + "\n");
-
-            //get message from server
-            response = new DatagramPacket(receive, receive.length);
-            ds.receive(response);
-
-            System.out.println("Message from Server: \nIP: " + serverIp.toString() + " \nPort: " +
-                    serverPort + "\nMessage: -" + data(receive) + "\n");
-
-            //Thread.sleep(10000);
-
-            //if message sent is bye, then close the connection
-            if (inp.equals("bye"))
-                break;
-
-            // Clear the buffers after every message.
-            receive = new byte[65535];
-            requestByte = new byte[65535];
+    public static void log(String logText)
+    {
+        try {
+            Writer.log(logText);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }
-    /**
-     * A method to convert the byte array data into a string representation.
-     * @param a byte array to transform to a string
-     * @return sstringbuilder from byte data
-     */
-    public static StringBuilder data(byte[] a) {
-        if (a == null)
-            return null;
-
-        StringBuilder ret = new StringBuilder();
-
-        int i = 0;
-        while (a[i] != 0)
-        {
-            ret.append((char) a[i]);
-            i++;
-        }
-        return ret;
     }
 }
