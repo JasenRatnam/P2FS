@@ -47,4 +47,22 @@ public class Writer {
             br.newLine();
         }
     }
+
+    public static void sendResponse(Object object, String clientAddress, int clientPort) throws IOException {
+        Timestamp = new java.util.Date().toString();
+        try (BufferedWriter br = new BufferedWriter(new FileWriter(fileName, true))) {
+            // System.out.println("Writer "+ object.toString());
+            StringBuilder str = new StringBuilder();
+
+            str.append("----------------SENDING-------------");
+            br.write(str.toString());
+            br.newLine();
+            br.write(object.toString());
+            br.newLine();
+            br.write("Sending to ->" + clientAddress + ":" + clientPort);
+            br.newLine();
+            br.write(Timestamp);
+            br.newLine();
+        }
+    }
 }

@@ -38,22 +38,26 @@ public class ServerHandler implements Runnable {
                 ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
                 ObjectInputStream is = new ObjectInputStream(byteStream);
 
-                log = "---RECEIVED: ";
+                log = "---\nRECEIVED: ";
                 log(log);
-                Object o = (Object) is.readObject();
+                try{
+                    Object o = (Object) is.readObject();
 
-                // add object to log file
-                Writer.appendToFile(o);
-                // remove request associated to response from list of requests
-                RequestList.handleReceivedResponse(o);
-                // handle the response
-                requestHandler(o, response);
+                    // add object to log file
+                    Writer.appendToFile(o);
+                    // remove request associated to response from list of requests
+                    RequestList.handleReceivedResponse(o);
+                    // handle the response
+                    requestHandler(o, response);
+                } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+                log = "Cannot handle message from server: " + response.toString() + "\n---\n";
+                log(log);
+                }
             }
         } catch (IOException e) {
             log = "Receiver IOException " + e.getMessage();
             log(log);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
@@ -66,7 +70,12 @@ public class ServerHandler implements Runnable {
         // Handle Successful Register Request - Don't think we need it
         if (request instanceof ClientRegisterConfirmed) {
             Client.isRegistered = true;
-            log = "You are now registered:\n" + request.toString();
+            log = "You are now registered.\n---\n";
+            log(log);
+        }
+        else if(request instanceof ClientRegisterDenied){
+            Client.isRegistered = false;
+            log = "Registration Denied: You are not registered.\n---\n";
             log(log);
         }
         //add other if to handle other possible response by server

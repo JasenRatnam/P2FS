@@ -47,6 +47,19 @@ public class RequestList {
                 Client.requestMap.remove(RequestID);
             }
         }
+        else if (response instanceof ClientRegisterDenied) {
+            ClientRegisterDenied res = (ClientRegisterDenied) response;
+
+            // Get the RequestID
+            int RequestID = res.getRQNumb();
+            // if the RequestID exists in the map remove it
+            if (Client.requestMap.containsKey(RequestID)) {
+                log = "Response of: " + Client.requestMap.get(RequestID);
+                log(log);
+                Client.requestMap.remove(RequestID);
+            }
+            // should probably try to register again
+        }
         //add other possible responses
         else {
             log = "THIS RESPONSE CANNOT BE HANDLED";

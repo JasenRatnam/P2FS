@@ -8,11 +8,7 @@ public class ClientRegisterConfirmed extends Request  {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    //constructors
-    public ClientRegisterConfirmed() {
-        super(RequestType.CLIENT_REGISTER_CONFIRMED);
-    }
-
+    //constructor
     public ClientRegisterConfirmed(int RQNumb){
         super(RequestType.CLIENT_REGISTER_CONFIRMED);
         this.RQNumb = RQNumb;

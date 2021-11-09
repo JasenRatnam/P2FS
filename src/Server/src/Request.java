@@ -86,23 +86,4 @@ public class Request implements Serializable {
 
         return RQNumb;
     }
-
-    /**
-     * write a response
-     * @param out
-     * @throws IOException
-     */
-    public void writeObject(ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();
-    }
-
-    /**
-     * read a request
-     * @param in
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
-    }
 }

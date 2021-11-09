@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -14,8 +15,9 @@ public class Server implements Runnable {
     private static int serverPort;
     private static DatagramPacket request;
     private static byte[] receive = null;
-    private static Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
     public static ConcurrentHashMap<String,Object> requestMap = new ConcurrentHashMap<>();
+    public static ArrayList<ClientObject> clients = new ArrayList<>();
     ClientHandler clientHandler;
 
     /**

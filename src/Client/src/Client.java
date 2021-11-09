@@ -93,10 +93,11 @@ public class Client {
         while (!val.equals("exit")) {
             System.out.println("\nEnter 'exit' to close client");
             System.out.println("Possible commands:");
-            System.out.println("1-Register");
+            System.out.println("1-Register" +
+                    "\n2=Deregister");
             // need to add more commands
 
-            System.out.println("Enter number of wanted command: ");
+            System.out.println("\nEnter number of wanted command: \n");
             val = sc.nextLine();
 
             if (val.isEmpty()) {
@@ -107,6 +108,10 @@ public class Client {
                     log = "User selected Register";
                     register(sc);
                     break;
+                case "2":
+                    log = "User selected DeRegister";
+                    deregister(sc);
+                    break;
                 case "-1":
                     log = "User selected Nothing";
                     continue;
@@ -116,6 +121,7 @@ public class Client {
             }
             log(log);
         }
+        exit(1);
     }
 
     /**
@@ -136,6 +142,21 @@ public class Client {
             log = registerMessage.toString();
             log += "\nMessage sent to: " + serverIp + ": " + serverPort + "\n";
             log(log);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deregister(Scanner s) {
+
+        //get name of client
+        System.out.print("\tEnter Username to deregister: ");
+        String name = s.next();
+
+        DeRegisterRequest deregisterMessage = new DeRegisterRequest(Client.requestCounter.incrementAndGet(),
+                name);
+        try {
+            Sender.sendTo(deregisterMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
         } catch (IOException e) {
             e.printStackTrace();
         }

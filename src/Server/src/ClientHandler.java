@@ -56,7 +56,7 @@ public class ClientHandler implements Runnable {
             //handle request from client
             requestHandler(object);
 
-            //stop reading file
+            //stop reading request
             input.close();
         } catch (IOException e) {
             log = "Exception:  " + e;
@@ -71,7 +71,7 @@ public class ClientHandler implements Runnable {
      * Method to handle the request received from the client
      * @param requestInput
      */
-    public synchronized void requestHandler(Object requestInput) {
+    public synchronized void requestHandler(Object requestInput) throws IOException {
         //add request to map of requests
         RequestList.received(requestInput, request);
 
@@ -79,6 +79,11 @@ public class ClientHandler implements Runnable {
         if (requestInput instanceof RegisterRequest) {
             register((RegisterRequest) requestInput);
         }
+        //if request is a deregister
+        else if (requestInput instanceof DeRegisterRequest) {
+            deregister((DeRegisterRequest) requestInput);
+        }
+        //need to add other requests
         else {
             log = "Cannot handle this request.";
             log(log);
@@ -86,18 +91,91 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * Can accept or refuse the registration.
-     * Registration can be denied if the provided Name is already in use
-     * Registration: send Registered packet
-     * Not registered: send Register-Denied
+     * Registration denied if the provided Name or IP is already in use
      * Need client unique name, IP Address, UDP socket#, TCP socket#
      * And request number
      */
     public void register(RegisterRequest request) {
-
-        //ask and save name of client
+        //save name of client
         String username = request.getClientName();
+        //save ip of client
+        String IP = request.getAddress();
+
         log = "Register request received";
+        log(log);
+        boolean error = false;
+        String errorCode = null;
+
+        //check if client is not already registered
+        for ( ClientObject client: Server.clients) {
+            if(client.getName().equals(username)){
+                //registration denied
+                log = "Registration Denied: name -" + username + "- already registered";
+                error = true;
+                errorCode = "Username already exists";
+                break;
+            }
+            if(client.getIP().equals(IP)){
+                //registration denied
+                log = "Registration Denied: IP -" + IP + "- already registered";
+                error = true;
+                errorCode = "IP address already exists";
+                break;
+            }
+        }
+        try {
+            if (error == false) {
+                //registered
+                Server.clients.add(request.getClientObject());
+                //need to send confirmation too client
+
+                ClientRegisterConfirmed confirmation = new ClientRegisterConfirmed(request.getRQNumb());
+                Sender.sendTo(confirmation, this.request, ds);
+                log = "Client: " + username + " at " + IP + " has been registered";
+            } else {
+                //registration denied
+                ClientRegisterDenied denied = new ClientRegisterDenied(errorCode, request.getRQNumb());
+                Sender.sendTo(denied, this.request, ds);
+                log = "Client: " + username + " at " + IP + " has not been registered because: " + errorCode;
+            }
+            log += "\nServer has " + Server.clients.size() + " client(s)\n";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        log(log);
+
+        // remove request from list of request
+        RequestList.remove(request.getRQNumb(), this.request);
+    }
+
+    public void deregister(DeRegisterRequest request) {
+        //save name of client
+        String username = request.getClientName();
+
+        log = "Dergister request received";
+        log(log);
+
+        boolean deregister = false;
+        int i = 0;
+
+        for ( ClientObject client: Server.clients) {
+            if(client.getName().equals(username)){
+                //deregister client
+                deregister = true;
+                Server.clients.remove(i);
+                log = client.toString() + " as been deregistered.\n";
+                log += "\nServer has " + Server.clients.size() + " client(s)\n";
+                break;
+            }
+            i++;
+        }
+        if(!deregister)
+        {
+            //can't deregister
+            log = username + " cannot be deregistered.";
+            log += "\nCannot find " + username;
+        }
         log(log);
 
         // remove request from list of request

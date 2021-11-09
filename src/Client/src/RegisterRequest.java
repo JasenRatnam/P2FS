@@ -42,7 +42,7 @@ public class RegisterRequest extends Request  {
     //print the request
     @Override
     public String toString() {
-        return RequestType.REGISTER + " " + this.getRQNumb() + " " + getClientName() + " " + getAddress() + ":UDP: "
-                + getUDPPort() + ", TCP: " + getTCPPort();
+        return RequestType.REGISTER + " " + this.getRQNumb() + " " + getClientName() + " " + getAddress() + " UDP: "
+                + getUDPPort() + " TCP: " + getTCPPort();
     }
 }
