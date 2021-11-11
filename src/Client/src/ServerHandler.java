@@ -11,7 +11,6 @@ public class ServerHandler implements Runnable {
     private static byte[] receive = null;
     private static String log;
 
-
     /**
      * constructor to handle responses from the server
      * @param clientSocket
@@ -38,8 +37,6 @@ public class ServerHandler implements Runnable {
                 ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
                 ObjectInputStream is = new ObjectInputStream(byteStream);
 
-                log = "---\nRECEIVED: ";
-                log(log);
                 try{
                     Object o = (Object) is.readObject();
 
@@ -51,7 +48,7 @@ public class ServerHandler implements Runnable {
                     requestHandler(o, response);
                 } catch (ClassNotFoundException e) {
                 //e.printStackTrace();
-                log = "Cannot handle message from server: " + response.toString() + "\n---\n";
+                log = "Cannot handle message from server: " + response.toString() + "\n";
                 log(log);
                 }
             }
@@ -70,12 +67,12 @@ public class ServerHandler implements Runnable {
         // Handle Successful Register Request - Don't think we need it
         if (request instanceof ClientRegisterConfirmed) {
             Client.isRegistered = true;
-            log = "You are now registered.\n---\n";
+            log = "You are now registered.\n";
             log(log);
         }
         else if(request instanceof ClientRegisterDenied){
             Client.isRegistered = false;
-            log = "Registration Denied: You are not registered.\n---\n";
+            log = "Registration Denied: You are not registered.\n";
             log(log);
         }
         //add other if to handle other possible response by server
@@ -86,6 +83,11 @@ public class ServerHandler implements Runnable {
         }
     }
 
+    /**
+     * method to log any message
+     * log to command lines and a file
+     * @param logText
+     */
     public static void log(String logText)
     {
         try {

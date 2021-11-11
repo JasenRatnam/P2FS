@@ -1,10 +1,8 @@
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 
 public class Request implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     protected RequestType requestType;
     protected int RQNumb;
@@ -76,33 +74,10 @@ public class Request implements Serializable {
     public RequestType getRequestType() {
         return requestType;
     }
-
     public void setRQNumb(int RQNumb){
-
         this.RQNumb = RQNumb;
     }
-
     public int getRQNumb(){
-
         return RQNumb;
-    }
-
-    /**
-     * write a response
-     * @param out
-     * @throws IOException
-     */
-    public void writeObject(ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();
-    }
-
-    /**
-     * read a request
-     * @param in
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
     }
 }

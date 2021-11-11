@@ -26,15 +26,12 @@ public class RegisterRequest extends Request  {
     }
 
     //getter methods
-
     public String getClientName() {
         return clientName;
     }
-
     public String getAddress() {
         return address;
     }
-
     public int getUDPPort() {
         return UDPport;
     }
@@ -49,6 +46,10 @@ public class RegisterRequest extends Request  {
                 + getUDPPort() + " TCP: " + getTCPPort();
     }
 
+    /**
+     * Get client object of the client that wants to register
+     * @return
+     */
     public ClientObject getClientObject() {
         ClientObject client = new ClientObject(clientName,address,UDPport,TCPport);
         return  client;

@@ -1,5 +1,8 @@
+import java.io.Serial;
+
 public class RegisterRequest extends Request  {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     private String address;
     private int UDPport;
@@ -23,15 +26,12 @@ public class RegisterRequest extends Request  {
     }
 
     //getter methods
-
     public String getClientName() {
         return clientName;
     }
-
     public String getAddress() {
         return address;
     }
-
     public int getUDPPort() {
         return UDPport;
     }

@@ -20,7 +20,7 @@ public class Sender {
             out.writeObject(object);
 
             //log into file
-            Writer.sendRequestToFile(object, address, port);
+            Writer.sendRequest(object, address, port);
 
             //add request to list of requests sent to server
             RequestList.handleSentRequest(object);

@@ -59,11 +59,26 @@ public class Server implements Runnable {
      * configure server on startup
      */
     public void serverConfig() {
-
         //ask and get port of server
-        System.out.println("Enter port number of the Server: ");
-        String port = sc.nextLine();
-        serverPort = Integer.parseInt(port);
+        System.out.println("Enter port number of the Server: (1-65535)");
+        while (!sc.hasNextInt())
+        {
+            sc.next(); // Read and discard offending non-int input
+            System.out.println("Please enter a valid port number: (1-65535) "); // Re-prompt
+        }
+        serverPort = sc.nextInt();
+
+        // Ports should be between 0 - 65535
+        while(serverPort < 1 || serverPort > 65535) {
+            System.out.println("Port out of range: 1-65535");
+            System.out.println("Enter port number of the Server: (1-65535)");
+            while (!sc.hasNextInt())
+            {
+                sc.next(); // Read and discard offending non-int input
+                System.out.print("Please enter a valid port number: (1-65535) "); // Re-prompt
+            }
+            serverPort = sc.nextInt();
+        }
 
         //continue asking until valid socket is received
         while (true) {
@@ -77,9 +92,14 @@ public class Server implements Runnable {
                 log = "SocketException: " + ex.getMessage();
                 log(log);
                 //ask and get port of server
-                System.out.println("Enter port number of the Server: ");
-                port = sc.nextLine();
-                serverPort = Integer.parseInt(port);
+
+                System.out.println("Enter port number of the Server: (1-65535)");
+                while (!sc.hasNextInt())
+                {
+                    sc.next(); // Read and discard offending non-int input
+                    System.out.println("Please enter a valid port number: (1-65535) "); // Re-prompt
+                }
+                serverPort = sc.nextInt();
             }
         }
 
@@ -98,6 +118,11 @@ public class Server implements Runnable {
         log(log);
     }
 
+    /**
+     * method to log any message
+     * log to command lines and a file
+     * @param logText
+     */
     public void log(String logText)
     {
         try {

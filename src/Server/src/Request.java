@@ -1,10 +1,9 @@
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Request implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     protected RequestType requestType;
     protected int RQNumb;
@@ -59,7 +58,6 @@ public class Request implements Serializable {
      * @param requestType
      */
     public Request(RequestType requestType) {
-
         this.requestType = requestType;
     }
 
@@ -76,14 +74,10 @@ public class Request implements Serializable {
     public RequestType getRequestType() {
         return requestType;
     }
-
     public void setRQNumb(int RQNumb){
-
         this.RQNumb = RQNumb;
     }
-
     public int getRQNumb(){
-
         return RQNumb;
     }
 }

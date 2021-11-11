@@ -1,6 +1,3 @@
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-
 public class ClientObject {
 
     private String name;
@@ -8,6 +5,13 @@ public class ClientObject {
     private int UDPport;
     private int TCPport;
 
+    /**
+     * constructor of a client object
+     * @param name of client
+     * @param IP of client
+     * @param UDPport of client to talk to server
+     * @param TCPport of client to talk with other clients
+     */
     public ClientObject(String name, String IP, int UDPport, int TCPport) {
         this.name = name;
         this.IP = IP;
@@ -15,6 +19,10 @@ public class ClientObject {
         this.TCPport = TCPport;
     }
 
+    /**
+     * String of the client
+     * @return
+     */
     @Override
     public String toString() {
         return "ClientObject{" +
@@ -25,6 +33,7 @@ public class ClientObject {
                 '}';
     }
 
+    //getters and setters
     public String getName() {
         return name;
     }

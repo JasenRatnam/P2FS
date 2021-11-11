@@ -48,8 +48,6 @@ public class ClientHandler implements Runnable {
             Object object = input.readObject();
 
             //print the object received
-            System.out.println(object.toString());
-
             // output to file
             Writer.appendToFile(object);
 
@@ -101,7 +99,7 @@ public class ClientHandler implements Runnable {
         //save ip of client
         String IP = request.getAddress();
 
-        log = "Register request received";
+        log = "Register request received\n";
         log(log);
         boolean error = false;
         String errorCode = null;
@@ -110,21 +108,25 @@ public class ClientHandler implements Runnable {
         for ( ClientObject client: Server.clients) {
             if(client.getName().equals(username)){
                 //registration denied
-                log = "Registration Denied: name -" + username + "- already registered";
+                log = "Registration Denied: name -" + username + " - already registered\n";
                 error = true;
                 errorCode = "Username already exists";
+                log(log);
                 break;
             }
             if(client.getIP().equals(IP)){
                 //registration denied
-                log = "Registration Denied: IP -" + IP + "- already registered";
+                log = "Registration Denied: IP -" + IP + " - already registered\n";
                 error = true;
                 errorCode = "IP address already exists";
+                log(log);
                 break;
             }
         }
+
         try {
-            if (error == false) {
+            if (!error) {
+                // if not already registered
                 //registered
                 Server.clients.add(request.getClientObject());
                 //need to send confirmation too client
@@ -149,11 +151,17 @@ public class ClientHandler implements Runnable {
         RequestList.remove(request.getRQNumb(), this.request);
     }
 
+    /**
+     * Deregsiter client with given name
+     * if no client exists with given name deregister
+     *
+     * @param request
+     */
     public void deregister(DeRegisterRequest request) {
         //save name of client
         String username = request.getClientName();
 
-        log = "Dergister request received";
+        log = "Dergister request received\n";
         log(log);
 
         boolean deregister = false;
@@ -164,7 +172,7 @@ public class ClientHandler implements Runnable {
                 //deregister client
                 deregister = true;
                 Server.clients.remove(i);
-                log = client.toString() + " as been deregistered.\n";
+                log = client.toString() + " has been deregistered.\n";
                 log += "\nServer has " + Server.clients.size() + " client(s)\n";
                 break;
             }
@@ -174,7 +182,8 @@ public class ClientHandler implements Runnable {
         {
             //can't deregister
             log = username + " cannot be deregistered.";
-            log += "\nCannot find " + username;
+            log += "\nCannot find " + username  + "\n";
+            log += "\nServer has " + Server.clients.size() + " client(s)\n";
         }
         log(log);
 
@@ -182,6 +191,11 @@ public class ClientHandler implements Runnable {
         RequestList.remove(request.getRQNumb(), this.request);
     }
 
+    /**
+     * method to log any message
+     * log to command lines and a file
+     * @param logText
+     */
     public void log(String logText)
     {
         try {

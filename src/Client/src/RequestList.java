@@ -6,7 +6,6 @@ public class RequestList {
 
     /**
      * Save request sent by the client to the HashMap
-     *
      * @param
      */
     public static void handleSentRequest(Object request) {
@@ -17,7 +16,7 @@ public class RequestList {
 
             int Rid = req.getRQNumb();
             Client.requestMap.put(Rid, request);
-            log = "REGISTER REQUEST RID: " + Rid;
+            log = "REGISTER REQUEST RID: " + Rid + "\n";
             log(log);
         }
     }
@@ -25,14 +24,9 @@ public class RequestList {
     /**
      * Save response received by the client
      * Removes the Object from the HashMap
-     *
      * @param response
      */
     public static void handleReceivedResponse(Object response) {
-
-        log = "RECEIVED RESPONSE: ";
-        log += response.toString();
-        log(log);
 
         // Handle Register confirmation Received
         if (response instanceof ClientRegisterConfirmed) {
@@ -42,8 +36,8 @@ public class RequestList {
             int RequestID = res.getRQNumb();
             // if the RequestID exists in the map remove it
             if (Client.requestMap.containsKey(RequestID)) {
-                log = "Response of: " + Client.requestMap.get(RequestID);
-                log(log);
+                RegisterRequest req = (RegisterRequest) Client.requestMap.get(RequestID);
+                Client.ClientName = req.getClientName();
                 Client.requestMap.remove(RequestID);
             }
         }
@@ -54,7 +48,7 @@ public class RequestList {
             int RequestID = res.getRQNumb();
             // if the RequestID exists in the map remove it
             if (Client.requestMap.containsKey(RequestID)) {
-                log = "Response of: " + Client.requestMap.get(RequestID);
+                log = "Response of: \n" + Client.requestMap.get(RequestID) + "\n";
                 log(log);
                 Client.requestMap.remove(RequestID);
             }
@@ -67,6 +61,11 @@ public class RequestList {
         }
     }
 
+    /**
+     * method to log any message
+     * log to command lines and a file
+     * @param logText
+     */
     public static void log(String logText)
     {
         try {
