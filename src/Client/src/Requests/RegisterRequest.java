@@ -1,6 +1,8 @@
+package Requests;
+
 import java.io.Serial;
 
-public class RegisterRequest extends Request  {
+public class RegisterRequest extends Request {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -18,7 +20,7 @@ public class RegisterRequest extends Request  {
      * @param TCPport TCP port of client
      */
     public RegisterRequest(int rqNumber, String clientName, String address, int UDPport, int TCPport) {
-        super(RequestType.REGISTER, rqNumber);
+        super(Request.RequestType.REGISTER, rqNumber);
         this.clientName = clientName;
         this.address = address;
         this.UDPport = UDPport;
@@ -42,16 +44,7 @@ public class RegisterRequest extends Request  {
     //print the request
     @Override
     public String toString() {
-        return RequestType.REGISTER + " " + this.getRQNumb() + " " + getClientName() + " " + getAddress() + " UDP: "
+        return Request.RequestType.REGISTER + " " + this.getRQNumb() + " " + getClientName() + " " + getAddress() + " UDP: "
                 + getUDPPort() + " TCP: " + getTCPPort();
-    }
-
-    /**
-     * Get client object of the client that wants to register
-     * @return
-     */
-    public ClientObject getClientObject() {
-        ClientObject client = new ClientObject(clientName,address,UDPport,TCPport);
-        return  client;
     }
 }

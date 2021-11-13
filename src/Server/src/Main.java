@@ -1,8 +1,8 @@
 //socket with UDP
-import java.io.IOException;
+import Handler.Server;
 
 /**
- * Main class of the Server
+ * Main class of the Handler.Server
  * starts a server thread
  */
 public class Main {
@@ -10,8 +10,6 @@ public class Main {
     /**
      * Main method
      * run server in a thread
-     * @param args
-     * @throws IOException
      */
     public static void main(String[] args){
          Server server = new Server();

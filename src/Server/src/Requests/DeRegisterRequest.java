@@ -1,3 +1,5 @@
+package Requests;
+
 import java.io.Serial;
 
 /**
@@ -10,12 +12,10 @@ public class DeRegisterRequest extends Request {
     String clientName;
 
     /**
-     * contstructor a request that ask to deregister a client with a given name
-     * @param rid
-     * @param clientName to deregister
+     * constructor a request that ask to deregister a client with a given name
      */
     public DeRegisterRequest(int rid, String clientName) {
-        super(RequestType.DE_REGISTER, rid);
+        super(Request.RequestType.DE_REGISTER, rid);
         this.clientName = clientName;
     }
 
@@ -27,6 +27,6 @@ public class DeRegisterRequest extends Request {
     //string of the request
     @Override
     public String toString() {
-        return RequestType.DE_REGISTER + " " + this.getRQNumb() + " " + getClientName();
+        return Request.RequestType.DE_REGISTER + " " + this.getRQNumb() + " " + getClientName();
     }
 }
