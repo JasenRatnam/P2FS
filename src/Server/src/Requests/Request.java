@@ -1,4 +1,7 @@
-import java.io.*;
+package Requests;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 public class Request implements Serializable {
 
@@ -39,13 +42,12 @@ public class Request implements Serializable {
 
         private final String requestType;
         //constructor of request
-        private RequestType(String requestType){
+        RequestType(String requestType){
             this.requestType = requestType;
         }
 
         /**
          * get string of the request type
-         * @return
          */
         public String toString(){
             return this.requestType;
@@ -53,17 +55,14 @@ public class Request implements Serializable {
     }
 
     /**
-     * Request constructor without request number
-     * @param requestType
+     * Requests.Request constructor without request number
      */
     public Request(RequestType requestType) {
-
         this.requestType = requestType;
     }
 
     /**
-     * Request constructor with request number
-     * @param requestType
+     * Requests.Request constructor with request number
      */
     public Request(RequestType requestType, int reqNumber) {
         this.requestType = requestType;
@@ -71,12 +70,6 @@ public class Request implements Serializable {
     }
 
     // getters and setters
-    public RequestType getRequestType() {
-        return requestType;
-    }
-    public void setRQNumb(int RQNumb){
-        this.RQNumb = RQNumb;
-    }
     public int getRQNumb(){
         return RQNumb;
     }

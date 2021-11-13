@@ -1,9 +1,15 @@
+package Handler;
+
+import java.util.ArrayList;
+
 public class ClientObject {
 
     private String name;
     private String IP;
     private int UDPport;
     private int TCPport;
+    public static ArrayList<String> files = new ArrayList<>();
+
 
     /**
      * constructor of a client object
@@ -21,19 +27,36 @@ public class ClientObject {
 
     /**
      * String of the client
-     * @return
      */
     @Override
     public String toString() {
-        return "ClientObject{" +
+        return "Client{" +
                 "name='" + name + '\'' +
                 ", IP='" + IP + '\'' +
                 ", UDPport=" + UDPport +
                 ", TCPport=" + TCPport +
-                '}';
+                "}\nFiles: {" +
+                String.join(", ", files)
+                + "}";
+    }
+
+    public static void addFile(String file) {
+        files.add(file);
+    }
+
+    public static void removeFile(String file) {
+        files.remove(file);
     }
 
     //getters and setters
+    public static ArrayList<String> getFiles() {
+        return files;
+    }
+
+    public static void setFiles(ArrayList<String> files) {
+        ClientObject.files = files;
+    }
+
     public String getName() {
         return name;
     }

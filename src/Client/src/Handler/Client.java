@@ -1,4 +1,8 @@
-import java.io.IOException;
+package Handler;
+
+import Requests.DeRegisterRequest;
+import Requests.RegisterRequest;
+
 import java.net.*;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,7 +19,7 @@ public class Client {
     public static int clientUDPPort;
     public static int clientTCPPort = 3000;
     private static DatagramSocket ds;
-    private static Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
     public static AtomicInteger requestCounter = new AtomicInteger(0);
     public static String ClientName;
     public static ConcurrentHashMap<Integer,Object> requestMap = new ConcurrentHashMap<>();
@@ -83,18 +87,20 @@ public class Client {
             log += "\n\nServer information: " +
                     "\nIP: " +  serverIp +
                     "\nPort: " + serverPort + "\n";
-            log(log);
+            Writer.log(log);
 
         } catch (SocketException ex) {
+            //e.printStackTrace();
             log  = "Socket error: " + ex.getMessage();
             log += "\nClosing client.... ";
-            log(log);
+            Writer.log(log);
             ds.close();
             exit(1);
         } catch(UnknownHostException uhEx) {
+            //e.printStackTrace();
             log = "HOST ID not found.... ";
             log += "\nClosing client....\n ";
-            log(log);
+            Writer.log(log);
             exit(1);
         }
     }
@@ -120,17 +126,18 @@ public class Client {
         String val = "";
         while (!val.equals("exit") || isRegistered) {
             System.out.println("\nEnter 'exit' to close client");
-            System.out.println("Possible commands:\n" +
-                    "1-Register\n" +
-                    "2-Deregister\n" +
-                    "3-Publish\n" +
-                    "4-Remove\n" +
-                    "5-Retrieve All\n" +
-                    "6-Retrieve infoT\n" +
-                    "7-Search file\n" +
-                    "8-Download\n" +
-                    "9-Update contact\n" +
-                    "10-Disconnect");
+            System.out.println("""
+                    Possible commands:
+                    1-Register
+                    2-Deregister
+                    3-Publish
+                    4-Remove
+                    5-Retrieve All
+                    6-Retrieve infoT
+                    7-Search file
+                    8-Download
+                    9-Update contact
+                    10-Disconnect""");
 
             System.out.println("Enter number of the wanted command:");
             val = sc.nextLine();
@@ -143,19 +150,19 @@ public class Client {
                     //has to register with the server before publishing or discovering what
                     // is available for share.
                     if(isRegistered) {
-                        log = "User is already Register\n";
-                        log(log);
+                        log = "User is already Registered\n";
+                        Writer.log(log);
                         continue;
                     }
                     else{
                         log = "User selected Register\n";
-                        log(log);
+                        Writer.log(log);
                         register(sc);
                         break;
                     }
                 case "2":
                     log = "User selected DeRegister\n";
-                    log(log);
+                    Writer.log(log);
                     deregister(sc);
                     break;
                 case "3":
@@ -163,24 +170,24 @@ public class Client {
                     // about available files and where to download them from.
                     if(isRegistered) {
                         log = "User selected Publish\n";
-                        log(log);
+                        Writer.log(log);
                         break;
                     }
                     else{
                         log = "Please register first\n";
-                        log(log);
+                        Writer.log(log);
                         continue;
                     }
                 case "4":
                     //remove a file (or a list of files) from its offering,
                     if(isRegistered) {
                         log = "User selected Remove\n";
-                        log(log);
+                        Writer.log(log);
                         break;
                     }
                     else{
                         log = "Please register first\n";
-                        log(log);
+                        Writer.log(log);
                         continue;
                     }
                 case "5":
@@ -189,64 +196,63 @@ public class Client {
                     //A user can retrieve for instance the names of all the other registered clients,
                     if(isRegistered) {
                         log = "User selected Retrieve All\n";
-                        log(log);
+                        Writer.log(log);
                         break;
                     }
                     else{
                         log = "Please register first\n";
-                        log(log);
+                        Writer.log(log);
                         continue;
                     }
                 case "6":
                     //A registered user can also request the information about a specific peer.
                     if(isRegistered) {
                         log = "User selected Retrieve infoT\n";
-                        log(log);
+                        Writer.log(log);
                         break;
                     }
                     else{
                         log = "Please register first\n";
-                        log(log);
+                        Writer.log(log);
                         continue;
                     }
                 case "7":
                     //A user can search for a specific file
                     if(isRegistered) {
                         log = "User selected Search file\n";
-                        log(log);
+                        Writer.log(log);
                         break;
                     }
                     else{
                         log = "Please register first\n";
-                        log(log);
+                        Writer.log(log);
                         continue;
                     }
                 case "8":
                     //set a TCP connection to the peer,
                     log = "User selected Download\n";
-                    log(log);
+                    Writer.log(log);
                     break;
                 case "9":
                     //A registered user can always modify his/her IP address,
                     // UDP socket#, and/or TCP socket#
                     log = "User selected Update contact\n";
-                    log(log);
+                    Writer.log(log);
 
                     break;
                 case "10":
                     log = "User selected Disconnect\n";
                     log += "Disconnecting...\n";
-                    log(log);
+                    Writer.log(log);
                     exit(1);
                     break;
                 case "-1":
                     log = "User selected Nothing\n";
-                    log(log);
+                    Writer.log(log);
                     continue;
                 default:
                     log = "User selected an invalid option\n";
-                    log(log);
-                    continue;
+                    Writer.log(log);
             }
         }
         exit(1);
@@ -261,15 +267,11 @@ public class Client {
         System.out.print("\tEnter Username to register: ");
         String name = s.next();
 
-        try {
-            //create a register request
-            RegisterRequest registerMessage = new RegisterRequest(requestCounter.incrementAndGet(), name,
-                    clientIp.toString(), clientUDPPort, clientTCPPort);
-            //send request to server
-            Sender.sendTo(registerMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //create a register request
+        RegisterRequest registerMessage = new RegisterRequest(requestCounter.incrementAndGet(), name,
+                clientIp.toString(), clientUDPPort, clientTCPPort);
+        //send request to server
+        Sender.sendTo(registerMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }
 
     /**
@@ -283,32 +285,14 @@ public class Client {
         System.out.print("\tEnter Username to deregister: ");
         String name = s.next();
 
-        if(name.equals(ClientName)) {
-            isRegistered = false;
-            System.out.println("You have been deregistered.\n");
-            exit(1);
-        }
-
         DeRegisterRequest deregisterMessage = new DeRegisterRequest(Client.requestCounter.incrementAndGet(),
                 name);
-        try {
-            Sender.sendTo(deregisterMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    /**
-     * method to log any message
-     * log to command lines and a file
-     * @param logText
-     */
-    public static void log(String logText)
-    {
-        try {
-            Writer.log(logText);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(name.equals(ClientName)) {
+            isRegistered = false;
+            System.out.println("You have been DeRegistered.\n");
         }
+
+        Sender.sendTo(deregisterMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }
 }

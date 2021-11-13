@@ -1,9 +1,13 @@
+package Responses;
+
+import Requests.Request;
+
 import java.io.Serial;
 
 /**
  * class for response from server when the registrations is denied
  */
-public class ClientRegisterDenied extends Request  {
+public class RegisterDenied extends Request {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -11,11 +15,9 @@ public class ClientRegisterDenied extends Request  {
 
     /**
      * constructor of a denied register
-     * @param reason
-     * @param rid
      */
-    public ClientRegisterDenied(String reason, int rid){
-      super(RequestType.CLIENT_REGISTER_DENIED);
+    public RegisterDenied(String reason, int rid){
+      super(Request.RequestType.CLIENT_REGISTER_DENIED);
       this.RQNumb = rid;
       this.reason=reason;
     }
@@ -28,7 +30,7 @@ public class ClientRegisterDenied extends Request  {
     //string of the response
     @Override
     public String toString(){
-        return RequestType.CLIENT_REGISTER_DENIED+ " "  + this.getRQNumb()+ " '" + getReason() + "'";
+        return Request.RequestType.CLIENT_REGISTER_DENIED+ " "  + this.getRQNumb()+ " '" + getReason() + "'";
     }
 }
 

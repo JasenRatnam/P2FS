@@ -1,23 +1,24 @@
+package Handler;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.security.Timestamp;
 import java.util.Date;
 
+import static java.lang.System.exit;
+
 /**
- * Write log to a external file
+ * Write log to an external file
  */
 public class Writer {
 
     private static String Timestamp;
-    private static String fileName = "Client.txt";
+    private static final String fileName = "Client.txt";
 
     /**
-     * append an object to the text file
-     * @param object
-     * @throws IOException
+     * append object received from server
      */
-    public static void appendToFile(Object object) throws IOException {
+    public static void receiveServer(Object object){
         //get current timestamp
         Timestamp = new Date().toString();
 
@@ -30,22 +31,24 @@ public class Writer {
             br.write(str.toString());
             br.newLine();
             br.write(object.toString());
-            System.out.println(object.toString());
+            System.out.println(object);
             br.newLine();
             br.write(Timestamp);
             System.out.println(Timestamp);
             br.newLine();
+        }catch (IOException e) {
+            //e.printStackTrace();
+            String log = "IOException.... ";
+            log += "\nClosing client....\n ";
+            Writer.log(log);
+            exit(1);
         }
     }
 
     /**
      * add object sent to server
-     * @param object
-     * @param serverAddress
-     * @param serverPort
-     * @throws IOException
      */
-    public static void sendRequest(Object object, String serverAddress, int serverPort) throws IOException {
+    public static void sendRequest(Object object, String serverAddress, int serverPort){
         Timestamp = new java.util.Date().toString();
         try (BufferedWriter br = new BufferedWriter(new FileWriter(fileName, true))) {
             StringBuilder str = new StringBuilder();
@@ -55,7 +58,7 @@ public class Writer {
             System.out.println(str);
             br.newLine();
             br.write(object.toString());
-            System.out.println(object.toString());
+            System.out.println(object);
             br.newLine();
             br.write("Sending to ->" + serverAddress + ":" + serverPort);
             System.out.println("Sending to ->" + serverAddress + ":" + serverPort);
@@ -63,32 +66,43 @@ public class Writer {
             br.write(Timestamp);
             System.out.println(Timestamp);
             br.newLine();
+        }catch (IOException e) {
+            //e.printStackTrace();
+            String log = "IOException.... ";
+            log += "\nClosing client....\n ";
+            Writer.log(log);
+            exit(1);
         }
     }
 
     /**
      * log any string to the file
-     * @param log
-     * @throws IOException
      */
-    public static void log(String log) throws IOException {
+    public static void log(String log){
 
-        System.out.print(log);
         Timestamp = new Date().toString();
-        System.out.println(Timestamp + "\n");
 
         try(BufferedWriter br = new BufferedWriter(new FileWriter(fileName,true))){
             StringBuilder str = new StringBuilder();
 
-            str.append("-------------------------------------------------");
+            str.append("\n-------------------------------------------------");
+            System.out.println(str);
             br.write(str.toString());
             br.newLine();
             br.write(log);
+            System.out.print(log);
             br.newLine();
             br.write(Timestamp);
+            System.out.println(Timestamp);
             br.newLine();
             br.write(str.toString());
             br.newLine();
+        }catch (IOException e) {
+            //e.printStackTrace();
+            log = "IOException.... ";
+            log += "\nClosing client....\n ";
+            Writer.log(log);
+            exit(1);
         }
     }
 }

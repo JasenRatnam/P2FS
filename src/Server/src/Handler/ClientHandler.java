@@ -1,8 +1,20 @@
+package Handler;
+
+import Requests.DeRegisterRequest;
+import Requests.RegisterRequest;
+import Requests.Request;
+import Responses.RegisterConfirmed;
+import Responses.RegisterDenied;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import static java.lang.System.exit;
 
 /**
  * class that handles requests from a client
@@ -49,7 +61,7 @@ public class ClientHandler implements Runnable {
 
             //print the object received
             // output to file
-            Writer.appendToFile(object);
+            Writer.receiveClient(object);
 
             //handle request from client
             requestHandler(object);
@@ -57,34 +69,47 @@ public class ClientHandler implements Runnable {
             //stop reading request
             input.close();
         } catch (IOException e) {
-            log = "Exception:  " + e;
-            log(log);
-            e.printStackTrace();
+            //e.printStackTrace();
+            log = "Receiver IOException " + e.getMessage();
+            Writer.log(log);
+            exit(1);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            log = "Cannot handle message from server: " + request.toString() + "\n";
+            Writer.log(log);
         }
     }
 
     /**
      * Method to handle the request received from the client
-     * @param requestInput
      */
-    public synchronized void requestHandler(Object requestInput) throws IOException {
+    public synchronized void requestHandler(Object requestInput){
         //add request to map of requests
-        RequestList.received(requestInput, request);
+        if (requestInput instanceof Request request1) {
 
-        //if request is a register
-        if (requestInput instanceof RegisterRequest) {
-            register((RegisterRequest) requestInput);
-        }
-        //if request is a deregister
-        else if (requestInput instanceof DeRegisterRequest) {
-            deregister((DeRegisterRequest) requestInput);
-        }
-        //need to add other requests
-        else {
-            log = "Cannot handle this request.";
-            log(log);
+            //get client IP and port number
+            InetAddress clientIp = request.getAddress();
+            String ip = clientIp.toString();
+            int port = request.getPort();
+
+            //store request with request number
+            int RQNumb = request1.getRQNumb();
+            String hashId = RQNumb + "-" + ip + ":" + port;
+            Server.requestMap.put(hashId, requestInput);
+
+            //if request is a register
+            if (requestInput instanceof RegisterRequest) {
+                register((RegisterRequest) requestInput);
+            }
+            //if request is a deregister
+            else if (requestInput instanceof DeRegisterRequest) {
+                deregister((DeRegisterRequest) requestInput);
+            }
+            //need to add other requests
+            else {
+                log = "Cannot handle this request.";
+                Writer.log(log);
+            }
         }
     }
 
@@ -100,7 +125,7 @@ public class ClientHandler implements Runnable {
         String IP = request.getAddress();
 
         log = "Register request received\n";
-        log(log);
+        Writer.log(log);
         boolean error = false;
         String errorCode = null;
 
@@ -111,7 +136,7 @@ public class ClientHandler implements Runnable {
                 log = "Registration Denied: name -" + username + " - already registered\n";
                 error = true;
                 errorCode = "Username already exists";
-                log(log);
+                Writer.log(log);
                 break;
             }
             if(client.getIP().equals(IP)){
@@ -119,50 +144,43 @@ public class ClientHandler implements Runnable {
                 log = "Registration Denied: IP -" + IP + " - already registered\n";
                 error = true;
                 errorCode = "IP address already exists";
-                log(log);
+                Writer.log(log);
                 break;
             }
         }
+        // if not already registered
+        if (!error) {
+            //register
+            Server.clients.add(request.getClientObject());
 
-        try {
-            if (!error) {
-                // if not already registered
-                //registered
-                Server.clients.add(request.getClientObject());
-                //need to send confirmation too client
-
-                ClientRegisterConfirmed confirmation = new ClientRegisterConfirmed(request.getRQNumb());
-                Sender.sendTo(confirmation, this.request, ds);
-                log = "Client: " + username + " at " + IP + " has been registered";
-            } else {
-                //registration denied
-                ClientRegisterDenied denied = new ClientRegisterDenied(errorCode, request.getRQNumb());
-                Sender.sendTo(denied, this.request, ds);
-                log = "Client: " + username + " at " + IP + " has not been registered because: " + errorCode;
-            }
-            log += "\nServer has " + Server.clients.size() + " client(s)\n";
-        } catch (IOException e) {
-            e.printStackTrace();
+            //Send confirmation too client
+            RegisterConfirmed confirmation = new RegisterConfirmed(request.getRQNumb());
+            Sender.sendTo(confirmation, this.request, ds);
+            log = "Client: " + username + " at " + IP + " has been registered";
+        } else {
+            //registration denied
+            RegisterDenied denied = new RegisterDenied(errorCode, request.getRQNumb());
+            Sender.sendTo(denied, this.request, ds);
+            log = "Client: " + username + " at " + IP + " has not been registered because: " + errorCode;
         }
+        log += "\nServer has " + Server.clients.size() + " client(s)\n";
 
-        log(log);
+        Writer.log(log);
 
         // remove request from list of request
-        RequestList.remove(request.getRQNumb(), this.request);
+        remove(request.getRQNumb(), this.request);
     }
 
     /**
-     * Deregsiter client with given name
-     * if no client exists with given name deregister
-     *
-     * @param request
+     * DeRegister client with given name
+     * if no client exists with given name DeRegister
      */
     public void deregister(DeRegisterRequest request) {
         //save name of client
         String username = request.getClientName();
 
-        log = "Dergister request received\n";
-        log(log);
+        log = "Deregister request received\n";
+        Writer.log(log);
 
         boolean deregister = false;
         int i = 0;
@@ -172,7 +190,7 @@ public class ClientHandler implements Runnable {
                 //deregister client
                 deregister = true;
                 Server.clients.remove(i);
-                log = client.toString() + " has been deregistered.\n";
+                log = client + " has been DeRegistered.\n";
                 log += "\nServer has " + Server.clients.size() + " client(s)\n";
                 break;
             }
@@ -181,26 +199,29 @@ public class ClientHandler implements Runnable {
         if(!deregister)
         {
             //can't deregister
-            log = username + " cannot be deregistered.";
+            log = username + " cannot be DeRegistered.";
             log += "\nCannot find " + username  + "\n";
             log += "\nServer has " + Server.clients.size() + " client(s)\n";
         }
-        log(log);
+        Writer.log(log);
 
         // remove request from list of request
-        RequestList.remove(request.getRQNumb(), this.request);
+        remove(request.getRQNumb(), this.request);
     }
 
     /**
-     * method to log any message
-     * log to command lines and a file
-     * @param logText
+     * Remove request from the list of requests
      */
-    public void log(String logText)
-    {
+    public static void remove(int rid, DatagramPacket packet) {
         try {
-            Writer.log(logText);
-        } catch (IOException e) {
+            //client ip and port
+            String ip = packet.getAddress().getLocalHost().getHostAddress();
+            int port = packet.getPort();
+            String hashId = rid + "-" + ip + ":" + port;
+
+            //remove request
+            Server.requestMap.remove(hashId);
+        } catch (UnknownHostException e) {
             e.printStackTrace();
         }
     }

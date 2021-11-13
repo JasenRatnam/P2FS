@@ -1,8 +1,12 @@
+package Handler;
+
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
+
+import static java.lang.System.exit;
 
 /**
  * Main server thread and implementation
@@ -46,11 +50,16 @@ public class Server implements Runnable {
                 clientHandler = new ClientHandler(request, ds);
 
             } catch (SocketTimeoutException ex) {
-                log = "SocketTimeoutException: " + ex.getMessage();
-                log(log);
+                //e.printStackTrace();
+                log  = "Socket error: " + ex.getMessage();
+                log += "\nClosing client.... ";
+                Writer.log(log);
+                ds.close();
+                exit(1);
             } catch (IOException ex) {
+                //e.printStackTrace();
                 log = "IOException " + ex.getMessage();
-                log(log);
+                Writer.log(log);
             }
         }
     }
@@ -84,13 +93,13 @@ public class Server implements Runnable {
         while (true) {
             try {
                 log = "opening port..... \n";
-                log(log);
+                Writer.log(log);
                 ds = new DatagramSocket(serverPort);
                 break;
             } catch (SocketException ex) {
                 ds.close();
                 log = "SocketException: " + ex.getMessage();
-                log(log);
+                Writer.log(log);
                 //ask and get port of server
 
                 System.out.println("Enter port number of the Server: (1-65535)");
@@ -115,20 +124,6 @@ public class Server implements Runnable {
                 "\nIP: " +  serverIp.toString() +
                 "\nPort: " + serverPort + "\n";
 
-        log(log);
-    }
-
-    /**
-     * method to log any message
-     * log to command lines and a file
-     * @param logText
-     */
-    public void log(String logText)
-    {
-        try {
-            Writer.log(logText);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Writer.log(log);
     }
 }
