@@ -171,6 +171,7 @@ public class Client {
                     if(isRegistered) {
                         log = "User selected Publish\n";
                         Writer.log(log);
+                        //publish(sc);
                         break;
                     }
                     else{
@@ -183,6 +184,7 @@ public class Client {
                     if(isRegistered) {
                         log = "User selected Remove\n";
                         Writer.log(log);
+                        //remove(sc);
                         break;
                     }
                     else{
@@ -294,5 +296,13 @@ public class Client {
         }
 
         Sender.sendTo(deregisterMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
+    }
+    public static void publish(Scanner s) {
+
+    }
+
+    public static void remove(Scanner s) {
+
+
     }
 }

@@ -494,3 +494,259 @@ Server has 1 client(s)
 Fri Nov 12 22:15:20 EST 2021
 
 -------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Sat Nov 13 12:58:52 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: Nabils-Machine.local/127.0.0.1
+Port: 3000
+
+Sat Nov 13 12:58:52 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Sat Nov 13 13:02:24 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: Nabils-Machine.local/10.0.0.62
+Port: 3001
+
+Sat Nov 13 13:02:24 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Sat Nov 13 13:45:42 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: Nabils-Machine.local/127.0.0.1
+Port: 3000
+
+Sat Nov 13 13:45:42 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 nabil Nabils-Machine.local/127.0.0.1 UDP: 60332 TCP: 3000
+Sat Nov 13 13:46:38 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Sat Nov 13 13:46:38 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/127.0.0.1:60332
+Sat Nov 13 13:46:38 EST 2021
+
+-------------------------------------------------
+Client: nabil at Nabils-Machine.local/127.0.0.1 has been registered
+Server has 1 client(s)
+
+Sat Nov 13 13:46:38 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Sat Nov 13 13:48:03 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: Nabils-Machine.local/127.0.0.1
+Port: 3000
+
+Sat Nov 13 13:48:03 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 nabil Nabils-Machine.local/127.0.0.1 UDP: 59139 TCP: 3000
+Sat Nov 13 13:48:15 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Sat Nov 13 13:48:15 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/127.0.0.1:59139
+Sat Nov 13 13:48:15 EST 2021
+
+-------------------------------------------------
+Client: nabil at Nabils-Machine.local/127.0.0.1 has been registered
+Server has 1 client(s)
+
+Sat Nov 13 13:48:15 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Sat Nov 13 14:59:28 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: Nabils-Machine.local/127.0.0.1
+Port: 65535
+
+Sat Nov 13 14:59:28 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 nabil Nabils-Machine.local/127.0.0.1 UDP: 51404 TCP: 3000
+Sat Nov 13 15:01:28 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Sat Nov 13 15:01:28 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/127.0.0.1:51404
+Sat Nov 13 15:01:28 EST 2021
+
+-------------------------------------------------
+Client: nabil at Nabils-Machine.local/127.0.0.1 has been registered
+Server has 1 client(s)
+
+Sat Nov 13 15:01:28 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 nabil Nabils-Machine.local/127.0.0.1 UDP: 63123 TCP: 3000
+Sat Nov 13 15:02:27 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Sat Nov 13 15:02:27 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -nabil - already registered
+
+Sat Nov 13 15:02:27 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'Username already exists'
+Sending to ->/127.0.0.1:63123
+Sat Nov 13 15:02:27 EST 2021
+
+-------------------------------------------------
+Client: nabil at Nabils-Machine.local/127.0.0.1 has not been registered because: Username already exists
+Server has 1 client(s)
+
+Sat Nov 13 15:02:27 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 nabil Nabils-Machine.local/127.0.0.1 UDP: 63124 TCP: 3000
+Sat Nov 13 15:03:15 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Sat Nov 13 15:03:15 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -nabil - already registered
+
+Sat Nov 13 15:03:15 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'Username already exists'
+Sending to ->/127.0.0.1:63124
+Sat Nov 13 15:03:15 EST 2021
+
+-------------------------------------------------
+Client: nabil at Nabils-Machine.local/127.0.0.1 has not been registered because: Username already exists
+Server has 1 client(s)
+
+Sat Nov 13 15:03:15 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 nabil
+Sat Nov 13 15:04:23 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Sat Nov 13 15:04:23 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=51404, TCPport=3000}
+Files: {} has been DeRegistered.
+
+Server has 0 client(s)
+
+Sat Nov 13 15:04:23 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 nabil
+Sat Nov 13 15:05:02 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Sat Nov 13 15:05:02 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+nabil cannot be DeRegistered.
+Cannot find nabil
+
+Server has 0 client(s)
+
+Sat Nov 13 15:05:02 EST 2021
+
+-------------------------------------------------
