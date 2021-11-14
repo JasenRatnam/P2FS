@@ -4,6 +4,7 @@ import Requests.DeRegisterRequest;
 import Requests.RegisterRequest;
 
 import java.net.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -142,9 +143,12 @@ public class Client {
             System.out.println("Enter number of the wanted command:");
             val = sc.nextLine();
 
+
             if (val.isEmpty()) {
                 val = "-1";
             }
+
+
             switch (val) {
                 case "1":
                     //has to register with the server before publishing or discovering what
@@ -171,6 +175,7 @@ public class Client {
                     if(isRegistered) {
                         log = "User selected Publish\n";
                         Writer.log(log);
+                        //publish(sc);
                         break;
                     }
                     else{
@@ -183,6 +188,7 @@ public class Client {
                     if(isRegistered) {
                         log = "User selected Remove\n";
                         Writer.log(log);
+                       // remove(sc);
                         break;
                     }
                     else{
@@ -295,4 +301,24 @@ public class Client {
 
         Sender.sendTo(deregisterMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }
+
+    public static void publish(Scanner s) {
+        String filename = "";
+        ArrayList<String> listOfFile = new ArrayList<String>();
+        while(filename != "exit") {
+            System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit): ");
+            filename = s.next();
+            if(filename !="exit") {
+                listOfFile.add(s.next());
+            }
+        }
+
+
+    }
+
+    public static void remove(Scanner s) {
+
+
+    }
+
 }
