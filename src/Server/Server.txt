@@ -550,3 +550,74 @@ Server has 1 client(s)
 Sun Nov 14 13:34:27 EST 2021
 
 -------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Sun Nov 14 23:46:10 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 6000
+
+Sun Nov 14 23:46:10 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 62800 TCP: 3000
+Sun Nov 14 23:46:27 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Sun Nov 14 23:46:27 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.5.1:62800
+Sun Nov 14 23:46:27 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 1 client(s)
+
+Sun Nov 14 23:46:27 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 52481 TCP: 3000
+Sun Nov 14 23:47:33 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Sun Nov 14 23:47:33 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -bibo - already registered
+
+Sun Nov 14 23:47:33 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'Username already exists'
+Sending to ->/192.168.5.1:52481
+Sun Nov 14 23:47:33 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has not been registered because: Username already exists
+Server has 1 client(s)
+
+Sun Nov 14 23:47:33 EST 2021
+
+-------------------------------------------------

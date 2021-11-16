@@ -1,7 +1,9 @@
 package Handler;
 
 import Requests.DeRegisterRequest;
+import Requests.PublishRequest;
 import Requests.RegisterRequest;
+import Requests.RemoveRequest;
 
 import java.net.*;
 import java.util.ArrayList;
@@ -272,7 +274,7 @@ public class Client {
         //get name of client
         System.out.print("\tEnter Username to register: ");
         String name = s.next();
-
+        ClientName=name;
         //create a register request
         RegisterRequest registerMessage = new RegisterRequest(requestCounter.incrementAndGet(), name,
                 clientIp.toString(), clientUDPPort, clientTCPPort);
@@ -312,12 +314,23 @@ public class Client {
                 listOfFile.add(s.next());
             }
         }
+        PublishRequest publishMessage = new PublishRequest(requestCounter.incrementAndGet(),ClientName,listOfFile);
 
 
     }
 
     public static void remove(Scanner s) {
+        String filename = "";
+        ArrayList<String> listOfFileToRemove = new ArrayList<String>();
+        while(filename != "exit") {
+            System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit): ");
+            filename = s.next();
+            if(filename !="exit") {
+                listOfFileToRemove.add(s.next());
+            }
+        }
 
+        RemoveRequest removeMessage = new RemoveRequest(requestCounter.incrementAndGet(),ClientName,listOfFileToRemove);
 
     }
 
