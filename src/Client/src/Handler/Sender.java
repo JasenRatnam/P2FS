@@ -51,6 +51,36 @@ public class Sender {
         }
     }
 
+    //send a serialised object to the client
+    public static void sendToTCP(Object object, String clientAddress, int clientPort) {
+        try(Socket socket = new Socket(clientAddress,clientPort)) {
+            //make object into bit stream
+            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            out.writeObject(object);
+
+            //log into log file
+            Writer.sendRequest(object, clientAddress, clientPort);
+
+            //add request to list of requests sent to server
+            saveRequest(object);
+
+            socket.close();
+            out.close();
+        } catch (UnknownHostException e) {
+            //e.printStackTrace();
+            log = "HOST ID not found.... ";
+            log += "\nClosing client....\n ";
+            Writer.log(log);
+            exit(1);
+        } catch (IOException e) {
+            //e.printStackTrace();
+            log = "IOException.... ";
+            log += "\nClosing client....\n ";
+            Writer.log(log);
+            exit(1);
+        }
+    }
+
     /**
      * Save request sent by the client to the HashMap
      */

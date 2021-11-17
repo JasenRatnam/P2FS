@@ -1,8 +1,10 @@
 package Handler;
 
 import Requests.DeRegisterRequest;
+import Requests.Download;
 import Requests.RegisterRequest;
 
+import java.io.IOException;
 import java.net.*;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,6 +27,7 @@ public class Client {
     public static ConcurrentHashMap<Integer,Object> requestMap = new ConcurrentHashMap<>();
     public static boolean isRegistered = false;
     private static String log;
+    private static String IPPATTERN = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$";
 
     /**
      * constructor of a client
@@ -37,14 +40,13 @@ public class Client {
      * configure server on startup
      */
     public void clientConfig() {
-        String PATTERN = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$";
 
         try {
             //ask and get IP of server
             System.out.println("Enter IP address of the Server: ");
             String ip = sc.nextLine();
 
-            while (!ip.matches(PATTERN)){
+            while (!ip.matches(IPPATTERN)){
                 System.out.println("Please enter a valid IP address");
                 System.out.println("Enter IP address of the Server: ");
                 ip = sc.nextLine();
@@ -108,11 +110,16 @@ public class Client {
     /**
      * start running the client
      */
-    public void start() {
+    public void start() throws IOException {
         //threading listening to any message from the server.
         ServerHandler receiver = new ServerHandler(ds);
         Thread receiverThread = new Thread(receiver);
         receiverThread.start();
+
+        //threading listening to any message from another client.
+        TCPClientHandler receiveClient = new TCPClientHandler();
+        Thread receiveClientThread = new Thread(receiveClient);
+        receiveClientThread.start();
 
         //run UI of the client and get commands to send to server
         ui();
@@ -122,7 +129,7 @@ public class Client {
      * UI of the client
      * displays commands to server and handles them
      */
-    public static void ui() {
+    public static void ui() throws UnknownHostException {
         String val = "";
         while (!val.equals("exit") || isRegistered) {
             System.out.println("\nEnter 'exit' to close client");
@@ -232,6 +239,7 @@ public class Client {
                     //set a TCP connection to the peer,
                     log = "User selected Download\n";
                     Writer.log(log);
+                    download(sc);
                     break;
                 case "9":
                     //A registered user can always modify his/her IP address,
@@ -256,6 +264,56 @@ public class Client {
             }
         }
         exit(1);
+    }
+
+    private static void download(Scanner s) throws UnknownHostException {
+        //get IP of client
+        System.out.print("\tEnter Username of IP to download from: ");
+        String ip = sc.nextLine();
+
+        while (!ip.matches(IPPATTERN)){
+            System.out.println("Please enter a valid IP address");
+            System.out.println("Enter IP address of target client: ");
+            ip = sc.nextLine();
+        }
+
+        //get port of client
+        System.out.print("\tEnter TCP port of target client: (1-65535)");
+        while (!sc.hasNextInt())
+        {
+            sc.next(); // Read and discard offending non-int input
+            System.out.println("Please enter a valid port number: (1-65535) "); // Re-prompt
+        }
+        int port = sc.nextInt();
+
+        // Ports should be between 0 - 65535
+        while(port < 1 || port > 65535) {
+            System.out.println("Port out of range: 1-65535");
+            System.out.println("Enter TCP port of target client: (1-65535)");
+            while (!sc.hasNextInt())
+            {
+                sc.next(); // Read and discard offending non-int input
+                System.out.print("Please enter a valid port number: (1-65535) "); // Re-prompt
+            }
+            port = sc.nextInt();
+        }
+
+        //get IP of client
+        System.out.print("\tEnter name of wanted file: ");
+        String fileName = sc.nextLine();
+
+        //client information
+        log = "\nTarget Client Information: " +
+                "\nIP: " +  ip +
+                "\nTCP Port: " + port + "\n" +
+                "\nWant file: " + fileName;
+
+        Writer.log(log);
+        //create a download request
+        Download downloadMessage = new Download(requestCounter.incrementAndGet(), fileName);
+
+        Sender.sendToTCP(downloadMessage, ip, port);
+        //do TCP crap
     }
 
     /**
