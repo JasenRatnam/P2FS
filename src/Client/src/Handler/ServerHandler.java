@@ -1,7 +1,9 @@
 package Handler;
 
+import Requests.PublishRequest;
 import Requests.RegisterRequest;
 import Requests.Request;
+import Responses.PublishConfirmed;
 import Responses.RegisterConfirmed;
 import Responses.RegisterDenied;
 
@@ -102,7 +104,17 @@ public class ServerHandler implements Runnable {
 
                 log = "Registration Denied: You are not registered.\n";
                 Writer.log(log);
+            } else if (response instanceof PublishConfirmed)
+            {
+                //publish the clients files
+                if (Client.requestMap.containsKey(RequestID)) {
+                   PublishRequest req = (PublishRequest) Client.requestMap.get(RequestID);
+                    //save registered name of client
+                  //  Client. = req.getClientName();
+                }
             }
+
+
 
             //add other if to handle other possible response by server
 
@@ -114,12 +126,8 @@ public class ServerHandler implements Runnable {
             //remove request ID from list
             Client.requestMap.remove(RequestID);
         }
-    }
-
-
-
-    public void publishHandler()
-    {
 
     }
+
+
 }

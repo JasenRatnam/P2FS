@@ -27,6 +27,7 @@ public class Client {
     public static String ClientName;
     public static ConcurrentHashMap<Integer,Object> requestMap = new ConcurrentHashMap<>();
     public static boolean isRegistered = false;
+    public static boolean isPublished = false;
     private static String log;
 
     /**
@@ -316,6 +317,7 @@ public class Client {
         }
         PublishRequest publishMessage = new PublishRequest(requestCounter.incrementAndGet(),ClientName,listOfFile);
 
+    Sender.sendTo(publishMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
 
     }
 
@@ -332,6 +334,7 @@ public class Client {
 
         RemoveRequest removeMessage = new RemoveRequest(requestCounter.incrementAndGet(),ClientName,listOfFileToRemove);
 
+        Sender.sendTo(removeMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
     }
 
 }
