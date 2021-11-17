@@ -311,6 +311,7 @@ public class Client {
         while(filename != "exit") {
             System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit): ");
             filename = s.next();
+            ClientObject.addFile(filename);
             if(filename !="exit") {
                 listOfFile.add(s.next());
             }
@@ -325,8 +326,9 @@ public class Client {
         String filename = "";
         ArrayList<String> listOfFileToRemove = new ArrayList<String>();
         while(filename != "exit") {
-            System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit): ");
+            System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
             filename = s.next();
+            ClientObject.removeFile(filename);
             if(filename !="exit") {
                 listOfFileToRemove.add(s.next());
             }

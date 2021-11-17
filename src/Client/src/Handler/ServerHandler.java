@@ -2,10 +2,9 @@ package Handler;
 
 import Requests.PublishRequest;
 import Requests.RegisterRequest;
+import Requests.RemoveRequest;
 import Requests.Request;
-import Responses.PublishConfirmed;
-import Responses.RegisterConfirmed;
-import Responses.RegisterDenied;
+import Responses.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -112,7 +111,17 @@ public class ServerHandler implements Runnable {
                     //save registered name of client
                   //  Client. = req.getClientName();
                 }
+            }else if (response instanceof PublishDenied)
+            {
+
+            }else if (response instanceof RemoveConfirmed)
+            {
+
+            }else if (response instanceof RemoveDenied)
+            {
+
             }
+
 
 
 

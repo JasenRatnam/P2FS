@@ -40,6 +40,7 @@ public class ClientObject {
                 + "}";
     }
 
+
     public static void addFile(String file) {
         files.add(file);
     }
