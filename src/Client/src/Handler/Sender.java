@@ -1,13 +1,17 @@
 package Handler;
 
 import Requests.Request;
+import Responses.DownloadError;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.*;
+import java.util.List;
 
 import static java.lang.System.exit;
+import static java.lang.System.in;
 
 /**
  * used to send requests to the server
@@ -56,6 +60,7 @@ public class Sender {
         try(Socket socket = new Socket(clientAddress,clientPort)) {
             //make object into bit stream
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream In = new ObjectInputStream(socket.getInputStream());
             out.writeObject(object);
 
             //log into log file
@@ -64,8 +69,13 @@ public class Sender {
             //add request to list of requests sent to server
             saveRequest(object);
 
+            //wait for a response
+            DownloadError downloadErrorMessage = (DownloadError) In.readObject();
+            System.out.println("Received [" + downloadErrorMessage.toString() + "] messages from: " + socket);
+
             socket.close();
             out.close();
+            In.close();
         } catch (UnknownHostException e) {
             //e.printStackTrace();
             log = "HOST ID not found.... ";
@@ -78,6 +88,8 @@ public class Sender {
             log += "\nClosing client....\n ";
             Writer.log(log);
             exit(1);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 

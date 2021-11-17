@@ -1,7 +1,7 @@
 package Handler;
 
 import Requests.DeRegisterRequest;
-import Requests.Download;
+import Requests.DownloadRequest;
 import Requests.RegisterRequest;
 
 import java.io.IOException;
@@ -117,7 +117,7 @@ public class Client {
         receiverThread.start();
 
         //threading listening to any message from another client.
-        TCPClientHandler receiveClient = new TCPClientHandler();
+        TCPServerHandler receiveClient = new TCPServerHandler();
         Thread receiveClientThread = new Thread(receiveClient);
         receiveClientThread.start();
 
@@ -268,7 +268,7 @@ public class Client {
 
     private static void download(Scanner s) throws UnknownHostException {
         //get IP of client
-        System.out.print("\tEnter Username of IP to download from: ");
+        System.out.print("\tEnter IP of client to download from: ");
         String ip = sc.nextLine();
 
         while (!ip.matches(IPPATTERN)){
@@ -310,7 +310,7 @@ public class Client {
 
         Writer.log(log);
         //create a download request
-        Download downloadMessage = new Download(requestCounter.incrementAndGet(), fileName);
+        DownloadRequest downloadMessage = new DownloadRequest(requestCounter.incrementAndGet(), fileName);
 
         Sender.sendToTCP(downloadMessage, ip, port);
         //do TCP crap

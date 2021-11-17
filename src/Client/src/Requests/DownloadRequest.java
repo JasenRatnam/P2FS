@@ -2,7 +2,7 @@ package Requests;
 
 import java.io.Serial;
 
-public class Download extends Request {
+public class DownloadRequest extends Request {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -12,7 +12,7 @@ public class Download extends Request {
      * contstructor a request that ask to download a file from another client
      *
      */
-    public Download(int rqNumber, String fileName) {
+    public DownloadRequest(int rqNumber, String fileName) {
         super(Request.RequestType.REGISTER, rqNumber);
         this.fileName = fileName;
     }
