@@ -1,7 +1,8 @@
 package Handler;
 
+import Requests.RegisterRequest;
 import Requests.Request;
-import Responses.DownloadError;
+import Responses.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -55,23 +56,62 @@ public class Sender {
         }
     }
 
-    //send a serialised object to the client
+    /**
+     * send a serialised object to the wanted client
+     * Use TCP protocol
+     * Wait for a response before closing connection
+     */
     public static void sendToTCP(Object object, String clientAddress, int clientPort) {
+        //try TCP socket connection to wanted client
         try(Socket socket = new Socket(clientAddress,clientPort)) {
-            //make object into bit stream
+            //object streams
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream In = new ObjectInputStream(socket.getInputStream());
+
+            //send object to the client via TCP socket
             out.writeObject(object);
 
-            //log into log file
+            //log sending into log file
             Writer.sendRequest(object, clientAddress, clientPort);
 
             //add request to list of requests sent to server
             saveRequest(object);
 
             //wait for a response
-            DownloadError downloadErrorMessage = (DownloadError) In.readObject();
-            System.out.println("Received [" + downloadErrorMessage.toString() + "] messages from: " + socket);
+            //get response
+            Object response =  In.readObject();
+            System.out.println("Received [" + response.toString() + "] messages from: " + socket);
+
+            int RequestID;
+            //if response is a known request type
+            if (response instanceof Request res) {
+                // Get the RequestID
+                RequestID = res.getRQNumb();
+
+                log = "Response of: \n" + Client.requestMap.get(RequestID) + "\n";
+                Writer.log(log);
+
+                // Handle Successful Register
+                if (response instanceof DownloadError) {
+                    DownloadError downloadErrorMessage = (DownloadError) response;
+                    System.out.println("Received [" + downloadErrorMessage.toString() + "] messages from: " + socket);
+
+                    log = "Download has failed.\n";
+                    Writer.log(log);
+                } else if (response instanceof File) {
+                    //start recreating file
+                }
+                else if (response instanceof FileEnd) {
+                    //end of file creation
+                }
+                else {
+                    //cant handle response
+                    log = "Cannot handle this response: " + response;
+                    Writer.log(log);
+                }
+                //remove request ID from list
+                Client.requestMap.remove(RequestID);
+            }
 
             socket.close();
             out.close();

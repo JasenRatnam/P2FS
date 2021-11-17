@@ -73,6 +73,29 @@ public class Client {
                 }
                 serverPort = sc.nextInt();
             }
+            sc.nextLine();
+
+            //ask and get port of TCP
+            System.out.println("Enter port number of the TCP: (1-65535)");
+            while (!sc.hasNextInt())
+            {
+                sc.next(); // Read and discard offending non-int input
+                System.out.println("Please enter a valid port number: (1-65535) "); // Re-prompt
+            }
+            clientTCPPort = sc.nextInt();
+
+            // Ports should be between 0 - 65535
+            while(clientTCPPort < 1 || clientTCPPort > 65535) {
+                System.out.println("Port out of range: 1-65535");
+                System.out.println("Enter port number of the TCP: (1-65535)");
+                while (!sc.hasNextInt())
+                {
+                    sc.next(); // Read and discard offending non-int input
+                    System.out.print("Please enter a valid port number: (1-65535) "); // Re-prompt
+                }
+                clientTCPPort = sc.nextInt();
+            }
+            sc.nextLine();
 
             //connect to UDP socket
             ds = new DatagramSocket();
@@ -262,58 +285,64 @@ public class Client {
                     log = "User selected an invalid option\n";
                     Writer.log(log);
             }
+            sc.nextLine();
         }
         exit(1);
     }
 
-    private static void download(Scanner s) throws UnknownHostException {
+    /**
+     * Client selects download option
+     * Client wants to a download a specific file from a specific client
+     */
+    private static void download(Scanner s) {
         //get IP of client
         System.out.print("\tEnter IP of client to download from: ");
-        String ip = sc.nextLine();
+        String ip = s.nextLine();
 
         while (!ip.matches(IPPATTERN)){
             System.out.println("Please enter a valid IP address");
             System.out.println("Enter IP address of target client: ");
-            ip = sc.nextLine();
+            ip = s.nextLine();
         }
 
         //get port of client
         System.out.print("\tEnter TCP port of target client: (1-65535)");
-        while (!sc.hasNextInt())
+        while (!s.hasNextInt())
         {
-            sc.next(); // Read and discard offending non-int input
+            s.next(); // Read and discard offending non-int input
             System.out.println("Please enter a valid port number: (1-65535) "); // Re-prompt
         }
-        int port = sc.nextInt();
+        int port = s.nextInt();
 
         // Ports should be between 0 - 65535
         while(port < 1 || port > 65535) {
             System.out.println("Port out of range: 1-65535");
             System.out.println("Enter TCP port of target client: (1-65535)");
-            while (!sc.hasNextInt())
+            while (!s.hasNextInt())
             {
-                sc.next(); // Read and discard offending non-int input
+                s.next(); // Read and discard offending non-int input
                 System.out.print("Please enter a valid port number: (1-65535) "); // Re-prompt
             }
-            port = sc.nextInt();
+            port = s.nextInt();
         }
-
+        s.nextLine();
         //get IP of client
         System.out.print("\tEnter name of wanted file: ");
-        String fileName = sc.nextLine();
+        String fileName = s.nextLine();
 
         //client information
         log = "\nTarget Client Information: " +
                 "\nIP: " +  ip +
-                "\nTCP Port: " + port + "\n" +
-                "\nWant file: " + fileName;
+                "\nTCP Port: " + port +
+                "\nWant file: " + fileName + "\n";
 
         Writer.log(log);
+
         //create a download request
         DownloadRequest downloadMessage = new DownloadRequest(requestCounter.incrementAndGet(), fileName);
 
+        //send Download object to wanted client via TCP
         Sender.sendToTCP(downloadMessage, ip, port);
-        //do TCP crap
     }
 
     /**

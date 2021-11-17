@@ -18,7 +18,7 @@ public class Writer {
     /**
      * append object received from server
      */
-    public static void receiveServer(Object object){
+    public static void receiveObject(Object object){
         //get current timestamp
         Timestamp = new Date().toString();
 
@@ -26,7 +26,7 @@ public class Writer {
         try(BufferedWriter br = new BufferedWriter(new FileWriter(fileName,true))){
             StringBuilder str = new StringBuilder();
 
-            str.append("\n----------------NEW MESSAGE From Server--------------------");
+            str.append("\n----------------NEW MESSAGE--------------------");
             System.out.println(str);
             br.write(str.toString());
             br.newLine();
