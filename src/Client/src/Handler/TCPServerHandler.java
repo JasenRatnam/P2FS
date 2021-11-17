@@ -117,7 +117,8 @@ public class TCPServerHandler implements Runnable{
             errorCode = "error";
             DownloadError downloadErrorMessage = new DownloadError(request.getRQNumb(), errorCode);
             OutputStream.writeObject(downloadErrorMessage);
-            log = "Download cannot happen because: " + errorCode;
+            Writer.sendRequest(downloadErrorMessage, client.getInetAddress().toString(),client.getPort());
+            log = "Download cannot happen because: " + errorCode + "\n";
             Writer.log(log);
         }
         // remove request from list of request

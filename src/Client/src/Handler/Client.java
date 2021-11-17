@@ -76,7 +76,7 @@ public class Client {
             sc.nextLine();
 
             //ask and get port of TCP
-            System.out.println("Enter port number of the TCP: (1-65535)");
+            System.out.println("Enter port number of the TCP: (1-65535) ");
             while (!sc.hasNextInt())
             {
                 sc.next(); // Read and discard offending non-int input

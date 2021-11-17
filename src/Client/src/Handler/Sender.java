@@ -94,9 +94,9 @@ public class Sender {
                 // Handle Successful Register
                 if (response instanceof DownloadError) {
                     DownloadError downloadErrorMessage = (DownloadError) response;
-                    System.out.println("Received [" + downloadErrorMessage.toString() + "] messages from: " + socket);
+                    log = "Received [" + downloadErrorMessage.toString() + "] messages from: " + socket + "\n";
 
-                    log = "Download has failed.\n";
+                    log += "Download has failed.\n";
                     Writer.log(log);
                 } else if (response instanceof File) {
                     //start recreating file
@@ -143,7 +143,7 @@ public class Sender {
 
         Client.requestMap.put(Rid, request);
 
-        log = "REGISTER REQUEST RID: " + Rid + "\n";
+        log = "REQUEST RID: " + Rid + " saved\n";
         Writer.log(log);
     }
 }
