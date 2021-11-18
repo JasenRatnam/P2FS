@@ -53,6 +53,6 @@ public class FileEnd extends Request {
     @Override
     public String toString() {
         return RequestType.FILE_END + " " + this.getRQNumb() + " " + getFileName()
-                + " " + getChunkNumb() + " " + getText();
+                + " " + getChunkNumb() + "\nText:\n '" + getText() + "'";
     }
 }

@@ -53,6 +53,6 @@ public class File extends Request {
     @Override
     public String toString() {
         return RequestType.FILE + " " + this.getRQNumb() + " " + getFileName()
-                + " " + getChunkNumb() + " " + getText();
+                + " " + getChunkNumb() + "\nText:\n '" + getText() + "'";
     }
 }

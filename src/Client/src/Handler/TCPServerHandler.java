@@ -170,11 +170,11 @@ public class TCPServerHandler implements Runnable{
                         try{
                             OutputStream.writeObject(fileResponse);
                             Writer.sendRequest(fileResponse, client.getInetAddress().toString(),client.getPort());
-                            log = "Downloading file: " + fileName + ", Chunk number: " + chunkNumb + "\n";
+                            log = "Sending file: " + fileName + ", Chunk number: " + chunkNumb + "\n";
                             Writer.log(log);
                         } catch (IOException e) {
                             //e.printStackTrace();
-                            log = "Can't handle the request";
+                            log = "Can't handle the request1";
                             Writer.log(log);
                         }
 
@@ -188,11 +188,11 @@ public class TCPServerHandler implements Runnable{
                 try{
                     OutputStream.writeObject(fileEndResponse);
                     Writer.sendRequest(fileEndResponse, client.getInetAddress().toString(),client.getPort());
-                    log = "Downloading file : " + fileName + " ending, Final chunk number: " + chunkNumb + "\n";
+                    log = "Sending file : " + fileName + " ending, Final chunk number: " + chunkNumb + "\n";
                     Writer.log(log);
                 } catch (IOException e) {
                     //e.printStackTrace();
-                    log = "Can't handle the request";
+                    log = "Can't handle the request2";
                     Writer.log(log);
                 }
 
