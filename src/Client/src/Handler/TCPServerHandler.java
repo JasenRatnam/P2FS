@@ -167,11 +167,16 @@ public class TCPServerHandler implements Runnable{
                         //send segment of file
                         Responses.File fileResponse = new Responses.File(request.getRQNumb(), filePath,chunkNumb,data);
 
-
-                        OutputStream.writeObject(fileResponse);
-                        Writer.sendRequest(fileResponse, client.getInetAddress().toString(),client.getPort());
-                        log = "Sending file: " + fileName + ", Chunk number: " + chunkNumb + "\n";
-                        Writer.log(log);
+                        try{
+                            OutputStream.writeObject(fileResponse);
+                            Writer.sendRequest(fileResponse, client.getInetAddress().toString(),client.getPort());
+                            log = "Sending file: " + fileName + ", Chunk number: " + chunkNumb + "\n";
+                            Writer.log(log);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            log = "Can't handle the request1";
+                            Writer.log(log);
+                        }
 
                         //reset counter
                         charCount = 0;
