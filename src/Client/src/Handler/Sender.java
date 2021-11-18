@@ -84,6 +84,25 @@ public class Sender {
             log =  "From: " + socket;
             Writer.log(log);
 
+            //keep reading while response is of type File
+            while(response instanceof File)
+            {
+                //continue getting messages until you get File End
+                //do not close socket until you get File End
+
+                //handle file response
+                handleTCPResponse(response);
+
+                //wait for next resonse
+                //get response
+                response =  In.readObject();
+
+                Writer.receiveObject(response);
+
+                log =  "From: " + socket;
+                Writer.log(log);
+            }
+
             handleTCPResponse(response);
 
             socket.close();
@@ -124,11 +143,14 @@ public class Sender {
                 //download has failed
                 log = "Download has failed. Please try again later\n";
                 Writer.log(log);
-            } else if (response instanceof File) {
+            } else if (response instanceof File chunkOfText) {
                 //start recreating file
+                Writer.downloadFile(chunkOfText.getText(), chunkOfText.getFileName());
             }
-            else if (response instanceof FileEnd) {
+            else if (response instanceof FileEnd chunkOfText) {
                 //end of file creation
+                Writer.downloadFile(chunkOfText.getText(), chunkOfText.getFileName());
+
             }
             else {
                 //cant handle response

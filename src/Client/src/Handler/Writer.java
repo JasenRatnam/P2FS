@@ -102,4 +102,24 @@ public class Writer {
             Writer.log(log);
         }
     }
+
+    /**
+     * log any string to the file
+     */
+    public static void downloadFile(String text, String fileName){
+
+        String file = fileName;
+        try(BufferedWriter br = new BufferedWriter(new FileWriter(file,true))){
+            StringBuilder str = new StringBuilder();
+
+            str.append(text);
+            br.write(str.toString());
+            br.newLine();
+        }catch (IOException e) {
+            //e.printStackTrace();
+            String log = "IOException.... ";
+            log += "\nFile logging failed....\n ";
+            Writer.log(log);
+        }
+    }
 }
