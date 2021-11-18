@@ -1,0 +1,212 @@
+
+-------------------------------------------------
+
+Client information: 
+IP: GAMING-PC/192.168.50.216
+UDP Port: 49595
+TCP Port: 4000
+
+
+Server information: 
+IP: /192.168.50.216
+Port: 1234
+
+Thu Nov 18 17:43:59 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+
+Running TCP Server... 
+
+Thu Nov 18 17:43:59 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+User selected Register
+
+Thu Nov 18 17:44:18 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER 1 bob GAMING-PC/192.168.50.216 UDP: 49595 TCP: 4000
+Sending to ->192.168.50.216:1234
+Thu Nov 18 17:44:19 EST 2021
+
+-------------------------------------------------
+REQUEST RID: 1 saved
+
+Thu Nov 18 17:44:19 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE--------------------
+REGISTERED 1 
+Thu Nov 18 17:44:19 EST 2021
+
+-------------------------------------------------
+Response of: 
+REGISTER 1 bob GAMING-PC/192.168.50.216 UDP: 49595 TCP: 4000
+
+Thu Nov 18 17:44:19 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+You are now registered.
+
+Thu Nov 18 17:44:19 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+User selected Download
+
+Thu Nov 18 17:44:34 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+
+Target Client Information: 
+IP: /192.168.50.114
+TCP Port: 3000
+Want file: A
+
+Thu Nov 18 17:44:42 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+DOWNLOAD 2 A
+Sending to ->192.168.50.114:3000
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+REQUEST RID: 2 saved
+
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE--------------------
+FILE 2 A.txt 1
+Text:
+ 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+From: Socket[addr=/192.168.50.114,port=3000,localport=57019]
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Response of: 
+DOWNLOAD 2 A
+
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE--------------------
+FILE 2 A.txt 2
+Text:
+ 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+From: Socket[addr=/192.168.50.114,port=3000,localport=57019]
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Response of: 
+DOWNLOAD 2 A
+
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE--------------------
+FILE 2 A.txt 3
+Text:
+ 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+From: Socket[addr=/192.168.50.114,port=3000,localport=57019]
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Response of: 
+DOWNLOAD 2 A
+
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE--------------------
+FILE 2 A.txt 4
+Text:
+ 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+From: Socket[addr=/192.168.50.114,port=3000,localport=57019]
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Response of: 
+DOWNLOAD 2 A
+
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE--------------------
+FILE 2 A.txt 5
+Text:
+ 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+From: Socket[addr=/192.168.50.114,port=3000,localport=57019]
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Response of: 
+DOWNLOAD 2 A
+
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE--------------------
+FILE-END 2 A.txt 6
+Text:
+ ''
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+From: Socket[addr=/192.168.50.114,port=3000,localport=57019]
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Response of: 
+DOWNLOAD 2 A
+
+Thu Nov 18 17:44:43 EST 2021
+
+-------------------------------------------------

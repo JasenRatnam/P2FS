@@ -5,8 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
-import static java.lang.System.exit;
-
 /**
  * Write log to an external file
  */
@@ -118,7 +116,7 @@ public class Writer {
         }catch (IOException e) {
             //e.printStackTrace();
             String log = "IOException.... ";
-            log += "\nFile logging failed....\n ";
+            log += "\nFile download failed....\n ";
             Writer.log(log);
         }
     }

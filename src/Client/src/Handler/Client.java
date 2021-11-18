@@ -4,7 +4,6 @@ import Requests.DeRegisterRequest;
 import Requests.DownloadRequest;
 import Requests.RegisterRequest;
 
-import java.io.IOException;
 import java.net.*;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
@@ -80,18 +79,27 @@ public class Client {
         }
     }
 
+    /**
+     * Get an IP address from user
+     * @param clientOrServer    ip of a client or server
+     * @return InetAddress IP address
+     */
     public static InetAddress getIP(String clientOrServer) {
         //ask and get IP of server
         System.out.println("Enter IP address of the " + clientOrServer + ": ");
         String ip = sc.nextLine();
 
+        //IP should match this pattern
         String IPPATTERN = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$";
+
+        //if given ip is not of IP pattern
         while (!ip.matches(IPPATTERN)){
             System.out.println("Please enter a valid IP address");
             System.out.println("Enter IP address of the " + clientOrServer + ": ");
             ip = sc.nextLine();
         }
 
+        //make inetaddress from string given
         InetAddress IPaddress = null;
         try{
             IPaddress = InetAddress.getByName(ip);
@@ -106,19 +114,29 @@ public class Client {
          return IPaddress;
     }
 
+    /**
+     * Get a port number from user
+     * @param clientOrServer port of client (TCP) or server (UDP)
+     * @return a port number
+     */
     public static int getPort(String clientOrServer){
         int port = 0;
+
         //ask and get port of server
         System.out.println("Enter port number of the " + clientOrServer + ": (1-65535)");
+        //if entered value is not a int
         while (!sc.hasNextInt())
         {
             sc.next(); // Read and discard offending non-int input
-            System.out.println("Please enter a valid port number: (1-65535) "); // Re-prompt
+            // Re-prompt
+            System.out.println("Please enter a valid port number: (1-65535) ");
             System.out.println("Enter port number of the " + clientOrServer + ": (1-65535)");
         }
+        //save correct port number
         port = sc.nextInt();
 
         // Ports should be between 0 - 65535
+        // while port is out of range
         while(port < 1 || port > 65535) {
             System.out.println("Port out of range: 1-65535");
             System.out.println("Enter port number of the " + clientOrServer + ": (1-65535)");
@@ -298,18 +316,20 @@ public class Client {
      * Client wants to a download a specific file from a specific client
      */
     private static void download(Scanner s){
-        //get IP of client
+        //get IP of target client
         InetAddress ip = getIP("target client");
 
+        //if not its own address
+        //client should not download from itself
         if(!ip.getHostAddress().equals(clientIp.getHostAddress())) {
-            //get port of client
+            //get port of target client
             int port = getPort("target client");
 
             //get name of wanted file
             System.out.print("\tEnter name of wanted file: ");
             String fileName = s.nextLine();
 
-            //client information
+            //target client information
             log = "\nTarget Client Information: " +
                     "\nIP: " + ip.toString() +
                     "\nTCP Port: " + port +
@@ -325,7 +345,7 @@ public class Client {
         }
         else{
             log = "Cannot download a file from yourself.\n";
-            log += "Please enter an IP address of an another client.\n";
+            log += "Please try again later with an IP address of an another client.\n";
             Writer.log(log);
         }
     }

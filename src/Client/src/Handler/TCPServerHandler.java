@@ -4,8 +4,6 @@ package Handler;
 import Requests.DownloadRequest;
 import Requests.Request;
 import Responses.DownloadError;
-import Responses.RegisterConfirmed;
-import Responses.RegisterDenied;
 
 import java.io.*;
 import java.net.*;
@@ -13,6 +11,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static java.lang.System.exit;
 
+/**
+ * Thread that runs the TCP server of the client
+ * keeps listening to any message
+ * Handle any message received
+ */
 public class TCPServerHandler implements Runnable{
 
     private static ObjectInputStream InputStream = null;
@@ -29,28 +32,31 @@ public class TCPServerHandler implements Runnable{
      */
     public TCPServerHandler(){
         try{
+            //open TCP socket
             this.server = new ServerSocket(Client.clientTCPPort);
         } catch (IOException e) {
             //e.printStackTrace();
-            log = "Receiver IOException " + e.getMessage();
+            log = "TCP receiver IOException " + e.getMessage();
             Writer.log(log);
             exit(1);
         }
     }
 
+    //thread
     @Override
     public void run() {
         log = "\nRunning TCP Server... \n";
         Writer.log(log);
 
-        //waiting for a message via TCP from another client
         try {
+            //waiting for a message via TCP from another client
             while (true) {
                 log = "listening to port: " + Client.clientTCPPort + "\n";
 
                 //wait for a TCP connection request
 
                 //accept a client connection in socket
+                //connect to the client
                 client = this.server.accept();
                 log = client +"is connected.\n";
 
@@ -72,13 +78,13 @@ public class TCPServerHandler implements Runnable{
                     requestHandler(object);
                 } catch (ClassNotFoundException e) {
                     //e.printStackTrace();
-                    log = "Cannot handle message from client: " + client.toString() + "\n";
+                    log = "Cannot handle message from TCP client: " + client.toString() + "\n";
                     Writer.log(log);
                 }
             }
         } catch (IOException e) {
             //e.printStackTrace();
-            log = "Receiver IOException " + e.getMessage();
+            log = "TCP Receiver IOException " + e.getMessage();
             Writer.log(log);
             exit(1);
         }
@@ -103,9 +109,8 @@ public class TCPServerHandler implements Runnable{
 
             //if input is a download
             if (input instanceof DownloadRequest) {
-                //hanndle the download request
+                //handle the download request
                 download((DownloadRequest) input);
-                //download file
             }
             else {
                 //ignore any other request that comes through the TCP port
@@ -117,6 +122,8 @@ public class TCPServerHandler implements Runnable{
 
     /**
      * A client has sent a download request
+     * if file exist upload it to the client
+     * if it does not exist, send download-error
      */
     public void download(DownloadRequest request){
         boolean error = false;
@@ -125,6 +132,7 @@ public class TCPServerHandler implements Runnable{
         //get file name
         String fileName =  request.getFileName();
 
+        //add extension if not alredy there
         String filePath;
         if(fileName.endsWith(".txt"))
         {
@@ -135,6 +143,10 @@ public class TCPServerHandler implements Runnable{
             filePath = fileName + ".txt";
         }
 
+        //check if file exists
+        //find file
+        //if cant find file dwonload error
+        //if can find file start sending file
         File f = new File(filePath);
         if(!f.isFile()) {
             // do something
@@ -142,17 +154,12 @@ public class TCPServerHandler implements Runnable{
             errorCode = "File does not exist";
         }
 
-
-        //find file
-        //if cant find file dwonload error
-        //if can find file start sending file
         BufferedReader reader = null;
+        //if file exists
         if (!error) {
             //start file transfer
-
             //do transfer
             try {
-
                 //start reading wanted text file
                 FileInputStream fileStream = new FileInputStream(f);
                 InputStreamReader input = new InputStreamReader(fileStream);
@@ -167,9 +174,11 @@ public class TCPServerHandler implements Runnable{
                     charCount += line.length();
                     data += line;
                     if(charCount >= 200){
-                        //send segment of file
+                        //segment has 200 character
+                        //create object with segment
                         Responses.File fileResponse = new Responses.File(request.getRQNumb(), filePath,chunkNumb,data);
 
+                        //send object of file and log
                         try{
                             OutputStream.writeObject(fileResponse);
                             Writer.sendRequest(fileResponse, client.getInetAddress().toString(),client.getPort());
@@ -187,6 +196,7 @@ public class TCPServerHandler implements Runnable{
                         chunkNumb++;
                     }
                 }
+                //create and send the last segment
                 Responses.FileEnd fileEndResponse = new Responses.FileEnd(request.getRQNumb(), filePath,chunkNumb,data);
                 try{
                     OutputStream.writeObject(fileEndResponse);

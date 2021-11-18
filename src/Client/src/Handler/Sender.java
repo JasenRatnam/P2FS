@@ -1,6 +1,5 @@
 package Handler;
 
-import Requests.RegisterRequest;
 import Requests.Request;
 import Responses.*;
 
@@ -9,10 +8,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.*;
-import java.util.List;
-
-import static java.lang.System.exit;
-import static java.lang.System.in;
 
 /**
  * used to send requests to the server
@@ -21,7 +16,13 @@ public class Sender {
 
     private static String log;
 
-    //send a serialised object to the server
+    /**
+     * Send a serialised object to the server via UDP
+     * @param object to send
+     * @param datagramSocket to send through
+     * @param address  to send to
+     * @param port  to send to
+     */
     public static void sendTo(Object object, DatagramSocket datagramSocket, String address, int port) {
         try {
             //make object into bit stream
@@ -62,7 +63,7 @@ public class Sender {
     public static void sendToTCP(Object object, String clientAddress, int clientPort) {
         //try TCP socket connection to wanted client
         try(Socket socket = new Socket(clientAddress,clientPort)) {
-            //object streams
+            //intialise object streams
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream In = new ObjectInputStream(socket.getInputStream());
 
@@ -79,6 +80,7 @@ public class Sender {
             //get response
             Object response =  In.readObject();
 
+            //log response
             Writer.receiveObject(response);
 
             log =  "From: " + socket;
@@ -97,12 +99,14 @@ public class Sender {
                 //get response
                 response =  In.readObject();
 
+                //log response
                 Writer.receiveObject(response);
 
                 log =  "From: " + socket;
                 Writer.log(log);
             }
 
+            //handle final response
             handleTCPResponse(response);
 
             socket.close();
@@ -116,7 +120,8 @@ public class Sender {
         } catch (IOException e) {
             //e.printStackTrace();
             log = "IOException.... ";
-            log += "\nSending file failed... Try again later\n ";            Writer.log(log);
+            log += "\nSending file failed... Try again later\n ";
+            Writer.log(log);
         } catch (ClassNotFoundException e) {
             //e.printStackTrace();
             log = "Cannot handle message from client\n";
@@ -124,6 +129,11 @@ public class Sender {
         }
     }
 
+    /**
+     * method to handle any responses from TCP client
+     * response of TCP request sent
+     * @param response gotten from other client
+     */
     public static void handleTCPResponse(Object response)
     {
         int RequestID;
@@ -136,11 +146,9 @@ public class Sender {
             Writer.log(log);
 
             //handle the TCP response
-
             // if response is a download error
             if (response instanceof DownloadError) {
-
-                //download has failed
+                //download has failed message
                 log = "Download has failed. Please try again later\n";
                 Writer.log(log);
                 //remove request ID from list
