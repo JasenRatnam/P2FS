@@ -143,6 +143,8 @@ public class Sender {
                 //download has failed
                 log = "Download has failed. Please try again later\n";
                 Writer.log(log);
+                //remove request ID from list
+                Client.requestMap.remove(RequestID);
             } else if (response instanceof File chunkOfText) {
                 //start recreating file
                 Writer.downloadFile(chunkOfText.getText(), chunkOfText.getFileName());
@@ -150,15 +152,14 @@ public class Sender {
             else if (response instanceof FileEnd chunkOfText) {
                 //end of file creation
                 Writer.downloadFile(chunkOfText.getText(), chunkOfText.getFileName());
-
+                //remove request ID from list
+                Client.requestMap.remove(RequestID);
             }
             else {
                 //cant handle response
                 log = "Cannot handle this response: " + response;
                 Writer.log(log);
             }
-            //remove request ID from list
-            Client.requestMap.remove(RequestID);
         }
     }
 

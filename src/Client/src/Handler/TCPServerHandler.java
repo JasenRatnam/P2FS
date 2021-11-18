@@ -160,9 +160,12 @@ public class TCPServerHandler implements Runnable{
 
                 int chunkNumb = 1;
                 int charCount = 0;
+                String line;
                 String data = "";
-                while ((data += reader.readLine()) != null) {
-                    charCount += data.length();
+
+                while ((line = reader.readLine()) != null) {
+                    charCount += line.length();
+                    data += line;
                     if(charCount >= 200){
                         //send segment of file
                         Responses.File fileResponse = new Responses.File(request.getRQNumb(), filePath,chunkNumb,data);
