@@ -178,7 +178,7 @@ public class Client {
                     if(isRegistered) {
                         log = "User selected Publish\n";
                         Writer.log(log);
-                        //publish(sc);
+                        publish(sc);
                         break;
                     }
                     else{
@@ -191,7 +191,7 @@ public class Client {
                     if(isRegistered) {
                         log = "User selected Remove\n";
                         Writer.log(log);
-                       // remove(sc);
+                        remove(sc);
                         break;
                     }
                     else{
@@ -305,35 +305,35 @@ public class Client {
         Sender.sendTo(deregisterMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }
 
+
+
     public static void publish(Scanner s) {
-        String filename = "";
         ArrayList<String> listOfFile = new ArrayList<String>();
-        while(filename != "exit") {
+        System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit): ");
+        String input = s.nextLine();
+        while(!input.equals("exit")) {
+
+            ClientObject.addFile(input);
+            listOfFile.add(input);
             System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit): ");
-            filename = s.next();
-            ClientObject.addFile(filename);
-            if(filename !="exit") {
-                listOfFile.add(s.next());
-            }
+            input = s.nextLine();
         }
         PublishRequest publishMessage = new PublishRequest(requestCounter.incrementAndGet(),ClientName,listOfFile);
 
-    Sender.sendTo(publishMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
+         Sender.sendTo(publishMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
 
     }
 
     public static void remove(Scanner s) {
-        String filename = "";
         ArrayList<String> listOfFileToRemove = new ArrayList<String>();
-        while(filename != "exit") {
+        System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
+        String input = s.nextLine();
+        while(!input.equals("exit")) {
+            ClientObject.removeFile(input);
+            listOfFileToRemove.add(input);
             System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
-            filename = s.next();
-            ClientObject.removeFile(filename);
-            if(filename !="exit") {
-                listOfFileToRemove.add(s.next());
-            }
+            input = s.nextLine();
         }
-
         RemoveRequest removeMessage = new RemoveRequest(requestCounter.incrementAndGet(),ClientName,listOfFileToRemove);
 
         Sender.sendTo(removeMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);

@@ -621,3 +621,525 @@ Server has 1 client(s)
 Sun Nov 14 23:47:33 EST 2021
 
 -------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Wed Nov 17 17:04:44 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 3005
+
+Wed Nov 17 17:04:44 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 62333 TCP: 3000
+Wed Nov 17 17:05:10 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Wed Nov 17 17:05:10 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.5.1:62333
+Wed Nov 17 17:05:10 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 1 client(s)
+
+Wed Nov 17 17:05:10 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 60365 TCP: 3000
+Wed Nov 17 17:13:53 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Wed Nov 17 17:13:53 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -bibo - already registered
+
+Wed Nov 17 17:13:53 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'Username already exists'
+Sending to ->/192.168.5.1:60365
+Wed Nov 17 17:13:53 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has not been registered because: Username already exists
+Server has 1 client(s)
+
+Wed Nov 17 17:13:53 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 2 bibo
+Wed Nov 17 17:14:08 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Wed Nov 17 17:14:08 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=62333, TCPport=3000}
+Files: {} has been DeRegistered.
+
+Server has 0 client(s)
+
+Wed Nov 17 17:14:08 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 3 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 60365 TCP: 3000
+Wed Nov 17 17:14:13 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Wed Nov 17 17:14:13 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 3 
+Sending to ->/192.168.5.1:60365
+Wed Nov 17 17:14:13 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 1 client(s)
+
+Wed Nov 17 17:14:13 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Wed Nov 17 17:16:42 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Wed Nov 17 17:16:42 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=60365, TCPport=3000}
+Files: {} has been DeRegistered.
+
+Server has 0 client(s)
+
+Wed Nov 17 17:16:42 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 61126 TCP: 3000
+Wed Nov 17 17:16:44 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Wed Nov 17 17:16:44 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:61126
+Wed Nov 17 17:16:44 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 1 client(s)
+
+Wed Nov 17 17:16:44 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo []
+Wed Nov 17 17:16:59 EST 2021
+
+-------------------------------------------------
+Cannot handle this request.
+Wed Nov 17 17:16:59 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Wed Nov 17 17:17:36 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Wed Nov 17 17:17:36 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=61126, TCPport=3000}
+Files: {} has been DeRegistered.
+
+Server has 0 client(s)
+
+Wed Nov 17 17:17:36 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 59714 TCP: 3000
+Wed Nov 17 17:17:38 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Wed Nov 17 17:17:38 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:59714
+Wed Nov 17 17:17:38 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 1 client(s)
+
+Wed Nov 17 17:17:38 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Wed Nov 17 17:25:22 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Wed Nov 17 17:25:22 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=59714, TCPport=3000}
+Files: {} has been DeRegistered.
+
+Server has 0 client(s)
+
+Wed Nov 17 17:25:22 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 57755 TCP: 3000
+Wed Nov 17 17:25:25 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Wed Nov 17 17:25:25 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:57755
+Wed Nov 17 17:25:25 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 1 client(s)
+
+Wed Nov 17 17:25:25 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo []
+Wed Nov 17 17:25:36 EST 2021
+
+-------------------------------------------------
+Cannot handle this request.
+Wed Nov 17 17:25:36 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Wed Nov 17 17:32:02 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Wed Nov 17 17:32:02 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=57755, TCPport=3000}
+Files: {} has been DeRegistered.
+
+Server has 0 client(s)
+
+Wed Nov 17 17:32:02 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 1 DESKTOP-NFNRD1R/192.168.5.1 UDP: 50972 TCP: 3000
+Wed Nov 17 17:32:07 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Wed Nov 17 17:32:07 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:50972
+Wed Nov 17 17:32:07 EST 2021
+
+-------------------------------------------------
+Client: 1 at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 1 client(s)
+
+Wed Nov 17 17:32:07 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 1 [, , ]
+Wed Nov 17 17:32:31 EST 2021
+
+-------------------------------------------------
+Cannot handle this request.
+Wed Nov 17 17:32:31 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 1
+Wed Nov 17 17:35:37 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Wed Nov 17 17:35:37 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='1', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=50972, TCPport=3000}
+Files: {} has been DeRegistered.
+
+Server has 0 client(s)
+
+Wed Nov 17 17:35:37 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 61959 TCP: 3000
+Wed Nov 17 17:37:08 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Wed Nov 17 17:37:08 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:61959
+Wed Nov 17 17:37:08 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 1 client(s)
+
+Wed Nov 17 17:37:08 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [salut, allo]
+Wed Nov 17 17:37:25 EST 2021
+
+-------------------------------------------------
+Cannot handle this request.
+Wed Nov 17 17:37:25 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Wed Nov 17 17:41:17 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Wed Nov 17 17:41:17 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=61959, TCPport=3000}
+Files: {} has been DeRegistered.
+
+Server has 0 client(s)
+
+Wed Nov 17 17:41:17 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 53869 TCP: 3000
+Wed Nov 17 17:42:45 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Wed Nov 17 17:42:45 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:53869
+Wed Nov 17 17:42:45 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 1 client(s)
+
+Wed Nov 17 17:42:45 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [salut, hello]
+Wed Nov 17 17:42:59 EST 2021
+
+-------------------------------------------------
+Cannot handle this request.
+Wed Nov 17 17:42:59 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Wed Nov 17 17:43:52 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Wed Nov 17 17:43:52 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=53869, TCPport=3000}
+Files: {} has been DeRegistered.
+
+Server has 0 client(s)
+
+Wed Nov 17 17:43:52 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 61839 TCP: 3000
+Wed Nov 17 17:44:02 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Wed Nov 17 17:44:02 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:61839
+Wed Nov 17 17:44:02 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 1 client(s)
+
+Wed Nov 17 17:44:02 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [hello, bibo, cava]
+Wed Nov 17 17:44:15 EST 2021
+
+-------------------------------------------------
+Cannot handle this request.
+Wed Nov 17 17:44:15 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REMOVE 4 bibo [cava]
+Wed Nov 17 17:44:50 EST 2021
+
+-------------------------------------------------
+Cannot handle this request.
+Wed Nov 17 17:44:50 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 5 bibo
+Wed Nov 17 18:11:37 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Wed Nov 17 18:11:37 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=61839, TCPport=3000}
+Files: {} has been DeRegistered.
+
+Server has 0 client(s)
+
+Wed Nov 17 18:11:37 EST 2021
+
+-------------------------------------------------

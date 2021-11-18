@@ -1,6 +1,7 @@
 package Handler;
 
 import Requests.DeRegisterRequest;
+import Requests.PublishRequest;
 import Requests.RegisterRequest;
 import Requests.Request;
 import Responses.RegisterConfirmed;
@@ -105,6 +106,12 @@ public class ClientHandler implements Runnable {
             else if (requestInput instanceof DeRegisterRequest) {
                 deregister((DeRegisterRequest) requestInput);
             }
+            else if (requestInput instanceof PublishRequest)
+            {
+            Publish((PublishRequest) requestInput);
+            }
+
+
             //need to add other requests
             else {
                 log = "Cannot handle this request.";
@@ -209,6 +216,11 @@ public class ClientHandler implements Runnable {
         remove(request.getRQNumb(), this.request);
     }
 
+
+    public void Publish(PublishRequest request)
+    {
+
+    }
     /**
      * Remove request from the list of requests
      */
