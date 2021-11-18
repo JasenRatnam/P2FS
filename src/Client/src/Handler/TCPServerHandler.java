@@ -160,27 +160,22 @@ public class TCPServerHandler implements Runnable{
 
                 int chunkNumb = 1;
                 int charCount = 0;
-                String data = null;
+                String data = "";
                 while ((data += reader.readLine()) != null) {
                     charCount += data.length();
                     if(charCount >= 200){
                         //send segment of file
                         Responses.File fileResponse = new Responses.File(request.getRQNumb(), filePath,chunkNumb,data);
 
-                        try{
-                            OutputStream.writeObject(fileResponse);
-                            Writer.sendRequest(fileResponse, client.getInetAddress().toString(),client.getPort());
-                            log = "Sending file: " + fileName + ", Chunk number: " + chunkNumb + "\n";
-                            Writer.log(log);
-                        } catch (IOException e) {
-                            //e.printStackTrace();
-                            log = "Can't handle the request1";
-                            Writer.log(log);
-                        }
+
+                        OutputStream.writeObject(fileResponse);
+                        Writer.sendRequest(fileResponse, client.getInetAddress().toString(),client.getPort());
+                        log = "Sending file: " + fileName + ", Chunk number: " + chunkNumb + "\n";
+                        Writer.log(log);
 
                         //reset counter
                         charCount = 0;
-                        data = null;
+                        data = "";
                         chunkNumb++;
                     }
                 }
@@ -192,7 +187,7 @@ public class TCPServerHandler implements Runnable{
                     Writer.log(log);
                 } catch (IOException e) {
                     //e.printStackTrace();
-                    log = "Can't handle the request2";
+                    log = "Can't handle the request";
                     Writer.log(log);
                 }
 
