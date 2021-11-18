@@ -7,10 +7,7 @@ import Responses.DownloadError;
 import Responses.RegisterConfirmed;
 import Responses.RegisterDenied;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -128,7 +125,17 @@ public class TCPServerHandler implements Runnable{
         //get file name
         String fileName =  request.getFileName();
 
-        File f = new File(fileName);
+        String filePath;
+        if(fileName.endsWith(".txt"))
+        {
+            filePath = fileName;
+        }
+        else
+        {
+            filePath = fileName + ".txt";
+        }
+
+        File f = new File(filePath);
         if(!f.isFile()) {
             // do something
             error = true;
@@ -139,14 +146,61 @@ public class TCPServerHandler implements Runnable{
         //find file
         //if cant find file dwonload error
         //if can find file start sending file
-
+        BufferedReader reader = null;
         if (!error) {
             //start file transfer
 
             //do transfer
+            try {
 
+                //start reading wanted text file
+                FileInputStream fileStream = new FileInputStream(f);
+                InputStreamReader input = new InputStreamReader(fileStream);
+                reader = new BufferedReader(input);
 
+                int chunkNumb = 1;
+                int charCount = 0;
+                String data = null;
+                while ((data += reader.readLine()) != null) {
+                    charCount += data.length();
+                    if(charCount >= 200){
+                        //send segment of file
+                        Responses.File fileResponse = new Responses.File(request.getRQNumb(), filePath,chunkNumb,data);
 
+                        try{
+                            OutputStream.writeObject(fileResponse);
+                            Writer.sendRequest(fileResponse, client.getInetAddress().toString(),client.getPort());
+                            log = "Downloading file: " + fileName + ", Chunk number: " + chunkNumb + "\n";
+                            Writer.log(log);
+                        } catch (IOException e) {
+                            //e.printStackTrace();
+                            log = "Can't handle the request";
+                            Writer.log(log);
+                        }
+
+                        //reset counter
+                        charCount = 0;
+                        data = null;
+                        chunkNumb++;
+                    }
+                }
+                Responses.FileEnd fileEndResponse = new Responses.FileEnd(request.getRQNumb(), filePath,chunkNumb,data);
+                try{
+                    OutputStream.writeObject(fileEndResponse);
+                    Writer.sendRequest(fileEndResponse, client.getInetAddress().toString(),client.getPort());
+                    log = "Downloading file : " + fileName + " ending, Final chunk number: " + chunkNumb + "\n";
+                    Writer.log(log);
+                } catch (IOException e) {
+                    //e.printStackTrace();
+                    log = "Can't handle the request";
+                    Writer.log(log);
+                }
+
+            }catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             //download denied
             DownloadError downloadErrorMessage = new DownloadError(request.getRQNumb(), errorCode);

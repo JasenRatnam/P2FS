@@ -9,7 +9,7 @@ public class File extends Request {
     @Serial
     private static final long serialVersionUID = 1L;
     private String fileName;
-    private String chunkNumb;
+    private int chunkNumb;
     private String text;
 
     /**
@@ -18,7 +18,7 @@ public class File extends Request {
      * exceeding 200 characters using the following message (where Chunk# indicates the
      * order/place of the Text in the original file).
      */
-    public File(int rqNumber, String fileName, String chunkNumb, String text) {
+    public File(int rqNumber, String fileName, int chunkNumb, String text) {
         super(Request.RequestType.REGISTER, rqNumber);
         this.fileName = fileName;
         this.chunkNumb = chunkNumb;
@@ -33,11 +33,11 @@ public class File extends Request {
         this.fileName = fileName;
     }
 
-    public String getChunkNumb() {
+    public int getChunkNumb() {
         return chunkNumb;
     }
 
-    public void setChunkNumb(String chunkNumb) {
+    public void setChunkNumb(int chunkNumb) {
         this.chunkNumb = chunkNumb;
     }
 
