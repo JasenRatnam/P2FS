@@ -108,7 +108,7 @@ public class Writer {
      */
     public static void downloadFile(String text, String fileName){
 
-        String file = fileName;
+        String file = "Downloaded-" + fileName;
         try(BufferedWriter br = new BufferedWriter(new FileWriter(file,true))){
             StringBuilder str = new StringBuilder();
 
