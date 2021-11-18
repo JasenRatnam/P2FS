@@ -301,26 +301,33 @@ public class Client {
         //get IP of client
         InetAddress ip = getIP("target client");
 
-        //get port of client
-        int port = getPort("target client");
+        if(!ip.getHostAddress().equals(clientIp.getHostAddress())) {
+            //get port of client
+            int port = getPort("target client");
 
-        //get name of wanted file
-        System.out.print("\tEnter name of wanted file: ");
-        String fileName = s.nextLine();
+            //get name of wanted file
+            System.out.print("\tEnter name of wanted file: ");
+            String fileName = s.nextLine();
 
-        //client information
-        log = "\nTarget Client Information: " +
-                "\nIP: " +  ip.toString() +
-                "\nTCP Port: " + port +
-                "\nWant file: " + fileName + "\n";
+            //client information
+            log = "\nTarget Client Information: " +
+                    "\nIP: " + ip.toString() +
+                    "\nTCP Port: " + port +
+                    "\nWant file: " + fileName + "\n";
 
-        Writer.log(log);
+            Writer.log(log);
 
-        //create a download request
-        DownloadRequest downloadMessage = new DownloadRequest(requestCounter.incrementAndGet(), fileName);
+            //create a download request
+            DownloadRequest downloadMessage = new DownloadRequest(requestCounter.incrementAndGet(), fileName);
 
-        //send Download object to wanted client via TCP
-        Sender.sendToTCP(downloadMessage, ip.toString(), port);
+            //send Download object to wanted client via TCP
+            Sender.sendToTCP(downloadMessage, ip.getHostAddress(), port);
+        }
+        else{
+            log = "Cannot download a file from yourself.\n";
+            log += "Please enter an IP address of an another client.\n";
+            Writer.log(log);
+        }
     }
 
     /**
@@ -355,7 +362,8 @@ public class Client {
 
         if(name.equals(ClientName)) {
             isRegistered = false;
-            System.out.println("You have been DeRegistered.\n");
+            log = "You have been DeRegistered.\n";
+            Writer.log(log);
         }
 
         Sender.sendTo(deregisterMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);

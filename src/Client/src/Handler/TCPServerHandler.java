@@ -7,6 +7,7 @@ import Responses.DownloadError;
 import Responses.RegisterConfirmed;
 import Responses.RegisterDenied;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -121,13 +122,24 @@ public class TCPServerHandler implements Runnable{
      * A client has sent a download request
      */
     public void download(DownloadRequest request){
-        boolean error = true;
+        boolean error = false;
         String errorCode = null;
+
+        //get file name
+        String fileName =  request.getFileName();
+
+        File f = new File(fileName);
+        if(!f.isFile()) {
+            // do something
+            error = true;
+            errorCode = "File does not exist";
+        }
+
+
         //find file
         //if cant find file dwonload error
         //if can find file start sending file
 
-        // if not already registered
         if (!error) {
             //start file transfer
 
@@ -137,7 +149,6 @@ public class TCPServerHandler implements Runnable{
 
         } else {
             //download denied
-            errorCode = "error";
             DownloadError downloadErrorMessage = new DownloadError(request.getRQNumb(), errorCode);
             try{
                 OutputStream.writeObject(downloadErrorMessage);
