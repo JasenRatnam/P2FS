@@ -52,7 +52,7 @@ public class Server implements Runnable {
             } catch (SocketTimeoutException ex) {
                 //e.printStackTrace();
                 log  = "Socket error: " + ex.getMessage();
-                log += "\nClosing client.... ";
+                log += "\nTry again..\n ";
                 Writer.log(log);
                 ds.close();
                 exit(1);
@@ -60,6 +60,7 @@ public class Server implements Runnable {
                 //e.printStackTrace();
                 log = "IOException " + ex.getMessage();
                 Writer.log(log);
+                exit(1);
             }
         }
     }
@@ -69,25 +70,7 @@ public class Server implements Runnable {
      */
     public void serverConfig() {
         //ask and get port of server
-        System.out.println("Enter port number of the Server: (1-65535)");
-        while (!sc.hasNextInt())
-        {
-            sc.next(); // Read and discard offending non-int input
-            System.out.println("Please enter a valid port number: (1-65535) "); // Re-prompt
-        }
-        serverPort = sc.nextInt();
-
-        // Ports should be between 0 - 65535
-        while(serverPort < 1 || serverPort > 65535) {
-            System.out.println("Port out of range: 1-65535");
-            System.out.println("Enter port number of the Server: (1-65535)");
-            while (!sc.hasNextInt())
-            {
-                sc.next(); // Read and discard offending non-int input
-                System.out.print("Please enter a valid port number: (1-65535) "); // Re-prompt
-            }
-            serverPort = sc.nextInt();
-        }
+        serverPort = getPort();
 
         //continue asking until valid socket is received
         while (true) {
@@ -102,13 +85,8 @@ public class Server implements Runnable {
                 Writer.log(log);
                 //ask and get port of server
 
-                System.out.println("Enter port number of the Server: (1-65535)");
-                while (!sc.hasNextInt())
-                {
-                    sc.next(); // Read and discard offending non-int input
-                    System.out.println("Please enter a valid port number: (1-65535) "); // Re-prompt
-                }
-                serverPort = sc.nextInt();
+                //get another port number
+                serverPort = getPort();
             }
         }
 
@@ -125,5 +103,32 @@ public class Server implements Runnable {
                 "\nPort: " + serverPort + "\n";
 
         Writer.log(log);
+    }
+
+    public static int getPort( ){
+        int port = 0;
+        //ask and get port of server
+        System.out.println("Enter port number of the server: (1-65535)");
+        while (!sc.hasNextInt())
+        {
+            sc.next(); // Read and discard offending non-int input
+            System.out.println("Please enter a valid port number: (1-65535) "); // Re-prompt
+            System.out.println("Enter port number of the server: (1-65535)");
+        }
+        port = sc.nextInt();
+
+        // Ports should be between 0 - 65535
+        while(port < 1 || port > 65535) {
+            System.out.println("Port out of range: 1-65535");
+            System.out.println("Enter port number of the server: (1-65535)");
+            while (!sc.hasNextInt())
+            {
+                sc.next(); // Read and discard offending non-int input
+                System.out.print("Please enter a valid port number: (1-65535) "); // Re-prompt
+            }
+            port = sc.nextInt();
+        }
+        sc.nextLine();
+        return port;
     }
 }

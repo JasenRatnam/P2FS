@@ -39,9 +39,8 @@ public class Writer {
         }catch (IOException e) {
             //e.printStackTrace();
             String log = "IOException.... ";
-            log += "\nClosing client....\n ";
+            log += "\nFile logging failed....\n ";
             Writer.log(log);
-            exit(1);
         }
     }
 
@@ -67,12 +66,11 @@ public class Writer {
             br.newLine();
             br.write(str.toString());
             br.newLine();
-        }catch (IOException e) {
-        //e.printStackTrace();
-        log = "IOException.... ";
-        log += "\nClosing client....\n ";
-        Writer.log(log);
-        exit(1);
+        } catch (IOException e) {
+            //e.printStackTrace();
+            String log2 = "IOException.... ";
+            log2 += "\nFile logging failed....\n ";
+            Writer.log(log2);
         }
     }
 
@@ -100,9 +98,8 @@ public class Writer {
         }catch (IOException e) {
             //e.printStackTrace();
             String log = "IOException.... ";
-            log += "\nClosing client....\n ";
+            log += "\nFile logging failed....\n ";
             Writer.log(log);
-            exit(1);
         }
     }
 }

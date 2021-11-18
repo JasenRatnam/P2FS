@@ -119,9 +119,9 @@ public class ClientHandler implements Runnable {
      * And request number
      */
     public void register(RegisterRequest request) {
-        //save name of client
+        //save name of client to register
         String username = request.getClientName();
-        //save ip of client
+        //save ip of client to register
         String IP = request.getAddress();
 
         log = "Register request received\n";
@@ -213,16 +213,12 @@ public class ClientHandler implements Runnable {
      * Remove request from the list of requests
      */
     public static void remove(int rid, DatagramPacket packet) {
-        try {
-            //client ip and port
-            String ip = packet.getAddress().getLocalHost().getHostAddress();
-            int port = packet.getPort();
-            String hashId = rid + "-" + ip + ":" + port;
+        //client ip and port
+        String ip = packet.getAddress().toString();
+        int port = packet.getPort();
+        String hashId = rid + "-" + ip + ":" + port;
 
-            //remove request
-            Server.requestMap.remove(hashId);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
+        //remove request
+        Server.requestMap.remove(hashId);
     }
 }

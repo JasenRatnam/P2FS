@@ -44,15 +44,13 @@ public class Sender {
         } catch (UnknownHostException e) {
             //e.printStackTrace();
             log = "HOST ID not found.... ";
-            log += "\nClosing client....\n ";
+            log += "\nSending file failed... Try again later\n ";
             Writer.log(log);
-            exit(1);
         } catch (IOException e) {
             //e.printStackTrace();
             log = "IOException.... ";
-            log += "\nClosing client....\n ";
+            log += "\nSending file failed... Try again later\n ";
             Writer.log(log);
-            exit(1);
         }
     }
 
@@ -74,44 +72,19 @@ public class Sender {
             //log sending into log file
             Writer.sendRequest(object, clientAddress, clientPort);
 
-            //add request to list of requests sent to server
+            //add request to list of requests sent
             saveRequest(object);
 
             //wait for a response
             //get response
             Object response =  In.readObject();
-            System.out.println("Received [" + response.toString() + "] messages from: " + socket);
 
-            int RequestID;
-            //if response is a known request type
-            if (response instanceof Request res) {
-                // Get the RequestID
-                RequestID = res.getRQNumb();
+            Writer.receiveObject(response);
 
-                log = "Response of: \n" + Client.requestMap.get(RequestID) + "\n";
-                Writer.log(log);
+            log =  "From: " + socket;
+            Writer.log(log);
 
-                // Handle Successful Register
-                if (response instanceof DownloadError) {
-                    DownloadError downloadErrorMessage = (DownloadError) response;
-                    log = "Received [" + downloadErrorMessage.toString() + "] messages from: " + socket + "\n";
-
-                    log += "Download has failed.\n";
-                    Writer.log(log);
-                } else if (response instanceof File) {
-                    //start recreating file
-                }
-                else if (response instanceof FileEnd) {
-                    //end of file creation
-                }
-                else {
-                    //cant handle response
-                    log = "Cannot handle this response: " + response;
-                    Writer.log(log);
-                }
-                //remove request ID from list
-                Client.requestMap.remove(RequestID);
-            }
+            handleTCPResponse(response);
 
             socket.close();
             out.close();
@@ -119,17 +92,51 @@ public class Sender {
         } catch (UnknownHostException e) {
             //e.printStackTrace();
             log = "HOST ID not found.... ";
-            log += "\nClosing client....\n ";
+            log += "\nSending file failed... Try again later\n ";
             Writer.log(log);
-            exit(1);
         } catch (IOException e) {
             //e.printStackTrace();
             log = "IOException.... ";
-            log += "\nClosing client....\n ";
-            Writer.log(log);
-            exit(1);
+            log += "\nSending file failed... Try again later\n ";            Writer.log(log);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            log = "Cannot handle message from client\n";
+            Writer.log(log);
+        }
+    }
+
+    public static void handleTCPResponse(Object response)
+    {
+        int RequestID;
+        //if TCP response is a known request type
+        if (response instanceof Request res) {
+            // Get the RequestID
+            RequestID = res.getRQNumb();
+
+            log = "Response of: \n" + Client.requestMap.get(RequestID) + "\n";
+            Writer.log(log);
+
+            //handle the TCP response
+
+            // if response is a download error
+            if (response instanceof DownloadError) {
+
+                //download has failed
+                log = "Download has failed. Please try again later\n";
+                Writer.log(log);
+            } else if (response instanceof File) {
+                //start recreating file
+            }
+            else if (response instanceof FileEnd) {
+                //end of file creation
+            }
+            else {
+                //cant handle response
+                log = "Cannot handle this response: " + response;
+                Writer.log(log);
+            }
+            //remove request ID from list
+            Client.requestMap.remove(RequestID);
         }
     }
 

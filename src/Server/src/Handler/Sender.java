@@ -39,15 +39,13 @@ public class Sender {
         } catch (UnknownHostException e) {
             //e.printStackTrace();
             log = "HOST ID not found.... ";
-            log += "\nClosing client....\n ";
+            log += "\nSending file failed... Try again later\n ";
             Writer.log(log);
-            exit(1);
         } catch (IOException e) {
             //e.printStackTrace();
             log = "IOException.... ";
-            log += "\nClosing client....\n ";
+            log += "\nSending file failed... Try again later\n ";
             Writer.log(log);
-            exit(1);
         }
     }
 }
