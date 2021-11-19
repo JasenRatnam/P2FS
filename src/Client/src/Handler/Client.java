@@ -312,9 +312,10 @@ public class Client {
         System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit): ");
         String input = s.nextLine();
         while(!input.equals("exit")) {
-
-            ClientObject.addFile(input);
-            listOfFile.add(input);
+            if(!input.equals("")){
+                ClientObject.addFile(input);
+                listOfFile.add(input);
+            }
             System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit): ");
             input = s.nextLine();
         }
@@ -329,8 +330,10 @@ public class Client {
         System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
         String input = s.nextLine();
         while(!input.equals("exit")) {
-            ClientObject.removeFile(input);
-            listOfFileToRemove.add(input);
+            if(!input.equals("")){
+                ClientObject.removeFile(input);
+                listOfFileToRemove.add(input);
+            }
             System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
             input = s.nextLine();
         }

@@ -1143,3 +1143,96 @@ Server has 0 client(s)
 Wed Nov 17 18:11:37 EST 2021
 
 -------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Fri Nov 19 15:07:25 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 3010
+
+Fri Nov 19 15:07:25 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 51748 TCP: 3000
+Fri Nov 19 15:07:41 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 15:07:41 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.5.1:51748
+Fri Nov 19 15:07:41 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 1 client(s)
+
+Fri Nov 19 15:07:41 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 2 bibo [, , , allo]
+Fri Nov 19 15:18:14 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Fri Nov 19 15:20:56 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Fri Nov 19 15:20:56 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=51748, TCPport=3000}
+Files: {} has been DeRegistered.
+
+Server has 0 client(s)
+
+Fri Nov 19 15:20:56 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 61676 TCP: 3000
+Fri Nov 19 15:21:05 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 15:21:05 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:61676
+Fri Nov 19 15:21:05 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 1 client(s)
+
+Fri Nov 19 15:21:05 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [allo]
+Fri Nov 19 15:21:17 EST 2021

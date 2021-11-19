@@ -14,6 +14,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import static java.lang.System.exit;
 
@@ -219,8 +220,28 @@ public class ClientHandler implements Runnable {
 
     public void Publish(PublishRequest request)
     {
+        String username = request.getClientName();
+        ArrayList<String> listOfFile = request.getListOfFiles();
+        log = "Publish request received\n";
+        Writer.log(log);
+        boolean error = false;
+        String errorCode = null;
+
+// match the client with the clients in the server
+        for ( ClientObject client: Server.clients) {
+            if (client.getName().equals(username)) {
+
+                Server.
+                        (request.setListOfFiles(listOfFile));
+            }
+        }
+
+
 
     }
+
+
+
     /**
      * Remove request from the list of requests
      */
