@@ -47,10 +47,12 @@ public class ClientObject {
 
     public void addFile(String file) {
         files.add(file);
+        Writer.makeServerBackup();
     }
 
     public void removeFile(String file) {
         files.remove(file);
+        Writer.makeServerBackup();
     }
 
     //getters and setters
@@ -70,6 +72,7 @@ public class ClientObject {
 
     public void setFiles(ArrayList<String> files) {
         this.files = files;
+        Writer.makeServerBackup();
     }
 
     public String getName() {
@@ -78,6 +81,7 @@ public class ClientObject {
 
     public void setName(String name) {
         this.name = name;
+        Writer.makeServerBackup();
     }
 
     public String getIP() {
@@ -86,6 +90,7 @@ public class ClientObject {
 
     public void setIP(String IP) {
         this.IP = IP;
+        Writer.makeServerBackup();
     }
 
     public int getUDPport() {
@@ -94,6 +99,7 @@ public class ClientObject {
 
     public void setUDPport(int UDPport) {
         this.UDPport = UDPport;
+        Writer.makeServerBackup();
     }
 
     public int getTCPport() {
@@ -102,5 +108,6 @@ public class ClientObject {
 
     public void setTCPport(int TCPport) {
         this.TCPport = TCPport;
+        Writer.makeServerBackup();
     }
 }

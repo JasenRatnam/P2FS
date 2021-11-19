@@ -103,6 +103,11 @@ public class Writer {
         }
     }
 
+    /**
+     * create a backup of the server
+     * save server port selection
+     * save clients registerd to server
+     */
     public static void makeServerBackup() {
         try (BufferedWriter br = new BufferedWriter(new FileWriter(backup, false))) {
             br.write("Server UDP Port");
@@ -124,11 +129,16 @@ public class Writer {
         }catch (IOException e) {
             //e.printStackTrace();
             String log = "IOException.... ";
-            log += "\nFile logging failed....\n ";
+            log += "\nServer backup failed....\n ";
             Writer.log(log);
         }
     }
 
+    /**
+     * restore the server from saved data
+     * set port of the server
+     * add all clients saves with their files
+     */
     public static void restoreServer() {
         String delimiter = ",";
         String log = "";
@@ -169,7 +179,7 @@ public class Writer {
         } catch (IOException e){
             //e.printStackTrace();
             log = "IOException.... ";
-            log += "\nFile logging failed....\n ";
+            log += "\nServer restore failed....\n ";
             Writer.log(log);
         }
     }
