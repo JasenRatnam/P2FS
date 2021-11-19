@@ -3,7 +3,7 @@
 
 Client information: 
 IP: GAMING-PC/192.168.50.216
-UDP Port: 49595
+UDP Port: 62151
 TCP Port: 4000
 
 
@@ -11,7 +11,7 @@ Server information:
 IP: /192.168.50.216
 Port: 1234
 
-Thu Nov 18 17:43:59 EST 2021
+Fri Nov 19 15:40:51 EST 2021
 
 -------------------------------------------------
 
@@ -19,52 +19,182 @@ Thu Nov 18 17:43:59 EST 2021
 
 Running TCP Server... 
 
-Thu Nov 18 17:43:59 EST 2021
+Fri Nov 19 15:40:51 EST 2021
 
 -------------------------------------------------
 
 -------------------------------------------------
 User selected Register
 
-Thu Nov 18 17:44:18 EST 2021
+Fri Nov 19 15:42:45 EST 2021
 
 -------------------------------------------------
 
 ----------------SENDING-------------
-REGISTER 1 bob GAMING-PC/192.168.50.216 UDP: 49595 TCP: 4000
+REGISTER 1 bob GAMING-PC/192.168.50.216 UDP: 62151 TCP: 4000
 Sending to ->192.168.50.216:1234
-Thu Nov 18 17:44:19 EST 2021
+Fri Nov 19 15:42:45 EST 2021
 
 -------------------------------------------------
 REQUEST RID: 1 saved
 
-Thu Nov 18 17:44:19 EST 2021
+Fri Nov 19 15:42:45 EST 2021
 
 -------------------------------------------------
 
 ----------------NEW MESSAGE--------------------
 REGISTERED 1 
-Thu Nov 18 17:44:19 EST 2021
+Fri Nov 19 15:42:45 EST 2021
 
 -------------------------------------------------
 Response of: 
-REGISTER 1 bob GAMING-PC/192.168.50.216 UDP: 49595 TCP: 4000
+REGISTER 1 bob GAMING-PC/192.168.50.216 UDP: 62151 TCP: 4000
 
-Thu Nov 18 17:44:19 EST 2021
+Fri Nov 19 15:42:45 EST 2021
 
 -------------------------------------------------
 
 -------------------------------------------------
 You are now registered.
 
-Thu Nov 18 17:44:19 EST 2021
+Fri Nov 19 15:42:45 EST 2021
 
 -------------------------------------------------
 
 -------------------------------------------------
 User selected Download
 
-Thu Nov 18 17:44:34 EST 2021
+Fri Nov 19 15:42:48 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+
+Target Client Information: 
+IP: /192.168.50.114
+TCP Port: 3000
+Want file: a
+
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+DOWNLOAD 2 a
+Sending to ->192.168.50.114:3000
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+REQUEST RID: 2 saved
+
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE--------------------
+FILE 2 a.txt 1
+Text:
+ 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa'
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+From: Socket[addr=/192.168.50.114,port=3000,localport=59703]
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Response of: 
+DOWNLOAD 2 a
+
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE--------------------
+FILE 2 a.txt 2
+Text:
+ 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa'
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+From: Socket[addr=/192.168.50.114,port=3000,localport=59703]
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Response of: 
+DOWNLOAD 2 a
+
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE--------------------
+FILE 2 a.txt 3
+Text:
+ 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa'
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+From: Socket[addr=/192.168.50.114,port=3000,localport=59703]
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Response of: 
+DOWNLOAD 2 a
+
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE--------------------
+FILE 2 a.txt 4
+Text:
+ 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa'
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+From: Socket[addr=/192.168.50.114,port=3000,localport=59703]
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Response of: 
+DOWNLOAD 2 a
+
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE--------------------
+FILE-END 2 a.txt 5
+Text:
+ ''
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+From: Socket[addr=/192.168.50.114,port=3000,localport=59703]
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Response of: 
+DOWNLOAD 2 a
+
+Fri Nov 19 15:43:14 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+User selected Download
+
+Fri Nov 19 15:44:36 EST 2021
 
 -------------------------------------------------
 
@@ -75,1048 +205,118 @@ IP: /192.168.50.114
 TCP Port: 3000
 Want file: A
 
-Thu Nov 18 17:44:42 EST 2021
+Fri Nov 19 15:44:56 EST 2021
 
 -------------------------------------------------
 
 ----------------SENDING-------------
-DOWNLOAD 2 A
+DOWNLOAD 3 A
 Sending to ->192.168.50.114:3000
-Thu Nov 18 17:44:43 EST 2021
+Fri Nov 19 15:44:56 EST 2021
 
 -------------------------------------------------
-REQUEST RID: 2 saved
+REQUEST RID: 3 saved
 
-Thu Nov 18 17:44:43 EST 2021
+Fri Nov 19 15:44:56 EST 2021
 
 -------------------------------------------------
 
 ----------------NEW MESSAGE--------------------
-FILE 2 A.txt 1
+FILE 3 A.txt 1
 Text:
- 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-Thu Nov 18 17:44:43 EST 2021
+ 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa'
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
-From: Socket[addr=/192.168.50.114,port=3000,localport=57019]
-Thu Nov 18 17:44:43 EST 2021
+From: Socket[addr=/192.168.50.114,port=3000,localport=59708]
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
 
 -------------------------------------------------
 Response of: 
-DOWNLOAD 2 A
+DOWNLOAD 3 A
 
-Thu Nov 18 17:44:43 EST 2021
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
 
 ----------------NEW MESSAGE--------------------
-FILE 2 A.txt 2
+FILE 3 A.txt 2
 Text:
- 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-Thu Nov 18 17:44:43 EST 2021
+ 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa'
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
-From: Socket[addr=/192.168.50.114,port=3000,localport=57019]
-Thu Nov 18 17:44:43 EST 2021
+From: Socket[addr=/192.168.50.114,port=3000,localport=59708]
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
 
 -------------------------------------------------
 Response of: 
-DOWNLOAD 2 A
+DOWNLOAD 3 A
 
-Thu Nov 18 17:44:43 EST 2021
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
 
 ----------------NEW MESSAGE--------------------
-FILE 2 A.txt 3
+FILE 3 A.txt 3
 Text:
- 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-Thu Nov 18 17:44:43 EST 2021
+ 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa'
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
-From: Socket[addr=/192.168.50.114,port=3000,localport=57019]
-Thu Nov 18 17:44:43 EST 2021
+From: Socket[addr=/192.168.50.114,port=3000,localport=59708]
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
 
 -------------------------------------------------
 Response of: 
-DOWNLOAD 2 A
+DOWNLOAD 3 A
 
-Thu Nov 18 17:44:43 EST 2021
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
 
 ----------------NEW MESSAGE--------------------
-FILE 2 A.txt 4
+FILE 3 A.txt 4
 Text:
- 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-Thu Nov 18 17:44:43 EST 2021
+ 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa'
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
-From: Socket[addr=/192.168.50.114,port=3000,localport=57019]
-Thu Nov 18 17:44:43 EST 2021
+From: Socket[addr=/192.168.50.114,port=3000,localport=59708]
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
 
 -------------------------------------------------
 Response of: 
-DOWNLOAD 2 A
+DOWNLOAD 3 A
 
-Thu Nov 18 17:44:43 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-FILE 2 A.txt 5
-Text:
- 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-Thu Nov 18 17:44:43 EST 2021
-
--------------------------------------------------
-From: Socket[addr=/192.168.50.114,port=3000,localport=57019]
-Thu Nov 18 17:44:43 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-Response of: 
-DOWNLOAD 2 A
-
-Thu Nov 18 17:44:43 EST 2021
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
 
 ----------------NEW MESSAGE--------------------
-FILE-END 2 A.txt 6
+FILE-END 3 A.txt 5
 Text:
  ''
-Thu Nov 18 17:44:43 EST 2021
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
-From: Socket[addr=/192.168.50.114,port=3000,localport=57019]
-Thu Nov 18 17:44:43 EST 2021
+From: Socket[addr=/192.168.50.114,port=3000,localport=59708]
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
 
 -------------------------------------------------
 Response of: 
-DOWNLOAD 2 A
+DOWNLOAD 3 A
 
-Thu Nov 18 17:44:43 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Client information: 
-IP: GAMING-PC/192.168.50.216
-UDP Port: 49813
-TCP Port: 4000
-
-
-Server information: 
-IP: /192.168.50.216
-Port: 1234
-
-Thu Nov 18 21:21:00 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Running TCP Server... 
-
-Thu Nov 18 21:21:00 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 21:21:22 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 49813 TCP: 4000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 21:21:23 EST 2021
-
--------------------------------------------------
-REQUEST RID: 1 saved
-
-Thu Nov 18 21:21:23 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTERED 1 
-Thu Nov 18 21:21:23 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 49813 TCP: 4000
-
-Thu Nov 18 21:21:23 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-You are now registered.
-
-Thu Nov 18 21:21:23 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Client information: 
-IP: GAMING-PC/192.168.50.216
-UDP Port: 62991
-TCP Port: 3000
-
-
-Server information: 
-IP: /192.168.50.216
-Port: 1234
-
-Thu Nov 18 21:39:09 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Running TCP Server... 
-
-Thu Nov 18 21:39:09 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 21:39:10 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 62991 TCP: 3000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 21:39:12 EST 2021
-
--------------------------------------------------
-REQUEST RID: 1 saved
-
-Thu Nov 18 21:39:13 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Client information: 
-IP: GAMING-PC/192.168.50.216
-UDP Port: 62047
-TCP Port: 4000
-
-
-Server information: 
-IP: /192.168.50.216
-Port: 1234
-
-Thu Nov 18 21:42:52 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Running TCP Server... 
-
-Thu Nov 18 21:42:52 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 21:42:53 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 62047 TCP: 4000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 21:42:54 EST 2021
-
--------------------------------------------------
-REQUEST RID: 1 saved
-
-Thu Nov 18 21:42:54 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTERED 1 
-Thu Nov 18 21:42:54 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 62047 TCP: 4000
-
-Thu Nov 18 21:42:54 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-You are now registered.
-
-Thu Nov 18 21:42:54 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Client information: 
-IP: GAMING-PC/192.168.50.216
-UDP Port: 58298
-TCP Port: 4000
-
-
-Server information: 
-IP: /192.168.50.216
-Port: 1234
-
-Thu Nov 18 21:45:55 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Running TCP Server... 
-
-Thu Nov 18 21:45:55 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 21:45:56 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 58298 TCP: 4000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 21:45:57 EST 2021
-
--------------------------------------------------
-REQUEST RID: 1 saved
-
-Thu Nov 18 21:45:57 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTERED 1 
-Thu Nov 18 21:45:57 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 58298 TCP: 4000
-
-Thu Nov 18 21:45:57 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-You are now registered.
-
-Thu Nov 18 21:45:57 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Client information: 
-IP: GAMING-PC/192.168.50.216
-UDP Port: 50359
-TCP Port: 4000
-
-
-Server information: 
-IP: /192.168.50.216
-Port: 1234
-
-Thu Nov 18 21:46:37 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Running TCP Server... 
-
-Thu Nov 18 21:46:37 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 21:46:39 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 50359 TCP: 4000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 21:46:41 EST 2021
-
--------------------------------------------------
-REQUEST RID: 1 saved
-
-Thu Nov 18 21:46:41 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 1 'Username already exists'
-Thu Nov 18 21:46:41 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 50359 TCP: 4000
-
-Thu Nov 18 21:46:41 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-Registration Denied: You are not registered.
-
-Thu Nov 18 21:46:41 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Client information: 
-IP: GAMING-PC/192.168.50.216
-UDP Port: 61564
-TCP Port: 4000
-
-
-Server information: 
-IP: /192.168.50.216
-Port: 1234
-
-Thu Nov 18 21:54:24 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Running TCP Server... 
-
-Thu Nov 18 21:54:24 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 21:54:26 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 61564 TCP: 4000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 21:54:27 EST 2021
-
--------------------------------------------------
-REQUEST RID: 1 saved
-
-Thu Nov 18 21:54:27 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 1 'Username already exists'
-Thu Nov 18 21:54:27 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 61564 TCP: 4000
-
-Thu Nov 18 21:54:27 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-Registration Denied: You are not registered.
-
-Thu Nov 18 21:54:27 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected DeRegister
-
-Thu Nov 18 21:54:32 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-DE-REGISTER 2 jasen
-Sending to ->192.168.50.216:1234
-Thu Nov 18 21:54:34 EST 2021
-
--------------------------------------------------
-REQUEST RID: 2 saved
-
-Thu Nov 18 21:54:34 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected an invalid option
-
-Thu Nov 18 21:54:45 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 21:54:51 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 3 jasen GAMING-PC/192.168.50.216 UDP: 61564 TCP: 4000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 21:54:53 EST 2021
-
--------------------------------------------------
-REQUEST RID: 3 saved
-
-Thu Nov 18 21:54:53 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTERED 3 
-Thu Nov 18 21:54:53 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 3 jasen GAMING-PC/192.168.50.216 UDP: 61564 TCP: 4000
-
-Thu Nov 18 21:54:53 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-You are now registered.
-
-Thu Nov 18 21:54:53 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected DeRegister
-
-Thu Nov 18 21:55:00 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-You have been DeRegistered.
-
-Thu Nov 18 21:55:01 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-DE-REGISTER 4 jasen
-Sending to ->192.168.50.216:1234
-Thu Nov 18 21:55:01 EST 2021
-
--------------------------------------------------
-REQUEST RID: 4 saved
-
-Thu Nov 18 21:55:01 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 21:55:04 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 5 jasen GAMING-PC/192.168.50.216 UDP: 61564 TCP: 4000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 21:55:05 EST 2021
-
--------------------------------------------------
-REQUEST RID: 5 saved
-
-Thu Nov 18 21:55:05 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTERED 5 
-Thu Nov 18 21:55:05 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 5 jasen GAMING-PC/192.168.50.216 UDP: 61564 TCP: 4000
-
-Thu Nov 18 21:55:05 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-You are now registered.
-
-Thu Nov 18 21:55:05 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Client information: 
-IP: GAMING-PC/192.168.50.216
-UDP Port: 63898
-TCP Port: 3000
-
-
-Server information: 
-IP: /192.168.50.216
-Port: 1234
-
-Thu Nov 18 21:57:13 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Running TCP Server... 
-
-Thu Nov 18 21:57:13 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 21:57:15 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 63898 TCP: 3000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 21:57:16 EST 2021
-
--------------------------------------------------
-REQUEST RID: 1 saved
-
-Thu Nov 18 21:57:16 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 1 'Username already exists'
-Thu Nov 18 21:57:16 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 63898 TCP: 3000
-
-Thu Nov 18 21:57:16 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-Registration Denied: You are not registered.
-
-Thu Nov 18 21:57:16 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected DeRegister
-
-Thu Nov 18 21:57:18 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-DE-REGISTER 2 jasen
-Sending to ->192.168.50.216:1234
-Thu Nov 18 21:57:19 EST 2021
-
--------------------------------------------------
-REQUEST RID: 2 saved
-
-Thu Nov 18 21:57:19 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 21:57:20 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 3 jasen GAMING-PC/192.168.50.216 UDP: 63898 TCP: 3000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 21:57:21 EST 2021
-
--------------------------------------------------
-REQUEST RID: 3 saved
-
-Thu Nov 18 21:57:21 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTERED 3 
-Thu Nov 18 21:57:21 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 3 jasen GAMING-PC/192.168.50.216 UDP: 63898 TCP: 3000
-
-Thu Nov 18 21:57:21 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-You are now registered.
-
-Thu Nov 18 21:57:21 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Client information: 
-IP: GAMING-PC/192.168.50.216
-UDP Port: 61500
-TCP Port: 4000
-
-
-Server information: 
-IP: /192.168.50.216
-Port: 1234
-
-Thu Nov 18 22:24:19 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Running TCP Server... 
-
-Thu Nov 18 22:24:19 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 22:24:21 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 61500 TCP: 4000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 22:24:22 EST 2021
-
--------------------------------------------------
-REQUEST RID: 1 saved
-
-Thu Nov 18 22:24:22 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTERED 1 
-Thu Nov 18 22:24:23 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 61500 TCP: 4000
-
-Thu Nov 18 22:24:23 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-You are now registered.
-
-Thu Nov 18 22:24:23 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Client information: 
-IP: GAMING-PC/192.168.50.216
-UDP Port: 59669
-TCP Port: 4000
-
-
-Server information: 
-IP: /192.168.50.216
-Port: 1234
-
-Thu Nov 18 22:26:45 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Running TCP Server... 
-
-Thu Nov 18 22:26:45 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 22:26:46 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 59669 TCP: 4000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 22:26:47 EST 2021
-
--------------------------------------------------
-REQUEST RID: 1 saved
-
-Thu Nov 18 22:26:47 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTERED 1 
-Thu Nov 18 22:26:47 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 59669 TCP: 4000
-
-Thu Nov 18 22:26:47 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-You are now registered.
-
-Thu Nov 18 22:26:47 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Client information: 
-IP: GAMING-PC/192.168.50.216
-UDP Port: 56190
-TCP Port: 4000
-
-
-Server information: 
-IP: /192.168.50.216
-Port: 1234
-
-Thu Nov 18 22:28:38 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Running TCP Server... 
-
-Thu Nov 18 22:28:38 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 22:28:39 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 56190 TCP: 4000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 22:28:40 EST 2021
-
--------------------------------------------------
-REQUEST RID: 1 saved
-
-Thu Nov 18 22:28:40 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTERED 1 
-Thu Nov 18 22:28:40 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 56190 TCP: 4000
-
-Thu Nov 18 22:28:40 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-You are now registered.
-
-Thu Nov 18 22:28:40 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Client information: 
-IP: GAMING-PC/192.168.50.216
-UDP Port: 54707
-TCP Port: 4000
-
-
-Server information: 
-IP: /192.168.50.216
-Port: 1234
-
-Thu Nov 18 22:30:02 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Running TCP Server... 
-
-Thu Nov 18 22:30:02 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 22:30:04 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 54707 TCP: 4000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 22:30:05 EST 2021
-
--------------------------------------------------
-REQUEST RID: 1 saved
-
-Thu Nov 18 22:30:05 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTERED 1 
-Thu Nov 18 22:30:05 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 54707 TCP: 4000
-
-Thu Nov 18 22:30:05 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-You are now registered.
-
-Thu Nov 18 22:30:05 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Client information: 
-IP: GAMING-PC/192.168.50.216
-UDP Port: 61816
-TCP Port: 4000
-
-
-Server information: 
-IP: /192.168.50.216
-Port: 1234
-
-Thu Nov 18 22:30:51 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-
-Running TCP Server... 
-
-Thu Nov 18 22:30:51 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-User selected Register
-
-Thu Nov 18 22:30:52 EST 2021
-
--------------------------------------------------
-
-----------------SENDING-------------
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 61816 TCP: 4000
-Sending to ->192.168.50.216:1234
-Thu Nov 18 22:30:53 EST 2021
-
--------------------------------------------------
-REQUEST RID: 1 saved
-
-Thu Nov 18 22:30:53 EST 2021
-
--------------------------------------------------
-
-----------------NEW MESSAGE--------------------
-REGISTERED 1 
-Thu Nov 18 22:30:53 EST 2021
-
--------------------------------------------------
-Response of: 
-REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 61816 TCP: 4000
-
-Thu Nov 18 22:30:53 EST 2021
-
--------------------------------------------------
-
--------------------------------------------------
-You are now registered.
-
-Thu Nov 18 22:30:53 EST 2021
+Fri Nov 19 15:44:57 EST 2021
 
 -------------------------------------------------
