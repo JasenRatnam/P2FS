@@ -8,7 +8,7 @@ public class ClientObject {
     private String IP;
     private int UDPport;
     private int TCPport;
-    public static ArrayList<String> files = new ArrayList<>();
+    public ArrayList<String> files = new ArrayList<>();
 
 
     /**
@@ -30,30 +30,50 @@ public class ClientObject {
      */
     @Override
     public String toString() {
-        return "Client{" +
+        String str = "Client{" +
                 "name='" + name + '\'' +
                 ", IP='" + IP + '\'' +
                 ", UDPport=" + UDPport +
-                ", TCPport=" + TCPport +
-                "}\nFiles: {" +
-                String.join(", ", files)
-                + "}";
+                ", TCPport=" + TCPport;
+        if(files != null) {
+            str += "}\nFiles: {" +
+            String.join(", ", files)  + "}";
+        }
+        else{
+            str += "}";
+        }
+        return str;
     }
 
-    public static void addFile(String file) {
+    public void addFile(String file) {
         files.add(file);
+        Writer.makeServerBackup();
     }
 
-    public void removeFile(ArrayList<String> file) {files.removeAll(file);
+    public void removeFile(ArrayList<String> file) {
+        files.removeAll(file);
+        Writer.makeServerBackup();
+
     }
 
     //getters and setters
-    public static ArrayList<String> getFiles() {
+    public ArrayList<String> getFiles() {
         return files;
     }
 
-    public static void setFiles(ArrayList<String> files) {
-        ClientObject.files = files;
+    //getters and setters
+    public String getFilesString() {
+        String str = "";
+        for(int i=0;i<files.size();i++)
+        {
+            str += "," + files.get(i);
+        }
+        return str;
+    }
+
+    public void setFiles(ArrayList<String> files) {
+        this.files = files;
+        Writer.makeServerBackup();
     }
 
     public String getName() {
@@ -62,6 +82,7 @@ public class ClientObject {
 
     public void setName(String name) {
         this.name = name;
+        Writer.makeServerBackup();
     }
 
     public String getIP() {
@@ -70,6 +91,7 @@ public class ClientObject {
 
     public void setIP(String IP) {
         this.IP = IP;
+        Writer.makeServerBackup();
     }
 
     public int getUDPport() {
@@ -78,6 +100,7 @@ public class ClientObject {
 
     public void setUDPport(int UDPport) {
         this.UDPport = UDPport;
+        Writer.makeServerBackup();
     }
 
     public int getTCPport() {
@@ -86,5 +109,6 @@ public class ClientObject {
 
     public void setTCPport(int TCPport) {
         this.TCPport = TCPport;
+        Writer.makeServerBackup();
     }
 }

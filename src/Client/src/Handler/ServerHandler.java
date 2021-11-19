@@ -51,7 +51,7 @@ public class ServerHandler implements Runnable {
                     Object o = is.readObject();
 
                     // add object to log file
-                    Writer.receiveServer(o);
+                    Writer.receiveObject(o);
 
                     // handle the response
                     responseHandler(o);
