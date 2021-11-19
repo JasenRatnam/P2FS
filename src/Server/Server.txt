@@ -497,3 +497,220 @@ Fri Nov 12 22:15:20 EST 2021
 
 -------------------------------------------------
 opening port..... 
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='bob', IP='JASEN-S540/192.168.50.114', UDPport=52248, TCPport=3000}
+Files: {}
+Restored client: 
+Client{name='jasen', IP='GAMING-PC/192.168.50.216', UDPport=59576, TCPport=4000}
+Files: {}
+
+Fri Nov 19 18:38:58 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Fri Nov 19 18:38:58 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 1234
+
+Fri Nov 19 18:38:58 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 63146 TCP: 1234
+Fri Nov 19 18:39:30 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 18:39:30 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.5.1:63146
+Fri Nov 19 18:39:30 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 3 client(s)
+
+Fri Nov 19 18:39:30 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 2 bibo [bibo, nabil, jasen]
+Fri Nov 19 18:39:47 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Fri Nov 19 18:39:47 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[bibo, nabil, jasen]
+
+Fri Nov 19 18:39:47 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISH-DENIED 2 'User not found'
+Sending to ->/192.168.5.1:63146
+Fri Nov 19 18:39:47 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+REMOVE 3 bibo [jasen]
+Fri Nov 19 18:41:12 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Fri Nov 19 18:41:12 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo cannot remove files.
+Cannot find bibo
+
+Server has 3 client(s)
+
+Fri Nov 19 18:41:12 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo cannot remove files.
+Cannot find bibo
+
+Server has 3 client(s)
+
+Fri Nov 19 18:41:12 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has removed files successfully. 
+Removed: 
+[jasen]
+Current client files 
+: [bibo, nabil]
+
+Fri Nov 19 18:41:12 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REMOVED 3 
+Sending to ->/192.168.5.1:63146
+Fri Nov 19 18:41:12 EST 2021
+
+-------------------------------------------------
+opening port..... 
+
+Fri Nov 19 18:42:24 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 1
+
+Fri Nov 19 18:42:24 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 52090 TCP: 1
+Fri Nov 19 18:42:53 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 18:42:53 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.5.1:52090
+Fri Nov 19 18:42:53 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 1 client(s)
+
+Fri Nov 19 18:42:53 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 2 bibo [bibo, jasen, nabil]
+Fri Nov 19 18:43:05 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Fri Nov 19 18:43:05 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[bibo, jasen, nabil]
+
+Fri Nov 19 18:43:05 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 2 
+Sending to ->/192.168.5.1:52090
+Fri Nov 19 18:43:05 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+REMOVE 3 bibo [bibo]
+Fri Nov 19 18:43:23 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Fri Nov 19 18:43:23 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has removed files successfully. 
+Removed: 
+[bibo]
+Current client files 
+: [jasen, nabil]
+
+Fri Nov 19 18:43:23 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REMOVED 3 
+Sending to ->/192.168.5.1:52090
+Fri Nov 19 18:43:23 EST 2021

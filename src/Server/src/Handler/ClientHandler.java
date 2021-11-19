@@ -107,7 +107,7 @@ public class ClientHandler implements Runnable {
             }
             else if (requestInput instanceof PublishRequest)
             {
-            Publish((PublishRequest) requestInput);
+                Publish((PublishRequest) requestInput);
             }
             else if(requestInput instanceof RemoveRequest)
             {
@@ -222,24 +222,43 @@ public class ClientHandler implements Runnable {
 
     public void Publish(PublishRequest request)
     {
+        //save name of client to register
         String username = request.getClientName();
+
         ArrayList<String> listOfFile = request.getListOfFiles();
         log = "Publish request received\n";
         Writer.log(log);
-        boolean error = false;
+        boolean Published = false;
         String errorCode = null;
 
 // match the client with the clients in the server
         for ( ClientObject client: Server.clients) {
             if (client.getName().equals(username)) {
+                Published = true;
+                client.setFiles(listOfFile);
+                log = username + " has published files successfully. \n";
+                log += "Published: \n" + request.getListOfFiles() + "\n";
+                Writer.log(log);
+                break;
 
-                Server.
-                        (request.setListOfFiles(listOfFile));
             }
         }
 
+        // if not already registered
+        if (!Published) {
+            //published denied
+            errorCode = "User not found";
+            PublishDenied denied = new PublishDenied(errorCode, request.getRQNumb());
+            Sender.sendTo(denied, this.request, ds);
+            log = "Client: " + username + " can not publish because: " + errorCode;
+        } else {
+            //published
+            //send published
+            PublishConfirmed confirmation = new PublishConfirmed(request.getRQNumb());
+            Sender.sendTo(confirmation, this.request, ds);
+            log = "Client: " + username + "has published files";
 
-
+        }
     }
 
     public void RemoveFiles(RemoveRequest request) {
