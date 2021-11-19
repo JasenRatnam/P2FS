@@ -1,0 +1,4 @@
+Server UDP Port
+1234
+Name,IP,UDPport,TCPport,Filenames
+jasen,GAMING-PC/192.168.50.216,61816,4000

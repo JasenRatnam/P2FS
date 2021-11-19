@@ -1,8 +1,7 @@
 package Handler;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 import static java.lang.System.exit;
@@ -14,6 +13,7 @@ public class Writer {
 
     private static String Timestamp;
     private static final String fileName = "Server.txt";
+    private static final  String backup = "backup.csv";
 
     /**
      * append an object to the text file
@@ -39,9 +39,8 @@ public class Writer {
         }catch (IOException e) {
             //e.printStackTrace();
             String log = "IOException.... ";
-            log += "\nClosing client....\n ";
+            log += "\nFile logging failed....\n ";
             Writer.log(log);
-            exit(1);
         }
     }
 
@@ -67,12 +66,11 @@ public class Writer {
             br.newLine();
             br.write(str.toString());
             br.newLine();
-        }catch (IOException e) {
-        //e.printStackTrace();
-        log = "IOException.... ";
-        log += "\nClosing client....\n ";
-        Writer.log(log);
-        exit(1);
+        } catch (IOException e) {
+            //e.printStackTrace();
+            String log2 = "IOException.... ";
+            log2 += "\nFile logging failed....\n ";
+            Writer.log(log2);
         }
     }
 
@@ -100,9 +98,89 @@ public class Writer {
         }catch (IOException e) {
             //e.printStackTrace();
             String log = "IOException.... ";
-            log += "\nClosing client....\n ";
+            log += "\nFile logging failed....\n ";
             Writer.log(log);
-            exit(1);
+        }
+    }
+
+    /**
+     * create a backup of the server
+     * save server port selection
+     * save clients registerd to server
+     */
+    public static void makeServerBackup() {
+        try (BufferedWriter br = new BufferedWriter(new FileWriter(backup, false))) {
+            br.write("Server UDP Port");
+            br.newLine();
+            br.write(String.valueOf(Server.serverPort));
+            br.newLine();
+            br.write("Name,IP,UDPport,TCPport,Filenames");
+            br.newLine();
+            for(int i=0;i<Server.clients.size();i++)
+            {
+                br.write(Server.clients.get(i).getName() + "," +
+                             Server.clients.get(i).getIP() + "," +
+                             Server.clients.get(i).getUDPport() + "," +
+                             Server.clients.get(i).getTCPport() +
+                             Server.clients.get(i).getFilesString()
+                        );
+                br.newLine();
+            }
+        }catch (IOException e) {
+            //e.printStackTrace();
+            String log = "IOException.... ";
+            log += "\nServer backup failed....\n ";
+            Writer.log(log);
+        }
+    }
+
+    /**
+     * restore the server from saved data
+     * set port of the server
+     * add all clients saves with their files
+     */
+    public static void restoreServer() {
+        String delimiter = ",";
+        String log = "";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(backup))) {
+            log = "Restoring server...\n";
+
+            String line;
+            //remove server port header
+            br.readLine();
+
+            //ge port of server
+            Server.serverPort = Integer.parseInt(br.readLine());
+
+            //remove client header
+            br.readLine();
+
+            //read and save clients
+            while((line = br.readLine()) != null){
+                String[] values = line.split(delimiter);
+                String name = values[0];
+                String IP = values[1];
+                int UDPport = Integer.parseInt(values[2]);
+                int TCPport = Integer.parseInt(values[3]);
+
+                ClientObject client = new ClientObject(name, IP, UDPport, TCPport);
+
+                //add all filenames of client
+                for(int i=4;i<values.length;i++) {
+                    String filenamex = values[i];
+                    client.addFile(filenamex);
+                }
+
+                Server.clients.add(client);
+                log += "Restored client: \n" + client.toString() + "\n";
+            }
+            log(log);
+        } catch (IOException e){
+            //e.printStackTrace();
+            log = "IOException.... ";
+            log += "\nServer restore failed....\n ";
+            Writer.log(log);
         }
     }
 }

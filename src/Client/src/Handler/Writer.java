@@ -5,8 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
-import static java.lang.System.exit;
-
 /**
  * Write log to an external file
  */
@@ -18,7 +16,7 @@ public class Writer {
     /**
      * append object received from server
      */
-    public static void receiveServer(Object object){
+    public static void receiveObject(Object object){
         //get current timestamp
         Timestamp = new Date().toString();
 
@@ -26,7 +24,7 @@ public class Writer {
         try(BufferedWriter br = new BufferedWriter(new FileWriter(fileName,true))){
             StringBuilder str = new StringBuilder();
 
-            str.append("\n----------------NEW MESSAGE From Server--------------------");
+            str.append("\n----------------NEW MESSAGE--------------------");
             System.out.println(str);
             br.write(str.toString());
             br.newLine();
@@ -39,9 +37,8 @@ public class Writer {
         }catch (IOException e) {
             //e.printStackTrace();
             String log = "IOException.... ";
-            log += "\nClosing client....\n ";
+            log += "\nFile logging failed....\n ";
             Writer.log(log);
-            exit(1);
         }
     }
 
@@ -69,9 +66,8 @@ public class Writer {
         }catch (IOException e) {
             //e.printStackTrace();
             String log = "IOException.... ";
-            log += "\nClosing client....\n ";
+            log += "\nFile logging failed....\n ";
             Writer.log(log);
-            exit(1);
         }
     }
 
@@ -100,9 +96,28 @@ public class Writer {
         }catch (IOException e) {
             //e.printStackTrace();
             log = "IOException.... ";
-            log += "\nClosing client....\n ";
+            log += "\nFile logging failed....\n ";
             Writer.log(log);
-            exit(1);
+        }
+    }
+
+    /**
+     * log any string to the file
+     */
+    public static void downloadFile(String text, String fileName){
+
+        String file = "Downloaded-" + fileName;
+        try(BufferedWriter br = new BufferedWriter(new FileWriter(file,true))){
+            StringBuilder str = new StringBuilder();
+
+            str.append(text);
+            br.write(str.toString());
+            br.newLine();
+        }catch (IOException e) {
+            //e.printStackTrace();
+            String log = "IOException.... ";
+            log += "\nFile download failed....\n ";
+            Writer.log(log);
         }
     }
 }

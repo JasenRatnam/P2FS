@@ -12,7 +12,6 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 import static java.lang.System.exit;
 
@@ -119,9 +118,9 @@ public class ClientHandler implements Runnable {
      * And request number
      */
     public void register(RegisterRequest request) {
-        //save name of client
+        //save name of client to register
         String username = request.getClientName();
-        //save ip of client
+        //save ip of client to register
         String IP = request.getAddress();
 
         log = "Register request received\n";
@@ -152,7 +151,7 @@ public class ClientHandler implements Runnable {
         if (!error) {
             //register
             Server.clients.add(request.getClientObject());
-
+            Writer.makeServerBackup();
             //Send confirmation too client
             RegisterConfirmed confirmation = new RegisterConfirmed(request.getRQNumb());
             Sender.sendTo(confirmation, this.request, ds);
@@ -190,6 +189,7 @@ public class ClientHandler implements Runnable {
                 //deregister client
                 deregister = true;
                 Server.clients.remove(i);
+                Writer.makeServerBackup();
                 log = client + " has been DeRegistered.\n";
                 log += "\nServer has " + Server.clients.size() + " client(s)\n";
                 break;
@@ -213,16 +213,12 @@ public class ClientHandler implements Runnable {
      * Remove request from the list of requests
      */
     public static void remove(int rid, DatagramPacket packet) {
-        try {
-            //client ip and port
-            String ip = packet.getAddress().getLocalHost().getHostAddress();
-            int port = packet.getPort();
-            String hashId = rid + "-" + ip + ":" + port;
+        //client ip and port
+        String ip = packet.getAddress().toString();
+        int port = packet.getPort();
+        String hashId = rid + "-" + ip + ":" + port;
 
-            //remove request
-            Server.requestMap.remove(hashId);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
+        //remove request
+        Server.requestMap.remove(hashId);
     }
 }
