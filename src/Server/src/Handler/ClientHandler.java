@@ -1,11 +1,7 @@
 package Handler;
 
-import Requests.DeRegisterRequest;
-import Requests.PublishRequest;
-import Requests.RegisterRequest;
-import Requests.Request;
-import Responses.RegisterConfirmed;
-import Responses.RegisterDenied;
+import Requests.*;
+import Responses.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -111,8 +107,11 @@ public class ClientHandler implements Runnable {
             {
             Publish((PublishRequest) requestInput);
             }
-
-
+            else if(requestInput instanceof RemoveRequest)
+            {
+                RemoveFiles((RemoveRequest) requestInput);
+            }
+            
             //need to add other requests
             else {
                 log = "Cannot handle this request.";
@@ -240,7 +239,82 @@ public class ClientHandler implements Runnable {
 
     }
 
+    public void RemoveFiles(RemoveRequest request) {
+        String username = request.getClientName();
 
+        log = "Remove files request received\n";
+        Writer.log(log);
+        String errorCode = "";
+        boolean removed = false;
+        
+        ArrayList<String> listOfFileToRemove = request.getListOfFiles();
+        
+        // match the client with the clients in the server
+        for (ClientObject client : Server.clients) {
+            if (client.getName().equals(username)) {
+                if(contains(client.getFiles(),listOfFileToRemove))
+                {
+                    client.removeFile(listOfFileToRemove);
+                    removed=true;
+                    log = username + " has removed files successfully. \n";
+                    log += "Removed: \n" + request.getListOfFiles() + "\n";
+                    log += "Current client files \n: " +  client.getFiles() + "\n";
+                    Writer.log(log);
+                    break;
+                }else {
+                    errorCode = "File not found\n";
+                    log = username + " cannot remove files." + "\n";
+                    log += " file does not exist" + "\n";
+                    Writer.log(log);
+                }
+            }
+            else{
+                log = username + " cannot remove files.";
+                log += "\nCannot find " + username  + "\n";
+                log += "\nServer has " + Server.clients.size() + " client(s)\n";
+                Writer.log(log);
+                errorCode += "User not found\n";
+            }
+        }
+
+        if(!removed)
+        {
+            //can't remove
+            //send a response
+            //send Remove-denied
+            RemoveDenied denied = new RemoveDenied(errorCode, request.getRQNumb());
+            Sender.sendTo(denied, this.request, ds);
+        }
+        else{
+            //send Removed
+            RemoveConfirmed confirmation = new RemoveConfirmed(request.getRQNumb());
+            Sender.sendTo(confirmation, this.request, ds);
+        }
+
+        // remove request from list of request
+        remove(request.getRQNumb(), this.request);
+    }
+
+    boolean contains(ArrayList<String> list, ArrayList<String> sublist) {
+        boolean contains = true;
+        int l1 = list.size(), l2 = sublist.size();
+        int currIndex = 0;
+        int i;
+        for(int j=0;j<l2;j++) {
+            String e2 = sublist.get(j);
+            for(i=currIndex;i<l1;i++) {
+                if(e2.equals(list.get(i))) {
+                    break;
+                }
+            }
+            if(i == l1) {
+                contains = false;
+                break;
+            }
+            currIndex++;
+        }
+        return  contains;
+    }
 
     /**
      * Remove request from the list of requests

@@ -44,8 +44,7 @@ public class ClientObject {
         files.add(file);
     }
 
-    public static void removeFile(String file) {
-        files.remove(file);
+    public void removeFile(ArrayList<String> file) {files.removeAll(file);
     }
 
     //getters and setters

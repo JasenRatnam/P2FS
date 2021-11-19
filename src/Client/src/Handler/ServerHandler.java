@@ -103,27 +103,21 @@ public class ServerHandler implements Runnable {
 
                 log = "Registration Denied: You are not registered.\n";
                 Writer.log(log);
-            } else if (response instanceof PublishConfirmed)
-            {
-                //publish the clients files
-                if (Client.requestMap.containsKey(RequestID)) {
-                   PublishRequest req = (PublishRequest) Client.requestMap.get(RequestID);
-                    //save registered name of client
-                  //  Client. = req.getClientName();
-                }
+            } else if (response instanceof PublishConfirmed) {
+                log = "Publish confirmed: Files have been published to server.\n";
+                Writer.log(log);
             }else if (response instanceof PublishDenied)
             {
+                log = "Publish Denied: files have not been published to server.\n";
+                Writer.log(log);
+            }else if (response instanceof RemoveConfirmed) {
 
-            }else if (response instanceof RemoveConfirmed)
-            {
-
-            }else if (response instanceof RemoveDenied)
-            {
-
+                log = "Remove confirmed: Files have been Removed from the server.\n";
+                Writer.log(log);
+            }else if (response instanceof RemoveDenied) {
+                log = "Remove Denied: files have not been Removed from the server.\n";
+                Writer.log(log);
             }
-
-
-
 
             //add other if to handle other possible response by server
 

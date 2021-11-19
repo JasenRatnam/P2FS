@@ -29,6 +29,7 @@ public class Client {
     public static boolean isRegistered = false;
     public static boolean isPublished = false;
     private static String log;
+    public static ArrayList<String> listOfFile = new ArrayList<String>();
 
     /**
      * constructor of a client
@@ -150,7 +151,6 @@ public class Client {
             if (val.isEmpty()) {
                 val = "-1";
             }
-
 
             switch (val) {
                 case "1":
@@ -308,21 +308,19 @@ public class Client {
 
 
     public static void publish(Scanner s) {
-        ArrayList<String> listOfFile = new ArrayList<String>();
-        System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit): ");
+        System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
         String input = s.nextLine();
         while(!input.equals("exit")) {
             if(!input.equals("")){
-                ClientObject.addFile(input);
                 listOfFile.add(input);
             }
-            System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit): ");
+            System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
             input = s.nextLine();
         }
         PublishRequest publishMessage = new PublishRequest(requestCounter.incrementAndGet(),ClientName,listOfFile);
 
+        //send to the server
          Sender.sendTo(publishMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
-
     }
 
     public static void remove(Scanner s) {
@@ -331,7 +329,7 @@ public class Client {
         String input = s.nextLine();
         while(!input.equals("exit")) {
             if(!input.equals("")){
-                ClientObject.removeFile(input);
+                listOfFile.remove(input);
                 listOfFileToRemove.add(input);
             }
             System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
@@ -339,6 +337,7 @@ public class Client {
         }
         RemoveRequest removeMessage = new RemoveRequest(requestCounter.incrementAndGet(),ClientName,listOfFileToRemove);
 
+        //send to server
         Sender.sendTo(removeMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
     }
 
