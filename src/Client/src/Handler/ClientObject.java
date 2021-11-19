@@ -40,20 +40,20 @@ public class ClientObject {
                 + "}";
     }
 
-    public static void addFile(String file) {
+    public void addFile(String file) {
         files.add(file);
     }
 
-    public static void removeFile(String file) {
+    public void removeFile(ArrayList<String> file) {
         files.remove(file);
     }
 
     //getters and setters
-    public static ArrayList<String> getFiles() {
+    public ArrayList<String> getFiles() {
         return files;
     }
 
-    public static void setFiles(ArrayList<String> files) {
+    public void setFiles(ArrayList<String> files) {
         ClientObject.files = files;
     }
 

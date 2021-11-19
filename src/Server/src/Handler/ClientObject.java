@@ -50,9 +50,10 @@ public class ClientObject {
         Writer.makeServerBackup();
     }
 
-    public void removeFile(String file) {
-        files.remove(file);
+    public void removeFile(ArrayList<String> file) {
+        files.removeAll(file);
         Writer.makeServerBackup();
+
     }
 
     //getters and setters

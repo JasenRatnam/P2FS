@@ -1,10 +1,16 @@
 package Handler;
 
 import Requests.DeRegisterRequest;
+
+import Requests.PublishRequest;
+
 import Requests.DownloadRequest;
+
 import Requests.RegisterRequest;
+import Requests.RemoveRequest;
 
 import java.net.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -25,7 +31,9 @@ public class Client {
     public static String ClientName;
     public static ConcurrentHashMap<Integer,Object> requestMap = new ConcurrentHashMap<>();
     public static boolean isRegistered = false;
+    public static boolean isPublished = false;
     private static String log;
+    public static ArrayList<String> listOfFile = new ArrayList<String>();
 
     /**
      * constructor of a client
@@ -193,9 +201,11 @@ public class Client {
             System.out.println("Enter number of the wanted command:");
             val = sc.nextLine();
 
+
             if (val.isEmpty()) {
                 val = "-1";
             }
+
             switch (val) {
                 case "1":
                     //has to register with the server before publishing or discovering what
@@ -222,6 +232,7 @@ public class Client {
                     if(isRegistered) {
                         log = "User selected Publish\n";
                         Writer.log(log);
+                        publish(sc);
                         break;
                     }
                     else{
@@ -234,6 +245,7 @@ public class Client {
                     if(isRegistered) {
                         log = "User selected Remove\n";
                         Writer.log(log);
+                        remove(sc);
                         break;
                     }
                     else{
@@ -358,7 +370,7 @@ public class Client {
         //get name of client
         System.out.print("\tEnter Username to register: ");
         String name = s.next();
-
+        ClientName=name;
         //create a register request
         RegisterRequest registerMessage = new RegisterRequest(requestCounter.incrementAndGet(), name,
                 clientIp.toString(), clientUDPPort, clientTCPPort);
@@ -388,4 +400,41 @@ public class Client {
 
         Sender.sendTo(deregisterMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }
+
+
+
+    public static void publish(Scanner s) {
+        System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
+        String input = s.nextLine();
+        while(!input.equals("exit")) {
+            if(!input.equals("")){
+                listOfFile.add(input);
+            }
+            System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
+            input = s.nextLine();
+        }
+        PublishRequest publishMessage = new PublishRequest(requestCounter.incrementAndGet(),ClientName,listOfFile);
+
+        //send to the server
+         Sender.sendTo(publishMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
+    }
+
+    public static void remove(Scanner s) {
+        ArrayList<String> listOfFileToRemove = new ArrayList<String>();
+        System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
+        String input = s.nextLine();
+        while(!input.equals("exit")) {
+            if(!input.equals("")){
+                listOfFile.remove(input);
+                listOfFileToRemove.add(input);
+            }
+            System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
+            input = s.nextLine();
+        }
+        RemoveRequest removeMessage = new RemoveRequest(requestCounter.incrementAndGet(),ClientName,listOfFileToRemove);
+
+        //send to server
+        Sender.sendTo(removeMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
+    }
+
 }

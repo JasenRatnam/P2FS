@@ -1,9 +1,10 @@
 package Handler;
 
+import Requests.PublishRequest;
 import Requests.RegisterRequest;
+import Requests.RemoveRequest;
 import Requests.Request;
-import Responses.RegisterConfirmed;
-import Responses.RegisterDenied;
+import Responses.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -102,6 +103,20 @@ public class ServerHandler implements Runnable {
 
                 log = "Registration Denied: You are not registered.\n";
                 Writer.log(log);
+            } else if (response instanceof PublishConfirmed) {
+                log = "Publish confirmed: Files have been published to server.\n";
+                Writer.log(log);
+            }else if (response instanceof PublishDenied)
+            {
+                log = "Publish Denied: files have not been published to server.\n";
+                Writer.log(log);
+            }else if (response instanceof RemoveConfirmed) {
+
+                log = "Remove confirmed: Files have been Removed from the server.\n";
+                Writer.log(log);
+            }else if (response instanceof RemoveDenied) {
+                log = "Remove Denied: files have not been Removed from the server.\n";
+                Writer.log(log);
             }
 
             //add other if to handle other possible response by server
@@ -114,5 +129,8 @@ public class ServerHandler implements Runnable {
             //remove request ID from list
             Client.requestMap.remove(RequestID);
         }
+
     }
+
+
 }
