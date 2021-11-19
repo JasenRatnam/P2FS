@@ -12,7 +12,6 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 import static java.lang.System.exit;
 
@@ -152,7 +151,7 @@ public class ClientHandler implements Runnable {
         if (!error) {
             //register
             Server.clients.add(request.getClientObject());
-
+            Writer.makeServerBackup();
             //Send confirmation too client
             RegisterConfirmed confirmation = new RegisterConfirmed(request.getRQNumb());
             Sender.sendTo(confirmation, this.request, ds);
@@ -190,6 +189,7 @@ public class ClientHandler implements Runnable {
                 //deregister client
                 deregister = true;
                 Server.clients.remove(i);
+                Writer.makeServerBackup();
                 log = client + " has been DeRegistered.\n";
                 log += "\nServer has " + Server.clients.size() + " client(s)\n";
                 break;

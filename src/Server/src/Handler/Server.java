@@ -1,5 +1,6 @@
 package Handler;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Server implements Runnable {
     private static DatagramSocket ds;
     private static String log;
     private static InetAddress serverIp;
-    private static int serverPort;
+    public static int serverPort;
     private static DatagramPacket request;
     private static byte[] receive = null;
     private static final Scanner sc = new Scanner(System.in);
@@ -69,8 +70,23 @@ public class Server implements Runnable {
      * configure server on startup
      */
     public void serverConfig() {
-        //ask and get port of server
-        serverPort = getPort();
+
+        //if backup exists, reload settings from backup.csv
+        //if no backup start from scratch
+        String backupPath = "backup.csv";
+        File f = new File(backupPath);
+        if(!f.isFile()) {
+            //if no backup exists
+            //ask and get port of server
+            serverPort = getPort();
+        }
+        else{
+            //if a backup exists
+            //read backup file and save them in the server
+
+            //read backup
+            Writer.restoreServer();
+        }
 
         //continue asking until valid socket is received
         while (true) {
@@ -89,6 +105,8 @@ public class Server implements Runnable {
                 serverPort = getPort();
             }
         }
+
+        Writer.makeServerBackup();
 
         //get IP of server
         try {
