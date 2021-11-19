@@ -3381,3 +3381,616 @@ Server has 2 client(s)
 Fri Nov 19 15:44:30 EST 2021
 
 -------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Fri Nov 19 15:50:00 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Fri Nov 19 15:50:00 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen JASEN-S540/192.168.50.114 UDP: 49777 TCP: 3000
+Fri Nov 19 15:50:21 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 15:50:22 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.114:49777
+Fri Nov 19 15:50:22 EST 2021
+
+-------------------------------------------------
+Client: jasen at JASEN-S540/192.168.50.114 has been registered
+Server has 1 client(s)
+
+Fri Nov 19 15:50:22 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 bob GAMING-PC/192.168.50.216 UDP: 56532 TCP: 4000
+Fri Nov 19 15:50:25 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 15:50:25 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.216:56532
+Fri Nov 19 15:50:25 EST 2021
+
+-------------------------------------------------
+Client: bob at GAMING-PC/192.168.50.216 has been registered
+Server has 2 client(s)
+
+Fri Nov 19 15:50:25 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Fri Nov 19 15:52:13 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Fri Nov 19 15:52:13 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 54924 TCP: 4000
+Fri Nov 19 15:52:42 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 15:52:42 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.216:54924
+Fri Nov 19 15:52:42 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has been registered
+Server has 1 client(s)
+
+Fri Nov 19 15:52:42 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 bob JASEN-S540/192.168.50.114 UDP: 52248 TCP: 3000
+Fri Nov 19 15:52:50 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 15:52:50 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.114:52248
+Fri Nov 19 15:52:50 EST 2021
+
+-------------------------------------------------
+Client: bob at JASEN-S540/192.168.50.114 has been registered
+Server has 2 client(s)
+
+Fri Nov 19 15:52:50 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 53911 TCP: 4000
+Fri Nov 19 15:55:03 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 15:55:03 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -jasen - already registered
+
+Fri Nov 19 15:55:03 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'Username already exists'
+Sending to ->/192.168.50.216:53911
+Fri Nov 19 15:55:03 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has not been registered because: Username already exists
+Server has 2 client(s)
+
+Fri Nov 19 15:55:03 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 2 jasen
+Fri Nov 19 15:55:05 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Fri Nov 19 15:55:05 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='jasen', IP='GAMING-PC/192.168.50.216', UDPport=54924, TCPport=4000}
+Files: {} has been DeRegistered.
+
+Server has 1 client(s)
+
+Fri Nov 19 15:55:05 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 3 jasen GAMING-PC/192.168.50.216 UDP: 53911 TCP: 4000
+Fri Nov 19 15:55:08 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 15:55:08 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 3 
+Sending to ->/192.168.50.216:53911
+Fri Nov 19 15:55:08 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has been registered
+Server has 2 client(s)
+
+Fri Nov 19 15:55:08 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 64140 TCP: 3000
+Fri Nov 19 15:56:20 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 15:56:20 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -jasen - already registered
+
+Fri Nov 19 15:56:20 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'Username already exists'
+Sending to ->/192.168.50.216:64140
+Fri Nov 19 15:56:20 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has not been registered because: Username already exists
+Server has 2 client(s)
+
+Fri Nov 19 15:56:20 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 2 jasen
+Fri Nov 19 15:56:23 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Fri Nov 19 15:56:23 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='jasen', IP='GAMING-PC/192.168.50.216', UDPport=53911, TCPport=4000}
+Files: {} has been DeRegistered.
+
+Server has 1 client(s)
+
+Fri Nov 19 15:56:23 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 3 jasen GAMING-PC/192.168.50.216 UDP: 64140 TCP: 3000
+Fri Nov 19 15:56:25 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 15:56:25 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 3 
+Sending to ->/192.168.50.216:64140
+Fri Nov 19 15:56:25 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has been registered
+Server has 2 client(s)
+
+Fri Nov 19 15:56:25 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 50215 TCP: 4000
+Fri Nov 19 16:00:12 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 16:00:12 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -jasen - already registered
+
+Fri Nov 19 16:00:12 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'Username already exists'
+Sending to ->/192.168.50.216:50215
+Fri Nov 19 16:00:12 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has not been registered because: Username already exists
+Server has 2 client(s)
+
+Fri Nov 19 16:00:12 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 2 jasen
+Fri Nov 19 16:00:16 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Fri Nov 19 16:00:16 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='jasen', IP='GAMING-PC/192.168.50.216', UDPport=64140, TCPport=3000}
+Files: {} has been DeRegistered.
+
+Server has 1 client(s)
+
+Fri Nov 19 16:00:16 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 3 jasen GAMING-PC/192.168.50.216 UDP: 50215 TCP: 4000
+Fri Nov 19 16:00:19 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 16:00:19 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 3 
+Sending to ->/192.168.50.216:50215
+Fri Nov 19 16:00:19 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has been registered
+Server has 2 client(s)
+
+Fri Nov 19 16:00:19 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 49334 TCP: 4000
+Fri Nov 19 16:06:02 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 16:06:02 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -jasen - already registered
+
+Fri Nov 19 16:06:02 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'Username already exists'
+Sending to ->/192.168.50.216:49334
+Fri Nov 19 16:06:02 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has not been registered because: Username already exists
+Server has 2 client(s)
+
+Fri Nov 19 16:06:02 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 2 jasen
+Fri Nov 19 16:06:05 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Fri Nov 19 16:06:05 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='jasen', IP='GAMING-PC/192.168.50.216', UDPport=50215, TCPport=4000}
+Files: {} has been DeRegistered.
+
+Server has 1 client(s)
+
+Fri Nov 19 16:06:05 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 3 jasen GAMING-PC/192.168.50.216 UDP: 49334 TCP: 4000
+Fri Nov 19 16:06:06 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 16:06:06 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 3 
+Sending to ->/192.168.50.216:49334
+Fri Nov 19 16:06:06 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has been registered
+Server has 2 client(s)
+
+Fri Nov 19 16:06:06 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='bob', IP='JASEN-S540/192.168.50.114', UDPport=52248, TCPport=3000}
+Files: {}
+Restored client: 
+Client{name='jasen', IP='GAMING-PC/192.168.50.216', UDPport=49334, TCPport=4000}
+Files: {}
+
+Fri Nov 19 16:09:00 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Fri Nov 19 16:09:00 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Fri Nov 19 16:09:00 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 56187 TCP: 4000
+Fri Nov 19 16:09:18 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 16:09:18 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -jasen - already registered
+
+Fri Nov 19 16:09:18 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'Username already exists'
+Sending to ->/192.168.50.216:56187
+Fri Nov 19 16:09:18 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has not been registered because: Username already exists
+Server has 2 client(s)
+
+Fri Nov 19 16:09:18 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 2 jasen
+Fri Nov 19 16:09:20 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Fri Nov 19 16:09:20 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='jasen', IP='GAMING-PC/192.168.50.216', UDPport=49334, TCPport=4000}
+Files: {} has been DeRegistered.
+
+Server has 1 client(s)
+
+Fri Nov 19 16:09:20 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 3 jasen GAMING-PC/192.168.50.216 UDP: 56187 TCP: 4000
+Fri Nov 19 16:09:22 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 16:09:22 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 3 
+Sending to ->/192.168.50.216:56187
+Fri Nov 19 16:09:22 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has been registered
+Server has 2 client(s)
+
+Fri Nov 19 16:09:22 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 59576 TCP: 4000
+Fri Nov 19 16:11:37 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 16:11:37 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -jasen - already registered
+
+Fri Nov 19 16:11:37 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'Username already exists'
+Sending to ->/192.168.50.216:59576
+Fri Nov 19 16:11:37 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has not been registered because: Username already exists
+Server has 2 client(s)
+
+Fri Nov 19 16:11:37 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 2 jasen
+Fri Nov 19 16:11:40 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Fri Nov 19 16:11:40 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='jasen', IP='GAMING-PC/192.168.50.216', UDPport=56187, TCPport=4000}
+Files: {} has been DeRegistered.
+
+Server has 1 client(s)
+
+Fri Nov 19 16:11:40 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 3 jasen GAMING-PC/192.168.50.216 UDP: 59576 TCP: 4000
+Fri Nov 19 16:11:42 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Fri Nov 19 16:11:42 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 3 
+Sending to ->/192.168.50.216:59576
+Fri Nov 19 16:11:42 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has been registered
+Server has 2 client(s)
+
+Fri Nov 19 16:11:42 EST 2021
+
+-------------------------------------------------

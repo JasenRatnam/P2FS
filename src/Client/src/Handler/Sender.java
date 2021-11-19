@@ -120,7 +120,7 @@ public class Sender {
         } catch (IOException e) {
             //e.printStackTrace();
             log = "IOException.... ";
-            log += "\nSending file failed... Try again later\n ";
+            log += "\nConnection failed... Try again later\n ";
             Writer.log(log);
         } catch (ClassNotFoundException e) {
             //e.printStackTrace();
@@ -155,11 +155,11 @@ public class Sender {
                 Client.requestMap.remove(RequestID);
             } else if (response instanceof File chunkOfText) {
                 //start recreating file
-                Writer.downloadFile(chunkOfText.getText(), chunkOfText.getFileName());
+                Writer.downloadFile(chunkOfText.getText(), chunkOfText.getFileName(), false);
             }
             else if (response instanceof FileEnd chunkOfText) {
                 //end of file creation
-                Writer.downloadFile(chunkOfText.getText(), chunkOfText.getFileName());
+                Writer.downloadFile(chunkOfText.getText(), chunkOfText.getFileName(), true);
                 //remove request ID from list
                 Client.requestMap.remove(RequestID);
             }

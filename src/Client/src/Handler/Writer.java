@@ -12,6 +12,7 @@ public class Writer {
 
     private static String Timestamp;
     private static final String fileName = "Client.txt";
+    private static boolean append = false;
 
     /**
      * append object received from server
@@ -104,15 +105,21 @@ public class Writer {
     /**
      * log any string to the file
      */
-    public static void downloadFile(String text, String fileName){
+    public static void downloadFile(String text, String fileName, boolean End){
 
         String file = "Downloaded-" + fileName;
-        try(BufferedWriter br = new BufferedWriter(new FileWriter(file,false))){
+        try(BufferedWriter br = new BufferedWriter(new FileWriter(file,append))){
             StringBuilder str = new StringBuilder();
 
             str.append(text);
             br.write(str.toString());
             br.newLine();
+            if(End)
+            {
+                append = false;
+            } else{
+                append = true;
+            }
         }catch (IOException e) {
             //e.printStackTrace();
             String log = "IOException.... ";
