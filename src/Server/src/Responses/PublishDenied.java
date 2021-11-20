@@ -27,7 +27,7 @@ public class PublishDenied extends Request {
     //string of the response
     @Override
     public String toString(){
-        return RequestType.PUBLISH_DENIED+ " "  + this.getRQNumb()+ " '" + getReason() + "'";
+        return RequestType.PUBLISH_DENIED+ " "  + this.getRQNumb()+ " '" + this.getReason() + "'";
     }
 
 
