@@ -112,6 +112,9 @@ public class ClientHandler implements Runnable {
             else if(requestInput instanceof RemoveRequest)
             {
                 RemoveFiles((RemoveRequest) requestInput);
+            }else if(requestInput instanceof RetrieveAllRequest)
+            {
+                RetrieveAll((RetrieveAllRequest) requestInput);
             }
             
             //need to add other requests
@@ -338,6 +341,18 @@ public class ClientHandler implements Runnable {
         return  contains;
     }
 
+
+    public  void RetrieveAll(RetrieveAllRequest request)
+    {
+
+        log = "The registered users" + "\n";
+        for ( ClientObject client: Server.clients) {
+            log = client.getName() + " " + client.getIP() + " " + client.getTCPport() + " " + client.getFiles();
+                Writer.log(log);
+            }
+        Retrieve retrieveAll = new Retrieve(request.getRQNumb(),Server.clients);
+        Sender.sendTo(retrieveAll, this.request, ds);
+    }
     /**
      * Remove request from the list of requests
      */

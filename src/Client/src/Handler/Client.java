@@ -1,13 +1,6 @@
 package Handler;
 
-import Requests.DeRegisterRequest;
-
-import Requests.PublishRequest;
-
-import Requests.DownloadRequest;
-
-import Requests.RegisterRequest;
-import Requests.RemoveRequest;
+import Requests.*;
 
 import java.net.*;
 import java.util.ArrayList;
@@ -259,6 +252,7 @@ public class Client {
                     //A user can retrieve for instance the names of all the other registered clients,
                     if(isRegistered) {
                         log = "User selected Retrieve All\n";
+                        RetrieveAll(sc);
                         Writer.log(log);
                         break;
                     }
@@ -435,6 +429,14 @@ public class Client {
 
         //send to server
         Sender.sendTo(removeMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
+    }
+
+    public static void RetrieveAll(Scanner s) {
+
+        RetrieveAllRequest retrieveAllMessage = new RetrieveAllRequest(requestCounter.incrementAndGet());
+        Sender.sendTo(retrieveAllMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
+
+
     }
 
 }

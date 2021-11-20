@@ -12,8 +12,8 @@ public class Retrieve extends Request{
     private static final long serialVersionUID = 1L;
     private ArrayList<ClientObject> clients;
 
-    public Retrieve(int reqNumber, ArrayList<ClientObject> clients) {
-        super(RequestType.RETRIEVE, reqNumber);
+    public Retrieve(RequestType requestType, int reqNumber, ArrayList<ClientObject> clients) {
+        super(requestType, reqNumber);
         this.clients = clients;
     }
 
@@ -28,7 +28,7 @@ public class Retrieve extends Request{
 
     @Override
     public String toString() {
-     return   Request.RequestType.RETRIEVE + " " + this.getRQNumb() + " " + this.getClients();
+     return   RequestType.RETRIEVE + " " + this.getRQNumb() + " " + this.getClients();
     }
 
 
