@@ -1038,3 +1038,342 @@ Sending file failed... Try again later
 Fri Nov 19 21:08:11 EST 2021
 
 -------------------------------------------------
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=53049, TCPport=1}
+Files: {hello, hi}
+
+Sun Nov 21 15:09:17 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Sun Nov 21 15:09:17 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: Nabils-Machine.local/127.0.0.1
+Port: 1
+
+Sun Nov 21 15:09:17 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=53049, TCPport=1}
+Files: {hello, hi}
+
+Sun Nov 21 15:13:42 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Sun Nov 21 15:13:42 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: Nabils-Machine.local/127.0.0.1
+Port: 1
+
+Sun Nov 21 15:13:43 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 nabil Nabils-Machine.local/127.0.0.1 UDP: 59217 TCP: 1
+Sun Nov 21 15:14:11 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Sun Nov 21 15:14:11 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/127.0.0.1:59217
+Sun Nov 21 15:14:11 EST 2021
+
+-------------------------------------------------
+Client: nabil at Nabils-Machine.local/127.0.0.1 has been registered
+Server has 2 client(s)
+
+Sun Nov 21 15:14:11 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 2 nabil [hi bonjour, erty]
+Sun Nov 21 15:14:38 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Sun Nov 21 15:14:38 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+nabil has published files successfully. 
+Published: 
+[hi bonjour, erty]
+
+Sun Nov 21 15:14:38 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 2 
+Sending to ->/127.0.0.1:59217
+Sun Nov 21 15:14:38 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 nabil [hi bonjour, erty]
+Sun Nov 21 15:15:28 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Sun Nov 21 15:15:28 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+nabil has published files successfully. 
+Published: 
+[hi bonjour, erty]
+
+Sun Nov 21 15:15:28 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 3 
+Sending to ->/127.0.0.1:59217
+Sun Nov 21 15:15:28 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 nabil Nabils-Machine.local/127.0.0.1 UDP: 50675 TCP: 1
+Sun Nov 21 16:00:07 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Sun Nov 21 16:00:07 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -nabil - already registered
+
+Sun Nov 21 16:00:07 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'Username already exists'
+Sending to ->/127.0.0.1:50675
+Sun Nov 21 16:00:07 EST 2021
+
+-------------------------------------------------
+Client: nabil at Nabils-Machine.local/127.0.0.1 has not been registered because: Username already exists
+Server has 2 client(s)
+
+Sun Nov 21 16:00:07 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo Nabils-Machine.local/127.0.0.1 UDP: 50675 TCP: 1
+Sun Nov 21 16:00:10 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Sun Nov 21 16:00:10 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -bibo - already registered
+
+Sun Nov 21 16:00:10 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 2 'Username already exists'
+Sending to ->/127.0.0.1:50675
+Sun Nov 21 16:00:10 EST 2021
+
+-------------------------------------------------
+Client: bibo at Nabils-Machine.local/127.0.0.1 has not been registered because: Username already exists
+Server has 2 client(s)
+
+Sun Nov 21 16:00:10 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 3 jasen Nabils-Machine.local/127.0.0.1 UDP: 50675 TCP: 1
+Sun Nov 21 16:00:13 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Sun Nov 21 16:00:13 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: IP -Nabils-Machine.local/127.0.0.1 - already registered
+
+Sun Nov 21 16:00:13 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 3 'IP address already exists'
+Sending to ->/127.0.0.1:50675
+Sun Nov 21 16:00:13 EST 2021
+
+-------------------------------------------------
+Client: jasen at Nabils-Machine.local/127.0.0.1 has not been registered because: IP address already exists
+Server has 2 client(s)
+
+Sun Nov 21 16:00:13 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=53049, TCPport=1}
+Files: {hello, hi}
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+
+Sun Nov 21 16:00:36 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Sun Nov 21 16:00:36 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: Nabils-Machine.local/127.0.0.1
+Port: 1
+
+Sun Nov 21 16:00:36 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 nabil Nabils-Machine.local/127.0.0.1 UDP: 63266 TCP: 1
+Sun Nov 21 16:13:10 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Sun Nov 21 16:13:10 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -nabil - already registered
+
+Sun Nov 21 16:13:10 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'Username already exists'
+Sending to ->/127.0.0.1:63266
+Sun Nov 21 16:13:10 EST 2021
+
+-------------------------------------------------
+Client: nabil at Nabils-Machine.local/127.0.0.1 has not been registered because: Username already exists
+Server has 2 client(s)
+
+Sun Nov 21 16:13:10 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 ferhat Nabils-Machine.local/127.0.0.1 UDP: 63267 TCP: 1
+Sun Nov 21 16:15:26 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Sun Nov 21 16:15:26 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: IP -Nabils-Machine.local/127.0.0.1 - already registered
+
+Sun Nov 21 16:15:26 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'IP address already exists'
+Sending to ->/127.0.0.1:63267
+Sun Nov 21 16:15:26 EST 2021
+
+-------------------------------------------------
+Client: ferhat at Nabils-Machine.local/127.0.0.1 has not been registered because: IP address already exists
+Server has 2 client(s)
+
+Sun Nov 21 16:15:26 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=53049, TCPport=1}
+Files: {hello, hi}
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+
+Sun Nov 21 16:15:55 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Sun Nov 21 16:15:55 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: Nabils-Machine.local/127.0.0.1
+Port: 1
+
+Sun Nov 21 16:15:55 EST 2021
+
+-------------------------------------------------

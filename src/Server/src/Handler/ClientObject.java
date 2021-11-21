@@ -23,6 +23,7 @@ public class ClientObject {
         this.IP = IP;
         this.UDPport = UDPport;
         this.TCPport = TCPport;
+
     }
 
     /**

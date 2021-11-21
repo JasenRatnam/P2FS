@@ -27,6 +27,7 @@ public class Client {
     public static boolean isPublished = false;
     private static String log;
     public static ArrayList<String> listOfFile = new ArrayList<String>();
+    public static ArrayList<ClientObject> listOfClients = new ArrayList<ClientObject>();
 
     /**
      * constructor of a client
@@ -252,7 +253,7 @@ public class Client {
                     //A user can retrieve for instance the names of all the other registered clients,
                     if(isRegistered) {
                         log = "User selected Retrieve All\n";
-                        RetrieveAll(sc);
+                        RetrieveAll();
                         Writer.log(log);
                         break;
                     }
@@ -431,10 +432,27 @@ public class Client {
         Sender.sendTo(removeMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
     }
 
-    public static void RetrieveAll(Scanner s) {
+    public static void RetrieveAll() {
 
-        RetrieveAllRequest retrieveAllMessage = new RetrieveAllRequest(requestCounter.incrementAndGet());
+        RetrieveAllRequest retrieveAllMessage = new RetrieveAllRequest(requestCounter.incrementAndGet(), listOfClients);
         Sender.sendTo(retrieveAllMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
+
+
+       /* public static void publish(Scanner s) {
+            System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
+            String input = s.nextLine();
+            while(!input.equals("exit")) {
+                if(!input.equals("")){
+                    listOfFile.add(input);
+                }
+                System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
+                input = s.nextLine();
+            }
+            PublishRequest publishMessage = new PublishRequest(requestCounter.incrementAndGet(),ClientName,listOfFile);
+
+            //send to the server
+            Sender.sendTo(publishMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
+        }*/
 
 
     }

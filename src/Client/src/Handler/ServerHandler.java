@@ -117,11 +117,11 @@ public class ServerHandler implements Runnable {
             }
             else if (response instanceof Retrieve)
             {
-                log = "Remove Denied: files have not been Removed from the server.\n";
+                log = "Retrieve Confirmed: List of available clients shown.\n";
                 Writer.log(log);
             } else if (response instanceof RetrieveError)
             {
-                log = "RetreiveAll Denied: Cannot retreive files from server.\n";
+                log = "RetrieveAll Denied: Cannot retreive files from server.\n";
                 Writer.log(log);
             }
 
