@@ -8,8 +8,6 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import static java.lang.System.exit;
-
 /**
  * used to send requests to the server
  */

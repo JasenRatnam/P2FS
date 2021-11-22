@@ -1,10 +1,8 @@
 package Handler;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Date;
 
-import static java.lang.System.exit;
 
 /**
  * Write log to an external file
@@ -141,10 +139,10 @@ public class Writer {
      */
     public static void restoreServer() {
         String delimiter = ",";
-        String log = "";
+        StringBuilder log;
 
         try (BufferedReader br = new BufferedReader(new FileReader(backup))) {
-            log = "Restoring server...\n";
+            log = new StringBuilder("Restoring server...\n");
 
             String line;
             //remove server port header
@@ -173,14 +171,14 @@ public class Writer {
                 }
 
                 Server.clients.add(client);
-                log += "Restored client: \n" + client.toString() + "\n";
+                log.append("Restored client: \n").append(client).append("\n");
             }
-            log(log);
+            log(log.toString());
         } catch (IOException e){
             //e.printStackTrace();
-            log = "IOException.... ";
-            log += "\nServer restore failed....\n ";
-            Writer.log(log);
+            log = new StringBuilder("IOException.... ");
+            log.append("\nServer restore failed....\n ");
+            Writer.log(log.toString());
         }
     }
 }

@@ -10,7 +10,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 
@@ -240,7 +239,7 @@ public class ClientHandler implements Runnable {
 
         //variables
         boolean Published = false;
-        String errorCode = null;
+        String errorCode;
 
         // match the client with the clients in the server
         for ( ClientObject client: Server.clients) {
@@ -268,7 +267,6 @@ public class ClientHandler implements Runnable {
             Sender.sendTo(denied, this.request, ds);
 
             log = "Client: " + username + " can not publish because: " + errorCode + "\n";
-            Writer.log(log);
         } else {
             //published
             //send published
@@ -277,9 +275,9 @@ public class ClientHandler implements Runnable {
 
             log = "Client: " + username + "has published files:\n";
             log += listOfFile + "\n";
-            Writer.log(log);
 
         }
+        Writer.log(log);
 
         // remove request from list of request
         remove(request.getRQNumb(), this.request);
@@ -297,7 +295,7 @@ public class ClientHandler implements Runnable {
         Writer.log(log);
 
         //variables
-        String errorCode = "";
+        StringBuilder errorCode = new StringBuilder();
         boolean removed = false;
 
         //list of files to remove
@@ -323,7 +321,7 @@ public class ClientHandler implements Runnable {
                     break;
                 }else {
                     //given list is not a subset of the published files
-                    errorCode = "Given files are not a sublist of publish files\n";
+                    errorCode = new StringBuilder("Given files are not a sublist of publish files\n");
                     log = username + " cannot remove files." + "\n";
                     log += errorCode + "\n";
                     Writer.log(log);
@@ -334,7 +332,7 @@ public class ClientHandler implements Runnable {
                 log += "\nCannot find " + username  + "\n";
                 log += "\nServer has " + Server.clients.size() + " client(s)\n";
                 Writer.log(log);
-                errorCode += "User: " + username +" not found\n";
+                errorCode.append("User: ").append(username).append(" not found\n");
             }
         }
 
@@ -347,7 +345,7 @@ public class ClientHandler implements Runnable {
             log = "Client: " + username + " can not remove files because: " + errorCode + "\n";
             Writer.log(log);
 
-            RemoveDenied denied = new RemoveDenied(errorCode, request.getRQNumb());
+            RemoveDenied denied = new RemoveDenied(errorCode.toString(), request.getRQNumb());
             Sender.sendTo(denied, this.request, ds);
         }
         else{
@@ -373,17 +371,16 @@ public class ClientHandler implements Runnable {
      */
     boolean contains(ArrayList<String> list, ArrayList<String> sublist) {
         boolean contains = true;
-        int l1 = list.size(), l2 = sublist.size();
+        int l1 = list.size();
         int currIndex = 0;
         int i;
-        for(int j=0;j<l2;j++) {
-            String e2 = sublist.get(j);
-            for(i=currIndex;i<l1;i++) {
-                if(e2.equals(list.get(i))) {
+        for (String e2 : sublist) {
+            for (i = currIndex; i < l1; i++) {
+                if (e2.equals(list.get(i))) {
                     break;
                 }
             }
-            if(i == l1) {
+            if (i == l1) {
                 contains = false;
                 break;
             }

@@ -127,7 +127,7 @@ public class Client {
      * @return a port number
      */
     public static int getPort(String clientOrServer){
-        int port = 0;
+        int port;
 
         //ask and get port of server
         System.out.println("Enter port number of the " + clientOrServer + ": (1-65535)");
@@ -294,7 +294,7 @@ public class Client {
                     //set a TCP connection to the peer,
                     log = "User selected Download\n";
                     Writer.log(log);
-                    download(sc);
+                    download();
                     break;
                 case "9":
                     //A registered user can always modify his/her IP address,
@@ -326,7 +326,7 @@ public class Client {
      * Client selects download option
      * Client wants to a download a specific file from a specific client
      */
-    private static void download(Scanner s){
+    private static void download(){
         //get IP of target client
         InetAddress ip = getIP("target client");
 
@@ -338,11 +338,11 @@ public class Client {
 
             //get name of wanted file
             System.out.print("\tEnter name of wanted file: ");
-            String fileName = s.nextLine();
+            String fileName = Client.sc.nextLine();
 
             //target client information
             log = "\nTarget Client Information: " +
-                    "\nIP: " + ip.toString() +
+                    "\nIP: " + ip +
                     "\nTCP Port: " + port +
                     "\nWant file: " + fileName + "\n";
 
@@ -355,13 +355,12 @@ public class Client {
             Sender.sendToTCP(downloadMessage, ip.getHostAddress(), port);
 
             log = "\nDownload request sent to server...\n";
-            Writer.log(log);
         }
         else{
             log = "Cannot download a file from yourself.\n";
             log += "Please try again later with an IP address of an another client.\n";
-            Writer.log(log);
         }
+        Writer.log(log);
     }
 
     /**
@@ -394,7 +393,7 @@ public class Client {
         DeRegisterRequest deregisterMessage = new DeRegisterRequest(Client.requestCounter.incrementAndGet(),
                 name);
 
-        //if deregsitering them selves
+        //if deregistering them selves
         if(name.equals(ClientName)) {
             isRegistered = false;
             log = "You have been DeRegistered.\n";
@@ -437,7 +436,7 @@ public class Client {
      */
     public static void remove(Scanner s) {
         //get files to remove
-        ArrayList<String> listOfFileToRemove = new ArrayList<String>();
+        ArrayList<String> listOfFileToRemove = new ArrayList<>();
         System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
         String input = s.nextLine();
         while(!input.equals("end")) {

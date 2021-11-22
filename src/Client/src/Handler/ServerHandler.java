@@ -15,8 +15,6 @@ import static java.lang.System.exit;
 public class ServerHandler implements Runnable {
 
     private static DatagramSocket ds;
-    private static DatagramPacket response;
-    private static byte[] receive = null;
     private static String log;
 
     /**
@@ -36,8 +34,8 @@ public class ServerHandler implements Runnable {
             while (true) {
 
                 //get and save the response from the server
-                receive = new byte[65535];
-                response = new DatagramPacket(receive, receive.length);
+                byte[] receive = new byte[65535];
+                DatagramPacket response = new DatagramPacket(receive, receive.length);
                 ds.receive(response);
 
                 // get request object from server
@@ -55,7 +53,7 @@ public class ServerHandler implements Runnable {
                     responseHandler(o);
                 } catch (ClassNotFoundException e) {
                     //e.printStackTrace();
-                    log = "Cannot handle message from server: " + response.toString() + "\n";
+                    log = "Cannot handle message from server: " + response + "\n";
                     Writer.log(log);
                 }
             }
