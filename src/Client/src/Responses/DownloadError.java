@@ -15,7 +15,7 @@ public class DownloadError extends Request {
      *
      */
     public DownloadError(int rqNumber, String reason) {
-        super(Request.RequestType.REGISTER, rqNumber);
+        super(Request.RequestType.DOWNLOAD_ERROR, rqNumber);
         this.reason = reason;
     }
 
@@ -30,6 +30,6 @@ public class DownloadError extends Request {
     //print the response
     @Override
     public String toString() {
-        return RequestType.DOWNLOAD_ERROR + " " + this.getRQNumb() + " " + getReason();
+        return Request.RequestType.DOWNLOAD_ERROR + " " + this.getRQNumb() + " " + getReason();
     }
 }

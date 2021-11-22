@@ -8,13 +8,13 @@ public class PublishDenied extends Request {
 
     @Serial
     private static final long serialVersionUID = 1L;
-    String reason;
+    private String reason;
 
     /**
      * constructor of a denied Publish
      */
     public PublishDenied(String reason, int rid){
-        super(RequestType.PUBLISH_DENIED);
+        super(Request.RequestType.PUBLISH_DENIED, rid);
         this.RQNumb = rid;
         this.reason=reason;
     }
@@ -27,7 +27,7 @@ public class PublishDenied extends Request {
     //string of the response
     @Override
     public String toString(){
-        return RequestType.PUBLISH_DENIED+ " "  + this.getRQNumb()+ " '" + getReason() + "'";
+        return Request.RequestType.PUBLISH_DENIED+ " "  + this.getRQNumb()+ " '" + getReason() + "'";
     }
 
 

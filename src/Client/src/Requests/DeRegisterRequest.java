@@ -9,7 +9,7 @@ public class DeRegisterRequest extends Request {
 
     @Serial
     private static final long serialVersionUID = 1L;
-    String clientName;
+    private String clientName;
 
     /**
      * contstructor a request that ask to deregister a client with a given name

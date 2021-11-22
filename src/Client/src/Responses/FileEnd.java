@@ -19,7 +19,7 @@ public class FileEnd extends Request {
      * order/place of the Text in the original file).
      */
     public FileEnd(int rqNumber, String fileName, int chunkNumb, String text) {
-        super(Request.RequestType.REGISTER, rqNumber);
+        super(Request.RequestType.FILE_END, rqNumber);
         this.fileName = fileName;
         this.chunkNumb = chunkNumb;
         this.text = text;
@@ -52,7 +52,7 @@ public class FileEnd extends Request {
     //print the response
     @Override
     public String toString() {
-        return RequestType.FILE_END + " " + this.getRQNumb() + " " + getFileName()
+        return Request.RequestType.FILE_END + " " + this.getRQNumb() + " " + getFileName()
                 + " " + getChunkNumb() + "\nText:\n '" + getText() + "'";
     }
 }
