@@ -1,13 +1,6 @@
 package Handler;
 
-import Requests.DeRegisterRequest;
-
-import Requests.PublishRequest;
-
-import Requests.DownloadRequest;
-
-import Requests.RegisterRequest;
-import Requests.RemoveRequest;
+import Requests.*;
 
 import java.net.*;
 import java.util.ArrayList;
@@ -53,11 +46,13 @@ public class Client {
             serverPort = getPort("server");
             //ask and get port of TCP
             clientTCPPort = getPort("TCP port");
+            //ask and get port of UDP
+            clientUDPPort = getPort("UDP port");
 
             //connect to UDP socket
-            ds = new DatagramSocket();
+            ds = new DatagramSocket(clientUDPPort);
             clientIp = InetAddress.getLocalHost();
-            clientUDPPort = ds.getLocalPort();
+            //clientUDPPort = ds.getLocalPort();
 
             //client information
             log = "\nClient information: " +
@@ -184,6 +179,7 @@ public class Client {
         String val = "";
         while (!val.equals("exit") || isRegistered) {
             System.out.println("\nEnter 'exit' to close client");
+            System.out.println("\nPress ENTER to continue if no response.");
             System.out.println("""
                     Possible commands:
                     1-Register
@@ -301,6 +297,7 @@ public class Client {
                     // UDP socket#, and/or TCP socket#
                     log = "User selected Update contact\n";
                     Writer.log(log);
+                    update();
 
                     break;
                 case "10":
@@ -320,6 +317,46 @@ public class Client {
             sc.nextLine();
         }
         exit(1);
+    }
+
+    /**
+     * update client information
+     * registered user can always modify his/her IP address, UDP socket#, and/or TCP socket#
+     */
+    private static void update() {
+        //print current client information
+        log = "\nCurrent Client Information: " +
+                "\nIP: " + clientIp +
+                "\nClient name: " + ClientName +
+                "\nUDP Port: " + clientUDPPort +
+                "\nTCP Port: " + clientTCPPort + "\n";
+        Writer.log(log);
+
+        //get name of client to update
+        System.out.print("\tEnter Username to update: ");
+        String name = sc.next();
+
+        //get new IP
+        InetAddress ip = getIP("new location");
+        //ask and get new UDP port
+        int UDPport = getPort("UDP port");
+        //ask and get new TCP port
+        int TCPport = getPort("TCP port");
+
+        //print new client information
+        log = "\nUpdated information: " +
+                "\nIP: " + ip.toString() +
+                "\nClient name: " + name +
+                "\nUDP Port: " + UDPport +
+                "\nTCP Port: " + TCPport + "\n";
+        Writer.log(log);
+
+        //create a download request
+        UpdateContactRequest updateMessage = new UpdateContactRequest(requestCounter.incrementAndGet(),
+                ip.toString(), UDPport, TCPport, name);
+
+        //send request to server
+        Sender.sendTo(updateMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }
 
     /**

@@ -114,6 +114,11 @@ public class ClientHandler implements Runnable {
             {
                 RemoveFiles((RemoveRequest) requestInput);
             }
+            //if request is a update
+            else if(requestInput instanceof UpdateContactRequest)
+            {
+                UpdateClient((UpdateContactRequest) requestInput);
+            }
             
             //need to add other requests
 
@@ -123,6 +128,63 @@ public class ClientHandler implements Runnable {
                 Writer.log(log);
             }
         }
+    }
+
+    private void UpdateClient(UpdateContactRequest requestInput) {
+        String username = requestInput.getClientName();
+
+        //save ip of client to change to
+        String IP = requestInput.getIPaddress();
+
+        log = "Update request received\n";
+        Writer.log(log);
+
+        boolean updated = false;
+        String errorCode;
+
+        for ( ClientObject client: Server.clients) {
+            if(client.getName().equals(username)){
+                //update client
+                updated = true;
+                Writer.makeServerBackup();
+                log = client + " has been Updated.\n";
+
+                client.setName(requestInput.getClientName());
+                client.setIP(requestInput.getIPaddress());
+                client.setUDPport(requestInput.getUDPport());
+                client.setTCPport(requestInput.getTCPport());
+                break;
+            }
+        }
+
+        if (!updated){
+            //can't update
+            log = username + " cannot be Updated.";
+            log += "\nCannot find " + username  + "\n";
+
+            //update denied
+            errorCode = "User not found";
+            //send denied code to client who sent request
+
+            UpdateDenied denied = new UpdateDenied(requestInput.getRQNumb(), requestInput.getClientName(), errorCode);
+            Sender.sendTo(denied, this.request, ds);
+
+            log = "Client: " + username + " can not update because: " + errorCode + "\n";
+        } else {
+            //updated
+            //send update
+            Writer.makeServerBackup();
+            UpdateConfirmed confirmation = new UpdateConfirmed(requestInput.getRQNumb(), requestInput.getIPaddress(),
+                    requestInput.getUDPport(), requestInput.getTCPport(),
+                    requestInput.getClientName());
+            Sender.sendTo(confirmation, this.request, ds);
+
+            log = "Client: " + username + " has been updated\n";
+        }
+        Writer.log(log);
+
+        // remove request from list of request
+        remove(requestInput.getRQNumb(), this.request);
     }
 
     /**
@@ -270,6 +332,7 @@ public class ClientHandler implements Runnable {
         } else {
             //published
             //send published
+            Writer.makeServerBackup();
             PublishConfirmed confirmation = new PublishConfirmed(request.getRQNumb());
             Sender.sendTo(confirmation, this.request, ds);
 
@@ -351,6 +414,8 @@ public class ClientHandler implements Runnable {
         }
         else{
 
+            //removed
+            Writer.makeServerBackup();
             log = "Client: " + username + "has published files:\n";
             log += listOfFileToRemove + " removed\n";
             Writer.log(log);

@@ -18,7 +18,7 @@ public class PublishRequest extends Request {
      * @param listOfFiles list of files for the client
      */
     public PublishRequest(int rqNumber, String clientName, ArrayList<String> listOfFiles) {
-        super(RequestType.PUBLISH, rqNumber);
+        super(Request.RequestType.PUBLISH, rqNumber);
         this.clientName = clientName;
         this.listOfFiles = listOfFiles;
     }
@@ -42,6 +42,6 @@ public class PublishRequest extends Request {
     //prints the request
     @Override
     public String toString() {
-        return RequestType.PUBLISH + " " + this.getRQNumb() + " " + getClientName() + " " + getListOfFiles();
+        return Request.RequestType.PUBLISH + " " + this.getRQNumb() + " " + getClientName() + " " + getListOfFiles();
     }
 }

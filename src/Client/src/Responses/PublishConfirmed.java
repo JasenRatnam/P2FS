@@ -10,7 +10,7 @@ public class PublishConfirmed extends Request {
 
     //constructor
     public PublishConfirmed(int RQNumb){
-        super(RequestType.PUBLISHED);
+        super(Request.RequestType.PUBLISHED, RQNumb);
         this.RQNumb = RQNumb;
     }
 
@@ -19,7 +19,7 @@ public class PublishConfirmed extends Request {
      */
     @Override
     public String toString(){
-        return RequestType.PUBLISHED+ " " + this.getRQNumb()+ " " ;
+        return Request.RequestType.PUBLISHED+ " " + this.getRQNumb()+ " " ;
     }
 
 

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 import static java.lang.System.exit;
 
@@ -95,11 +96,12 @@ public class ServerHandler implements Runnable {
 
                 log = "You are now registered.\n";
                 Writer.log(log);
-            } else if (response instanceof RegisterDenied) {
+            } else if (response instanceof RegisterDenied regDen) {
                 //if register is denied
                 Client.isRegistered = false;
 
                 log = "Registration Denied: You are not registered.\n";
+                log += regDen.getReason() + "\n";
                 Writer.log(log);
             } else if (response instanceof PublishConfirmed) {
                 log = "Publish confirmed: Files have been published to server.\n";
@@ -111,9 +113,10 @@ public class ServerHandler implements Runnable {
                     PublishRequest req = (PublishRequest) Client.requestMap.get(RequestID);
                     Client.listOfFile.addAll(req.getListOfFiles());
                 }
-            }else if (response instanceof PublishDenied)
+            }else if (response instanceof PublishDenied pubDen)
             {
                 log = "Publish Denied: files have not been published to server.\n";
+                log += pubDen.getReason() + "\n";
                 Writer.log(log);
             }else if (response instanceof RemoveConfirmed) {
 
@@ -125,8 +128,38 @@ public class ServerHandler implements Runnable {
                 }
                 log = "Remove confirmed: Files have been Removed from the server.\n";
                 Writer.log(log);
-            }else if (response instanceof RemoveDenied) {
+            }else if (response instanceof RemoveDenied removeDenied) {
                 log = "Remove Denied: files have not been Removed from the server.\n";
+                log += removeDenied.getReason() + "\n";
+                Writer.log(log);
+            }else if (response instanceof UpdateConfirmed upConf) {
+                log = "Update confirmed: Client information has been updated.\n";
+
+                //print new client information
+                log += "\nClient information updated too: " +
+                        "\nIP: " + upConf.getIPaddress().toString() +
+                        "\nClient name: " + upConf.getClientName() +
+                        "\nUDP Port: " + upConf.getUDPport() +
+                        "\nTCP Port: " + upConf.getTCPport() + "\n";
+                Writer.log(log);
+
+                try {
+                    Client.ClientName = upConf.getClientName();
+                    Client.clientIp = InetAddress.getLocalHost();
+                    Client.clientUDPPort = upConf.getUDPport();
+                    Client.clientTCPPort = upConf.getTCPport();
+                    //client is set to registered
+                    Client.isRegistered = true;
+                } catch (IOException e)
+                {
+                    //e.printStackTrace();
+                    log = "Update IOException " + e.getMessage();
+                    log += "Update has failed, try again later.";
+                    Writer.log(log);
+                }
+            }else if (response instanceof UpdateDenied updDen) {
+                log = "Update Denied: update could not happen.\n";
+                log += updDen.getReason() + "\n";
                 Writer.log(log);
             }
 

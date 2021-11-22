@@ -11,13 +11,13 @@ public class RegisterDenied extends Request {
 
     @Serial
     private static final long serialVersionUID = 1L;
-    String reason;
+    private String reason;
 
     /**
      * constructor of a denied register
      */
     public RegisterDenied(String reason, int rid){
-      super(Request.RequestType.CLIENT_REGISTER_DENIED);
+      super(Request.RequestType.CLIENT_REGISTER_DENIED, rid);
       this.RQNumb = rid;
       this.reason=reason;
     }
