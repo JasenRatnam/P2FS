@@ -31,9 +31,8 @@ public class Client {
     public static String ClientName;
     public static ConcurrentHashMap<Integer,Object> requestMap = new ConcurrentHashMap<>();
     public static boolean isRegistered = false;
-    public static boolean isPublished = false;
     private static String log;
-    public static ArrayList<String> listOfFile = new ArrayList<String>();
+    public static ArrayList<String> listOfFile = new ArrayList<>();
 
     /**
      * constructor of a client
@@ -354,6 +353,9 @@ public class Client {
 
             //send Download object to wanted client via TCP
             Sender.sendToTCP(downloadMessage, ip.getHostAddress(), port);
+
+            log = "\nDownload request sent to server...\n";
+            Writer.log(log);
         }
         else{
             log = "Cannot download a file from yourself.\n";
@@ -370,7 +372,6 @@ public class Client {
         //get name of client
         System.out.print("\tEnter Username to register: ");
         String name = s.next();
-        ClientName=name;
         //create a register request
         RegisterRequest registerMessage = new RegisterRequest(requestCounter.incrementAndGet(), name,
                 clientIp.toString(), clientUDPPort, clientTCPPort);
@@ -389,52 +390,71 @@ public class Client {
         System.out.print("\tEnter Username to deregister: ");
         String name = s.next();
 
+        //create deregister request
         DeRegisterRequest deregisterMessage = new DeRegisterRequest(Client.requestCounter.incrementAndGet(),
                 name);
 
+        //if deregsitering them selves
         if(name.equals(ClientName)) {
             isRegistered = false;
             log = "You have been DeRegistered.\n";
             Writer.log(log);
         }
 
+        //send request to server
         Sender.sendTo(deregisterMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }
 
-
-
+    /**
+     * Clients selects the publish command
+     * send request to server
+     * give name of files to publish
+     */
     public static void publish(Scanner s) {
+        //get name of files to publish
         System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
         String input = s.nextLine();
-        while(!input.equals("exit")) {
+        while(!input.equals("end")) {
             if(!input.equals("")){
+                //save the files published to itself
                 listOfFile.add(input);
             }
             System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
             input = s.nextLine();
         }
+
+        //create publish request
         PublishRequest publishMessage = new PublishRequest(requestCounter.incrementAndGet(),ClientName,listOfFile);
 
-        //send to the server
+        //send request to the server
          Sender.sendTo(publishMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
     }
 
+    /**
+     * Clients selects the remove command
+     * send request to server
+     * give name of files to remove from client
+     */
     public static void remove(Scanner s) {
+        //get files to remove
         ArrayList<String> listOfFileToRemove = new ArrayList<String>();
         System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
         String input = s.nextLine();
-        while(!input.equals("exit")) {
+        while(!input.equals("end")) {
             if(!input.equals("")){
+                //remove files to yourself
                 listOfFile.remove(input);
+                //get list of files to remove
                 listOfFileToRemove.add(input);
             }
             System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
             input = s.nextLine();
         }
+
+        //create remove request
         RemoveRequest removeMessage = new RemoveRequest(requestCounter.incrementAndGet(),ClientName,listOfFileToRemove);
 
         //send to server
         Sender.sendTo(removeMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
     }
-
 }

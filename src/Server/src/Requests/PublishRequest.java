@@ -4,6 +4,9 @@ package Requests;
 import java.io.Serial;
 import java.util.ArrayList;
 
+/**
+ * class for publish files for a client
+ */
 public class PublishRequest extends Request{
 
     @Serial
@@ -23,6 +26,7 @@ public class PublishRequest extends Request{
         this.listOfFiles = listOfFiles;
     }
 
+    //getter and setters
     public String getClientName() {
         return clientName;
     }
