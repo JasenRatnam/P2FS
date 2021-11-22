@@ -339,7 +339,6 @@ public class Client {
             //get name of wanted file
             System.out.print("\tEnter name of wanted file: ");
             String fileName = Client.sc.nextLine();
-            sc.nextLine();
 
             //target client information
             log = "\nTarget Client Information: " +

@@ -115,7 +115,7 @@ public class ServerHandler implements Runnable {
             {
                 log = "Publish Denied: files have not been published to server.\n";
                 Writer.log(log);
-            }else if (response instanceof RemoveRequest) {
+            }else if (response instanceof RemoveConfirmed) {
 
                 //get list of files removed
                 //remove files to yourself
