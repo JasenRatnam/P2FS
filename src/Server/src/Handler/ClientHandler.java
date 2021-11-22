@@ -348,7 +348,7 @@ public class ClientHandler implements Runnable {
     {
         String clientIP = this.request.getAddress().getHostName();
 
-        log = "Remove files request received\n";
+        log = "Retreive All request received\n";
         Writer.log(log);
         String errorCode = "";
         boolean retreived = false;
