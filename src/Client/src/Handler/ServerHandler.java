@@ -1,6 +1,8 @@
 package Handler;
 
+import Requests.PublishRequest;
 import Requests.RegisterRequest;
+import Requests.RemoveRequest;
 import Requests.Request;
 import Responses.*;
 
@@ -102,12 +104,25 @@ public class ServerHandler implements Runnable {
             } else if (response instanceof PublishConfirmed) {
                 log = "Publish confirmed: Files have been published to server.\n";
                 Writer.log(log);
+
+                //get list of files published
+                //add files to yourself
+                if (Client.requestMap.containsKey(RequestID)) {
+                    PublishRequest req = (PublishRequest) Client.requestMap.get(RequestID);
+                    Client.listOfFile.addAll(req.getListOfFiles());
+                }
             }else if (response instanceof PublishDenied)
             {
                 log = "Publish Denied: files have not been published to server.\n";
                 Writer.log(log);
-            }else if (response instanceof RemoveConfirmed) {
+            }else if (response instanceof RemoveRequest) {
 
+                //get list of files removed
+                //remove files to yourself
+                if (Client.requestMap.containsKey(RequestID)) {
+                    RemoveRequest req = (RemoveRequest) Client.requestMap.get(RequestID);
+                    Client.listOfFile.remove(req.getListOfFiles());
+                }
                 log = "Remove confirmed: Files have been Removed from the server.\n";
                 Writer.log(log);
             }else if (response instanceof RemoveDenied) {

@@ -273,7 +273,7 @@ public class ClientHandler implements Runnable {
             PublishConfirmed confirmation = new PublishConfirmed(request.getRQNumb());
             Sender.sendTo(confirmation, this.request, ds);
 
-            log = "Client: " + username + "has published files:\n";
+            log = "Client: " + username + " has published files:\n";
             log += listOfFile + "\n";
 
         }
@@ -321,10 +321,11 @@ public class ClientHandler implements Runnable {
                     break;
                 }else {
                     //given list is not a subset of the published files
-                    errorCode = new StringBuilder("Given files are not a sublist of publish files\n");
+                    errorCode = new StringBuilder("Given files are not a sublist of published files\n");
                     log = username + " cannot remove files." + "\n";
                     log += errorCode + "\n";
                     Writer.log(log);
+                    break;
                 }
             }
             else{

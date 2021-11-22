@@ -339,6 +339,7 @@ public class Client {
             //get name of wanted file
             System.out.print("\tEnter name of wanted file: ");
             String fileName = Client.sc.nextLine();
+            sc.nextLine();
 
             //target client information
             log = "\nTarget Client Information: " +
@@ -353,8 +354,6 @@ public class Client {
 
             //send Download object to wanted client via TCP
             Sender.sendToTCP(downloadMessage, ip.getHostAddress(), port);
-
-            log = "\nDownload request sent to server...\n";
         }
         else{
             log = "Cannot download a file from yourself.\n";
@@ -411,19 +410,20 @@ public class Client {
      */
     public static void publish(Scanner s) {
         //get name of files to publish
-        System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
+        ArrayList<String> listOfFileToPublish = new ArrayList<>();
+        System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write end):");
         String input = s.nextLine();
         while(!input.equals("end")) {
             if(!input.equals("")){
                 //save the files published to itself
-                listOfFile.add(input);
+                listOfFileToPublish.add(input);
             }
-            System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
+            System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write end):");
             input = s.nextLine();
         }
 
         //create publish request
-        PublishRequest publishMessage = new PublishRequest(requestCounter.incrementAndGet(),ClientName,listOfFile);
+        PublishRequest publishMessage = new PublishRequest(requestCounter.incrementAndGet(),ClientName,listOfFileToPublish);
 
         //send request to the server
          Sender.sendTo(publishMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
@@ -437,19 +437,16 @@ public class Client {
     public static void remove(Scanner s) {
         //get files to remove
         ArrayList<String> listOfFileToRemove = new ArrayList<>();
-        System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
+        System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write end): ");
         String input = s.nextLine();
         while(!input.equals("end")) {
             if(!input.equals("")){
-                //remove files to yourself
-                listOfFile.remove(input);
                 //get list of files to remove
                 listOfFileToRemove.add(input);
             }
-            System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
+            System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write end): ");
             input = s.nextLine();
         }
-
         //create remove request
         RemoveRequest removeMessage = new RemoveRequest(requestCounter.incrementAndGet(),ClientName,listOfFileToRemove);
 
