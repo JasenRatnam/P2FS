@@ -148,9 +148,15 @@ public class TCPServerHandler implements Runnable{
         //if can find file start sending file
         File f = new File(filePath);
         if(!f.isFile()) {
+            //file does not exist
             // do something
             error = true;
             errorCode = "File does not exist";
+        } else if(!Client.listOfFile.contains(fileName)){
+            //file does exist on system
+            //fill is not published
+            error = true;
+            errorCode = "File is not published, can not be downloaded";
         }
 
         BufferedReader reader;
