@@ -109,17 +109,10 @@ public class Writer {
 
         String file = "Downloaded-" + fileName;
         try(BufferedWriter br = new BufferedWriter(new FileWriter(file,append))){
-            StringBuilder str = new StringBuilder();
 
-            str.append(text);
-            br.write(str.toString());
+            br.write(text);
             br.newLine();
-            if(End)
-            {
-                append = false;
-            } else{
-                append = true;
-            }
+            append = !End;
         }catch (IOException e) {
             //e.printStackTrace();
             String log = "IOException.... ";

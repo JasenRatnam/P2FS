@@ -17,8 +17,6 @@ import static java.lang.System.exit;
 public class ServerHandler implements Runnable {
 
     private static DatagramSocket ds;
-    private static DatagramPacket response;
-    private static byte[] receive = null;
     private static String log;
 
     /**
@@ -38,8 +36,8 @@ public class ServerHandler implements Runnable {
             while (true) {
 
                 //get and save the response from the server
-                receive = new byte[65535];
-                response = new DatagramPacket(receive, receive.length);
+                byte[] receive = new byte[65535];
+                DatagramPacket response = new DatagramPacket(receive, receive.length);
                 ds.receive(response);
 
                 // get request object from server
@@ -57,7 +55,7 @@ public class ServerHandler implements Runnable {
                     responseHandler(o);
                 } catch (ClassNotFoundException e) {
                     //e.printStackTrace();
-                    log = "Cannot handle message from server: " + response.toString() + "\n";
+                    log = "Cannot handle message from server: " + response + "\n";
                     Writer.log(log);
                 }
             }
@@ -106,12 +104,25 @@ public class ServerHandler implements Runnable {
             } else if (response instanceof PublishConfirmed) {
                 log = "Publish confirmed: Files have been published to server.\n";
                 Writer.log(log);
+
+                //get list of files published
+                //add files to yourself
+                if (Client.requestMap.containsKey(RequestID)) {
+                    PublishRequest req = (PublishRequest) Client.requestMap.get(RequestID);
+                    Client.listOfFile.addAll(req.getListOfFiles());
+                }
             }else if (response instanceof PublishDenied)
             {
                 log = "Publish Denied: files have not been published to server.\n";
                 Writer.log(log);
             }else if (response instanceof RemoveConfirmed) {
 
+                //get list of files removed
+                //remove files to yourself
+                if (Client.requestMap.containsKey(RequestID)) {
+                    RemoveRequest req = (RemoveRequest) Client.requestMap.get(RequestID);
+                    Client.listOfFile.remove(req.getListOfFiles());
+                }
                 log = "Remove confirmed: Files have been Removed from the server.\n";
                 Writer.log(log);
             }else if (response instanceof RemoveDenied) {

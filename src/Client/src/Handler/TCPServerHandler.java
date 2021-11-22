@@ -18,7 +18,6 @@ import static java.lang.System.exit;
  */
 public class TCPServerHandler implements Runnable{
 
-    private static ObjectInputStream InputStream = null;
     private static ObjectOutputStream OutputStream = null;
     private ServerSocket server;
     private Socket client;
@@ -61,12 +60,12 @@ public class TCPServerHandler implements Runnable{
                 log = client +"is connected.\n";
 
                 //initialise input and output streamers
-                InputStream = new ObjectInputStream(client.getInputStream());
+                ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
                 OutputStream = new ObjectOutputStream(client.getOutputStream());
 
                 try{
                     //get object received from a client
-                    Object object =  InputStream.readObject();
+                    Object object =  inputStream.readObject();
 
                     // add object to log file
                     Writer.receiveObject(object);
@@ -149,12 +148,18 @@ public class TCPServerHandler implements Runnable{
         //if can find file start sending file
         File f = new File(filePath);
         if(!f.isFile()) {
+            //file does not exist
             // do something
             error = true;
             errorCode = "File does not exist";
+        } else if(!Client.listOfFile.contains(fileName)){
+            //file does exist on system
+            //fill is not published
+            error = true;
+            errorCode = "File is not published, can not be downloaded";
         }
 
-        BufferedReader reader = null;
+        BufferedReader reader;
         //if file exists
         if (!error) {
             //start file transfer
@@ -168,15 +173,15 @@ public class TCPServerHandler implements Runnable{
                 int chunkNumb = 1;
                 int charCount = 0;
                 String line;
-                String data = "";
+                StringBuilder data = new StringBuilder();
 
                 while ((line = reader.readLine()) != null) {
                     charCount += line.length();
-                    data += line;
+                    data.append(line);
                     if(charCount >= 200){
                         //segment has 200 character
                         //create object with segment
-                        Responses.File fileResponse = new Responses.File(request.getRQNumb(), filePath,chunkNumb,data);
+                        Responses.File fileResponse = new Responses.File(request.getRQNumb(), filePath,chunkNumb, data.toString());
 
                         //send object of file and log
                         try{
@@ -192,12 +197,12 @@ public class TCPServerHandler implements Runnable{
 
                         //reset counter
                         charCount = 0;
-                        data = "";
+                        data = new StringBuilder();
                         chunkNumb++;
                     }
                 }
                 //create and send the last segment
-                Responses.FileEnd fileEndResponse = new Responses.FileEnd(request.getRQNumb(), filePath,chunkNumb,data);
+                Responses.FileEnd fileEndResponse = new Responses.FileEnd(request.getRQNumb(), filePath,chunkNumb, data.toString());
                 try{
                     OutputStream.writeObject(fileEndResponse);
                     Writer.sendRequest(fileEndResponse, client.getInetAddress().toString(),client.getPort());
@@ -208,11 +213,10 @@ public class TCPServerHandler implements Runnable{
                     log = "Can't handle the request";
                     Writer.log(log);
                 }
-
-            }catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                log = "Can't handle the request";
+                Writer.log(log);
             }
         } else {
             //download denied

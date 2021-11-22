@@ -18,8 +18,6 @@ public class Server implements Runnable {
     private static String log;
     private static InetAddress serverIp;
     public static int serverPort;
-    private static DatagramPacket request;
-    private static byte[] receive = null;
     private static final Scanner sc = new Scanner(System.in);
     public static ConcurrentHashMap<String,Object> requestMap = new ConcurrentHashMap<>();
     public static ArrayList<ClientObject> clients = new ArrayList<>();
@@ -38,12 +36,12 @@ public class Server implements Runnable {
     @Override
     public void run() {
         //array to store message received
-        receive = new byte[65535];
+        byte[] receive = new byte[65535];
 
         //keep reading messages
         while (true) {
             //receive request gotten from a client
-            request = new DatagramPacket(receive, receive.length);
+            DatagramPacket request = new DatagramPacket(receive, receive.length);
             try {
                 ds.receive(request);
 
@@ -124,7 +122,7 @@ public class Server implements Runnable {
     }
 
     public static int getPort( ){
-        int port = 0;
+        int port;
         //ask and get port of server
         System.out.println("Enter port number of the server: (1-65535)");
         while (!sc.hasNextInt())

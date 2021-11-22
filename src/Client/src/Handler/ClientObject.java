@@ -8,7 +8,7 @@ public class ClientObject {
     private String IP;
     private int UDPport;
     private int TCPport;
-    public static ArrayList<String> files = new ArrayList<>();
+    public ArrayList<String> files = new ArrayList<>();
 
 
     /**
@@ -30,14 +30,19 @@ public class ClientObject {
      */
     @Override
     public String toString() {
-        return "Client{" +
+        String str = "Client{" +
                 "name='" + name + '\'' +
                 ", IP='" + IP + '\'' +
                 ", UDPport=" + UDPport +
-                ", TCPport=" + TCPport +
-                "}\nFiles: {" +
-                String.join(", ", files)
-                + "}";
+                ", TCPport=" + TCPport;
+        if(files != null) {
+            str += "}\nFiles: {" +
+                    String.join(", ", files)  + "}";
+        }
+        else{
+            str += "}";
+        }
+        return str;
     }
 
     public void addFile(String file) {
@@ -45,7 +50,7 @@ public class ClientObject {
     }
 
     public void removeFile(ArrayList<String> file) {
-        files.remove(file);
+        files.removeAll(file);
     }
 
     //getters and setters
@@ -53,8 +58,18 @@ public class ClientObject {
         return files;
     }
 
+    //getters and setters
+    public String getFilesString() {
+        String str = "";
+        for(int i=0;i<files.size();i++)
+        {
+            str += "," + files.get(i);
+        }
+        return str;
+    }
+
     public void setFiles(ArrayList<String> files) {
-        ClientObject.files = files;
+        this.files = files;
     }
 
     public String getName() {
