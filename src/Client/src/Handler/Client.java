@@ -434,27 +434,8 @@ public class Client {
 
     public static void RetrieveAll() {
 
-        RetrieveAllRequest retrieveAllMessage = new RetrieveAllRequest(requestCounter.incrementAndGet(), listOfClients);
+        RetrieveAllRequest retrieveAllMessage = new RetrieveAllRequest(requestCounter.incrementAndGet());
         Sender.sendTo(retrieveAllMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
-
-
-       /* public static void publish(Scanner s) {
-            System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
-            String input = s.nextLine();
-            while(!input.equals("exit")) {
-                if(!input.equals("")){
-                    listOfFile.add(input);
-                }
-                System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
-                input = s.nextLine();
-            }
-            PublishRequest publishMessage = new PublishRequest(requestCounter.incrementAndGet(),ClientName,listOfFile);
-
-            //send to the server
-            Sender.sendTo(publishMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
-        }*/
-
-
     }
 
 }

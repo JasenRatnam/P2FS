@@ -115,13 +115,20 @@ public class ServerHandler implements Runnable {
                 log = "Remove Denied: files have not been Removed from the server.\n";
                 Writer.log(log);
             }
-            else if (response instanceof Retrieve)
+            else if (response instanceof Retrieve retrieve)
             {
-                log = "Retrieve Confirmed: List of available clients shown.\n";
+                log = "Retrieve Confirmed: List of available clients shown below:\n";
+
+                for ( ClientObject client: retrieve.getClients()) {
+                    log += client.getName() + " " + client.getIP() + " " + client.getTCPport() + " " + client.getFiles().toString() + "\n";
+                    System.out.print(client.getFiles());
+                }
+
                 Writer.log(log);
-            } else if (response instanceof RetrieveError)
+            } else if (response instanceof RetrieveError retrieveError)
             {
-                log = "RetrieveAll Denied: Cannot retreive files from server.\n";
+                log = "RetrieveAll Denied: Cannot retreive clients from server.\n";
+                log += "Because: " + retrieveError.getReason() + "\n";
                 Writer.log(log);
             }
 

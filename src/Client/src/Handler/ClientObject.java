@@ -1,9 +1,13 @@
 package Handler;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ClientObject {
+public class ClientObject implements Serializable {
 
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String name;
     private String IP;
     private int UDPport;

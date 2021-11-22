@@ -1377,3 +1377,1439 @@ Port: 1
 Sun Nov 21 16:15:55 EST 2021
 
 -------------------------------------------------
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=53049, TCPport=1}
+Files: {hello, hi}
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+
+Mon Nov 22 17:17:29 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 17:17:29 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 1
+
+Mon Nov 22 17:17:29 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Mon Nov 22 17:19:09 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 17:19:09 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=53049, TCPport=1}
+Files: {hello, hi} has been DeRegistered.
+
+Server has 1 client(s)
+
+Mon Nov 22 17:19:09 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 61871 TCP: 1
+Mon Nov 22 17:19:16 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 17:19:16 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:61871
+Mon Nov 22 17:19:16 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 17:19:16 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [hello, hi]
+Mon Nov 22 17:19:22 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 17:19:22 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[hello, hi]
+
+Mon Nov 22 17:19:22 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 3 
+Sending to ->/192.168.5.1:61871
+Mon Nov 22 17:19:22 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 4
+Mon Nov 22 17:19:35 EST 2021
+
+-------------------------------------------------
+nabil Nabils-Machine.local/127.0.0.1 1 [hi bonjour, erty]
+Mon Nov 22 17:19:35 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo DESKTOP-NFNRD1R/192.168.5.1 1 [hello, hi]
+Mon Nov 22 17:19:35 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+IOException.... 
+Sending file failed... Try again later
+ 
+Mon Nov 22 17:19:35 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=61871, TCPport=1}
+Files: {hello, hi}
+
+Mon Nov 22 17:46:12 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 17:46:12 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 1
+
+Mon Nov 22 17:46:12 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Mon Nov 22 17:46:27 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 17:46:27 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=61871, TCPport=1}
+Files: {hello, hi} has been DeRegistered.
+
+Server has 1 client(s)
+
+Mon Nov 22 17:46:27 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 64173 TCP: 1
+Mon Nov 22 17:46:31 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 17:46:31 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:64173
+Mon Nov 22 17:46:31 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 17:46:31 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [hello, hi]
+Mon Nov 22 17:46:37 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 17:46:37 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[hello, hi]
+
+Mon Nov 22 17:46:37 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 3 
+Sending to ->/192.168.5.1:64173
+Mon Nov 22 17:46:37 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 4
+Mon Nov 22 17:46:46 EST 2021
+
+-------------------------------------------------
+The registered users
+nabil Nabils-Machine.local/127.0.0.1 1 [hi bonjour, erty]
+bibo DESKTOP-NFNRD1R/192.168.5.1 1 [hello, hi]
+
+Mon Nov 22 17:46:46 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+IOException.... 
+Sending file failed... Try again later
+ 
+Mon Nov 22 17:46:46 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=64173, TCPport=1}
+Files: {hello, hi}
+
+Mon Nov 22 17:47:37 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 17:47:37 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 1
+
+Mon Nov 22 17:47:37 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Mon Nov 22 17:47:49 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 17:47:49 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=64173, TCPport=1}
+Files: {hello, hi} has been DeRegistered.
+
+Server has 1 client(s)
+
+Mon Nov 22 17:47:49 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 58454 TCP: 1
+Mon Nov 22 17:47:51 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 17:47:51 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:58454
+Mon Nov 22 17:47:51 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 17:47:51 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [hello, hi]
+Mon Nov 22 17:47:58 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 17:47:58 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[hello, hi]
+
+Mon Nov 22 17:47:58 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 3 
+Sending to ->/192.168.5.1:58454
+Mon Nov 22 17:47:58 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 4
+Mon Nov 22 17:48:01 EST 2021
+
+-------------------------------------------------
+The registered users
+nabil Nabils-Machine.local/127.0.0.1 1 [hi bonjour, erty]
+bibo DESKTOP-NFNRD1R/192.168.5.1 1 [hello, hi]
+
+Mon Nov 22 17:48:01 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+IOException.... 
+Sending file failed... Try again later
+ 
+Mon Nov 22 17:48:01 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=58454, TCPport=1}
+Files: {hello, hi}
+
+Mon Nov 22 17:50:12 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 17:50:12 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 1
+
+Mon Nov 22 17:50:13 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Mon Nov 22 17:50:28 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 17:50:28 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=58454, TCPport=1}
+Files: {hello, hi} has been DeRegistered.
+
+Server has 1 client(s)
+
+Mon Nov 22 17:50:28 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 61944 TCP: 1
+Mon Nov 22 17:50:32 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 17:50:32 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:61944
+Mon Nov 22 17:50:32 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 17:50:32 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [hello, hi]
+Mon Nov 22 17:50:37 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 17:50:37 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[hello, hi]
+
+Mon Nov 22 17:50:37 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 3 
+Sending to ->/192.168.5.1:61944
+Mon Nov 22 17:50:37 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 4
+Mon Nov 22 17:50:41 EST 2021
+
+-------------------------------------------------
+The registered users
+nabil Nabils-Machine.local/127.0.0.1 1 [hi bonjour, erty]
+bibo DESKTOP-NFNRD1R/192.168.5.1 1 [hello, hi]
+
+Mon Nov 22 17:50:41 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+IOException.... 
+Sending file failed... Try again later
+ 
+Mon Nov 22 17:50:41 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=61944, TCPport=1}
+Files: {hello, hi}
+
+Mon Nov 22 17:51:55 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 17:51:55 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 1
+
+Mon Nov 22 17:51:55 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Mon Nov 22 17:52:06 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 17:52:06 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=61944, TCPport=1}
+Files: {hello, hi} has been DeRegistered.
+
+Server has 1 client(s)
+
+Mon Nov 22 17:52:06 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 54382 TCP: 1
+Mon Nov 22 17:52:07 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 17:52:08 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:54382
+Mon Nov 22 17:52:08 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 17:52:08 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [hello, hi]
+Mon Nov 22 17:52:12 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 17:52:12 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[hello, hi]
+
+Mon Nov 22 17:52:12 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 3 
+Sending to ->/192.168.5.1:54382
+Mon Nov 22 17:52:12 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 4
+Mon Nov 22 17:52:16 EST 2021
+
+-------------------------------------------------
+The registered users
+nabil Nabils-Machine.local/127.0.0.1 1 [hi bonjour, erty]
+bibo DESKTOP-NFNRD1R/192.168.5.1 1 [hello, hi]
+
+Mon Nov 22 17:52:16 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE 4 [Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}, Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=54382, TCPport=1}
+Files: {hello, hi}]
+Sending to ->/192.168.5.1:54382
+Mon Nov 22 17:52:16 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=54382, TCPport=1}
+Files: {hello, hi}
+
+Mon Nov 22 17:53:36 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 17:53:36 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 1
+
+Mon Nov 22 17:53:36 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bobp
+Mon Nov 22 17:53:49 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 17:53:49 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bobp cannot be DeRegistered.
+Cannot find bobp
+
+Server has 2 client(s)
+
+Mon Nov 22 17:53:49 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 2 bibo
+Mon Nov 22 17:53:54 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 17:53:54 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=54382, TCPport=1}
+Files: {hello, hi} has been DeRegistered.
+
+Server has 1 client(s)
+
+Mon Nov 22 17:53:54 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 3 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 53942 TCP: 1
+Mon Nov 22 17:53:57 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 17:53:57 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 3 
+Sending to ->/192.168.5.1:53942
+Mon Nov 22 17:53:57 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 17:53:57 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 4 bibo [hello, hi]
+Mon Nov 22 17:54:05 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 17:54:05 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[hello, hi]
+
+Mon Nov 22 17:54:05 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 4 
+Sending to ->/192.168.5.1:53942
+Mon Nov 22 17:54:05 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 5
+Mon Nov 22 17:54:09 EST 2021
+
+-------------------------------------------------
+The registered users
+nabil Nabils-Machine.local/127.0.0.1 1 [hi bonjour, erty]
+bibo DESKTOP-NFNRD1R/192.168.5.1 1 [hello, hi]
+
+Mon Nov 22 17:54:09 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE 5 [Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}, Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=53942, TCPport=1}
+Files: {hello, hi}]
+Sending to ->/192.168.5.1:53942
+Mon Nov 22 17:54:09 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=53942, TCPport=1}
+Files: {hello, hi}
+
+Mon Nov 22 17:59:29 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 17:59:29 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 1
+
+Mon Nov 22 17:59:30 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Mon Nov 22 17:59:41 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 17:59:41 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=53942, TCPport=1}
+Files: {hello, hi} has been DeRegistered.
+
+Server has 1 client(s)
+
+Mon Nov 22 17:59:41 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 53968 TCP: 1
+Mon Nov 22 17:59:43 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 17:59:43 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:53968
+Mon Nov 22 17:59:43 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 17:59:43 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [hello, hi]
+Mon Nov 22 17:59:49 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 17:59:49 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[hello, hi]
+
+Mon Nov 22 17:59:49 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 3 
+Sending to ->/192.168.5.1:53968
+Mon Nov 22 17:59:49 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 4
+Mon Nov 22 17:59:52 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Mon Nov 22 17:59:52 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+The registered users
+nabil Nabils-Machine.local/127.0.0.1 1 [hi bonjour, erty]
+bibo DESKTOP-NFNRD1R/192.168.5.1 1 [hello, hi]
+
+Mon Nov 22 17:59:52 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE 4 [Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}, Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=53968, TCPport=1}
+Files: {hello, hi}]
+Sending to ->/192.168.5.1:53968
+Mon Nov 22 17:59:52 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Mon Nov 22 18:03:50 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 18:03:50 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=53968, TCPport=1}
+Files: {hello, hi} has been DeRegistered.
+
+Server has 1 client(s)
+
+Mon Nov 22 18:03:50 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 52821 TCP: 1
+Mon Nov 22 18:03:58 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 18:03:58 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:52821
+Mon Nov 22 18:03:58 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 18:03:58 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [hello, hi]
+Mon Nov 22 18:04:10 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 18:04:10 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[hello, hi]
+
+Mon Nov 22 18:04:10 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 3 
+Sending to ->/192.168.5.1:52821
+Mon Nov 22 18:04:10 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 4
+Mon Nov 22 18:04:13 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Mon Nov 22 18:04:13 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+The registered users
+nabil Nabils-Machine.local/127.0.0.1 1 [hi bonjour, erty]
+bibo DESKTOP-NFNRD1R/192.168.5.1 1 [hello, hi]
+
+Mon Nov 22 18:04:13 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE 4 [Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}, Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=52821, TCPport=1}
+Files: {hello, hi}]
+Sending to ->/192.168.5.1:52821
+Mon Nov 22 18:04:13 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=52821, TCPport=1}
+Files: {hello, hi}
+
+Mon Nov 22 18:12:59 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 18:12:59 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 1
+
+Mon Nov 22 18:12:59 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Mon Nov 22 18:13:16 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 18:13:16 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=52821, TCPport=1}
+Files: {hello, hi} has been DeRegistered.
+
+Server has 1 client(s)
+
+Mon Nov 22 18:13:16 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 60623 TCP: 1
+Mon Nov 22 18:13:25 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 18:13:25 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:60623
+Mon Nov 22 18:13:25 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 18:13:25 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [h, l, b]
+Mon Nov 22 18:13:31 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 18:13:31 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[h, l, b]
+
+Mon Nov 22 18:13:31 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 3 
+Sending to ->/192.168.5.1:60623
+Mon Nov 22 18:13:31 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 4
+Mon Nov 22 18:13:37 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Mon Nov 22 18:13:37 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 4 'User not found'
+Sending to ->/192.168.5.1:60623
+Mon Nov 22 18:13:37 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=60623, TCPport=1}
+Files: {h, l, b}
+
+Mon Nov 22 18:16:06 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 18:16:06 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 1
+
+Mon Nov 22 18:16:06 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Mon Nov 22 18:16:17 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 18:16:17 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=60623, TCPport=1}
+Files: {h, l, b} has been DeRegistered.
+
+Server has 1 client(s)
+
+Mon Nov 22 18:16:17 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 65301 TCP: 1
+Mon Nov 22 18:16:20 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 18:16:20 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:65301
+Mon Nov 22 18:16:20 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 18:16:20 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [h, a, s]
+Mon Nov 22 18:16:24 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 18:16:24 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[h, a, s]
+
+Mon Nov 22 18:16:24 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 3 
+Sending to ->/192.168.5.1:65301
+Mon Nov 22 18:16:24 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 4
+Mon Nov 22 18:16:30 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Mon Nov 22 18:16:30 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 4 'User not found'
+Sending to ->/192.168.5.1:65301
+Mon Nov 22 18:16:30 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=65301, TCPport=1}
+Files: {h, a, s}
+
+Mon Nov 22 18:17:08 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 18:17:08 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 1
+
+Mon Nov 22 18:17:08 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Mon Nov 22 18:17:17 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 18:17:17 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=65301, TCPport=1}
+Files: {h, a, s} has been DeRegistered.
+
+Server has 1 client(s)
+
+Mon Nov 22 18:17:17 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 57711 TCP: 1
+Mon Nov 22 18:17:19 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 18:17:19 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:57711
+Mon Nov 22 18:17:19 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 18:17:19 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [b, s, a]
+Mon Nov 22 18:17:23 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 18:17:23 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[b, s, a]
+
+Mon Nov 22 18:17:23 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 3 
+Sending to ->/192.168.5.1:57711
+Mon Nov 22 18:17:23 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 4
+Mon Nov 22 18:17:25 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Mon Nov 22 18:17:30 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 4 'User not found'
+Sending to ->DESKTOP-NFNRD1R/192.168.5.1:57711
+Mon Nov 22 18:17:30 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=57711, TCPport=1}
+Files: {b, s, a}
+
+Mon Nov 22 18:17:51 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 18:17:51 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: DESKTOP-NFNRD1R/192.168.5.1
+Port: 1
+
+Mon Nov 22 18:17:51 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 1 bibo
+Mon Nov 22 18:18:06 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 18:18:06 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=57711, TCPport=1}
+Files: {b, s, a} has been DeRegistered.
+
+Server has 1 client(s)
+
+Mon Nov 22 18:18:06 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 2 bibo DESKTOP-NFNRD1R/192.168.5.1 UDP: 50056 TCP: 1
+Mon Nov 22 18:18:08 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 18:18:08 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 2 
+Sending to ->/192.168.5.1:50056
+Mon Nov 22 18:18:08 EST 2021
+
+-------------------------------------------------
+Client: bibo at DESKTOP-NFNRD1R/192.168.5.1 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 18:18:08 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 bibo [as, s, d]
+Mon Nov 22 18:18:13 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 18:18:13 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bibo has published files successfully. 
+Published: 
+[as, s, d]
+
+Mon Nov 22 18:18:13 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 3 
+Sending to ->/192.168.5.1:50056
+Mon Nov 22 18:18:13 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 4
+Mon Nov 22 18:18:15 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Mon Nov 22 18:18:20 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+The registered users
+nabil Nabils-Machine.local/127.0.0.1 1 [hi bonjour, erty]
+bibo DESKTOP-NFNRD1R/192.168.5.1 1 [as, s, d]
+
+Mon Nov 22 18:18:20 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE 4 [Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}, Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=50056, TCPport=1}
+Files: {as, s, d}]
+Sending to ->DESKTOP-NFNRD1R/192.168.5.1:50056
+Mon Nov 22 18:18:20 EST 2021

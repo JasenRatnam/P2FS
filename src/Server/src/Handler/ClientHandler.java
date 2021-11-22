@@ -113,7 +113,8 @@ public class ClientHandler implements Runnable {
             else if(requestInput instanceof RemoveRequest)
             {
                 RemoveFiles((RemoveRequest) requestInput);
-            }else if(requestInput instanceof RetrieveAllRequest)
+            }
+            else if(requestInput instanceof RetrieveAllRequest)
             {
                 RetrieveAll((RetrieveAllRequest) requestInput);
             }
@@ -345,14 +346,42 @@ public class ClientHandler implements Runnable {
 
     public  void RetrieveAll(RetrieveAllRequest request)
     {
+        String clientIP = this.request.getAddress().getHostName();
 
-        log = "The registered users" + "\n";
+        log = "Remove files request received\n";
+        Writer.log(log);
+        String errorCode = "";
+        boolean retreived = false;
+
         for ( ClientObject client: Server.clients) {
-            log = client.getName() + " " + client.getIP() + " " + client.getTCPport() + " " + client.getFiles();
-                Writer.log(log);
+            //client is regsitered
+            if (client.getIP().equals(clientIP)) {
+                retreived = true;
+                 break;
             }
-        Retrieve retrieveAll = new Retrieve(request.getRQNumb(),Server.clients);
-        Sender.sendTo(retrieveAll, this.request, ds);
+        }
+        retreived = true;
+
+        // if not already registered
+         if (!retreived) {
+            //retreive denied
+             errorCode = "User not found";
+             RetrieveError denied = new RetrieveError(request.getRQNumb(),errorCode);
+             Sender.sendTo(denied, this.request, ds);
+             log = "Client: " + clientIP + " can not retreive because: " + errorCode;
+         } else {
+             //retreived
+             //send retreive
+             log = "The registered users" + "\n";
+             for ( ClientObject client: Server.clients) {
+                 log += client.getName() + " " + client.getIP() + " " + client.getTCPport() + " " + client.getFiles() + "\n" ;
+             }
+             Writer.log(log);
+
+             Retrieve retrieveAll = new Retrieve(request.getRQNumb(),Server.clients);
+             Sender.sendTo(retrieveAll, this.request, ds);
+             log = "Client: " + clientIP + "has retreived clients";
+       }
     }
     /**
      * Remove request from the list of requests

@@ -1,5 +1,5 @@
 Server UDP Port
 1
 Name,IP,UDPport,TCPport,Filenames
-bibo,DESKTOP-NFNRD1R/192.168.5.1,53049,1,hello,hi
 nabil,Nabils-Machine.local/127.0.0.1,59217,1,hi bonjour,erty
+bibo,DESKTOP-NFNRD1R/192.168.5.1,50056,1,as,s,d
