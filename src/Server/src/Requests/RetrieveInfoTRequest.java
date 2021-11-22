@@ -8,8 +8,8 @@ public class RetrieveInfoTRequest extends Request {
     private static final long serialVersionUID = 1L;
     private String clientName;
 
-    public RetrieveInfoTRequest(RequestType requestType, int reqNumber, String clientName) {
-        super(requestType, reqNumber);
+    public RetrieveInfoTRequest(int reqNumber, String clientName) {
+        super(RequestType.RETRIEVE_INFOT, reqNumber);
         this.clientName = clientName;
     }
 

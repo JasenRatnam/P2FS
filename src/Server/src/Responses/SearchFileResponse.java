@@ -12,8 +12,8 @@ public class SearchFileResponse extends Request {
     private static final long serialVersionUID = 1L;
     private ArrayList<ClientObject> clients;
 
-    public SearchFileResponse(RequestType requestType, int reqNumber, ArrayList<ClientObject> clients) {
-        super(requestType, reqNumber);
+    public SearchFileResponse(int reqNumber, ArrayList<ClientObject> clients) {
+        super(RequestType.SEARCH_FILE_RESPONSE, reqNumber);
         this.clients = clients;
     }
 

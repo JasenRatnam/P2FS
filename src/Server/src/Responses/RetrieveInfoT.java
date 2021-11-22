@@ -14,8 +14,8 @@ public class RetrieveInfoT extends Request {
     private int TCPport;
     private ArrayList<String> listOfFiles;
 
-    public RetrieveInfoT(RequestType requestType, int reqNumber, String clientName, String address, int TCPport, ArrayList<String> listOfFiles) {
-        super(requestType, reqNumber);
+    public RetrieveInfoT(int reqNumber, String clientName, String address, int TCPport, ArrayList<String> listOfFiles) {
+        super(RequestType.RETRIEVE_INFOT_RESPONSE, reqNumber);
         this.clientName = clientName;
         this.address = address;
         this.TCPport = TCPport;

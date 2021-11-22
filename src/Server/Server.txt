@@ -2813,3 +2813,532 @@ Files: {hi bonjour, erty}, Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1',
 Files: {as, s, d}]
 Sending to ->DESKTOP-NFNRD1R/192.168.5.1:50056
 Mon Nov 22 18:18:20 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='nabil', IP='Nabils-Machine.local/127.0.0.1', UDPport=59217, TCPport=1}
+Files: {hi bonjour, erty}
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=50056, TCPport=1}
+Files: {as, s, d}
+
+Mon Nov 22 18:26:41 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 18:26:41 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1
+
+Mon Nov 22 18:26:41 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 18:27:27 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Mon Nov 22 18:27:27 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen JASEN-S540/192.168.50.114 UDP: 54621 TCP: 3000
+Mon Nov 22 18:27:43 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 18:27:43 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.114:54621
+Mon Nov 22 18:27:44 EST 2021
+
+-------------------------------------------------
+Client: jasen at JASEN-S540/192.168.50.114 has been registered
+Server has 1 client(s)
+
+Mon Nov 22 18:27:44 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 gamin GAMING-PC/192.168.50.216 UDP: 62180 TCP: 4000
+Mon Nov 22 18:27:47 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 18:27:47 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.216:62180
+Mon Nov 22 18:27:47 EST 2021
+
+-------------------------------------------------
+Client: gamin at GAMING-PC/192.168.50.216 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 18:27:47 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 2
+Mon Nov 22 18:27:52 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Mon Nov 22 18:27:52 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+The registered users
+jasen JASEN-S540/192.168.50.114 3000 []
+gamin GAMING-PC/192.168.50.216 4000 []
+
+Mon Nov 22 18:27:52 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+IOException.... 
+Sending file failed... Try again later
+ 
+Mon Nov 22 18:27:52 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 18:29:30 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Mon Nov 22 18:29:30 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen JASEN-S540/192.168.50.114 UDP: 61443 TCP: 4000
+Mon Nov 22 18:29:47 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 18:29:47 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.114:61443
+Mon Nov 22 18:29:47 EST 2021
+
+-------------------------------------------------
+Client: jasen at JASEN-S540/192.168.50.114 has been registered
+Server has 1 client(s)
+
+Mon Nov 22 18:29:47 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 gaming GAMING-PC/192.168.50.216 UDP: 63862 TCP: 4000
+Mon Nov 22 18:30:01 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 18:30:01 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.216:63862
+Mon Nov 22 18:30:01 EST 2021
+
+-------------------------------------------------
+Client: gaming at GAMING-PC/192.168.50.216 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 18:30:01 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 2
+Mon Nov 22 18:30:15 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Mon Nov 22 18:30:15 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+The registered users
+jasen JASEN-S540/192.168.50.114 4000 []
+gaming GAMING-PC/192.168.50.216 4000 []
+
+Mon Nov 22 18:30:15 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE 2 [Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=61443, TCPport=4000}
+Files: {}, Client{name='gaming', IP='GAMING-PC/192.168.50.216', UDPport=63862, TCPport=4000}
+Files: {}]
+Sending to ->GAMING-PC/192.168.50.216:63862
+Mon Nov 22 18:30:15 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=61443, TCPport=4000}
+Files: {}
+
+Restored client: 
+Client{name='gaming', IP='GAMING-PC/192.168.50.216', UDPport=63862, TCPport=4000}
+Files: {}
+
+
+Mon Nov 22 18:31:45 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 18:31:45 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Mon Nov 22 18:31:45 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 3
+Mon Nov 22 18:31:53 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Mon Nov 22 18:31:53 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+The registered users
+jasen JASEN-S540/192.168.50.114 4000 []
+gaming GAMING-PC/192.168.50.216 4000 []
+
+Mon Nov 22 18:31:53 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE 3 [Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=61443, TCPport=4000}
+Files: {}
+, Client{name='gaming', IP='GAMING-PC/192.168.50.216', UDPport=63862, TCPport=4000}
+Files: {}
+]
+Sending to ->GAMING-PC/192.168.50.216:63862
+Mon Nov 22 18:31:53 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 4 gaming [A, B, C, D, end]
+Mon Nov 22 18:34:07 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 18:34:07 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+gaming has published files successfully. 
+Published: 
+[A, B, C, D, end]
+
+Mon Nov 22 18:34:07 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 4 
+Sending to ->GAMING-PC/192.168.50.216:63862
+Mon Nov 22 18:34:07 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 2 jasen [A, B, C, D, exit]
+Mon Nov 22 18:34:29 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 18:34:29 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+jasen has published files successfully. 
+Published: 
+[A, B, C, D, exit]
+
+Mon Nov 22 18:34:29 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 2 
+Sending to ->/192.168.50.114:61443
+Mon Nov 22 18:34:29 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 5
+Mon Nov 22 18:34:44 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Mon Nov 22 18:34:44 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+The registered users
+jasen JASEN-S540/192.168.50.114 4000 [A, B, C, D, exit]
+gaming GAMING-PC/192.168.50.216 4000 [A, B, C, D, end]
+
+Mon Nov 22 18:34:44 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE 5 [Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=61443, TCPport=4000}
+Files: {A, B, C, D, exit}
+, Client{name='gaming', IP='GAMING-PC/192.168.50.216', UDPport=63862, TCPport=4000}
+Files: {A, B, C, D, end}
+]
+Sending to ->GAMING-PC/192.168.50.216:63862
+Mon Nov 22 18:34:44 EST 2021
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 18:47:21 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Mon Nov 22 18:47:21 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen JASEN-S540/192.168.50.114 UDP: 59468 TCP: 3000
+Mon Nov 22 18:47:42 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 18:47:42 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.114:59468
+Mon Nov 22 18:47:42 EST 2021
+
+-------------------------------------------------
+Client: jasen at JASEN-S540/192.168.50.114 has been registered
+Server has 1 client(s)
+
+Mon Nov 22 18:47:42 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 gaming GAMING-PC/192.168.50.216 UDP: 61235 TCP: 4000
+Mon Nov 22 18:47:46 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 18:47:46 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.216:61235
+Mon Nov 22 18:47:46 EST 2021
+
+-------------------------------------------------
+Client: gaming at GAMING-PC/192.168.50.216 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 18:47:46 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REMOVE 2 gaming [A]
+Mon Nov 22 18:47:53 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Mon Nov 22 18:47:53 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+gaming cannot remove files.
+Cannot find gaming
+
+Server has 2 client(s)
+
+Mon Nov 22 18:47:53 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+gaming cannot remove files.
+ file does not exist
+
+Mon Nov 22 18:47:53 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REMOVE-DENIED 2 'File not found
+'
+Sending to ->/192.168.50.216:61235
+Mon Nov 22 18:47:53 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 3 gaming [A, B, C, D, E]
+Mon Nov 22 18:48:07 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 18:48:07 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+gaming has published files successfully. 
+Published: 
+[A, B, C, D, E]
+
+Mon Nov 22 18:48:07 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 3 
+Sending to ->/192.168.50.216:61235
+Mon Nov 22 18:48:07 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 2 jasen [A, B, C, D]
+Mon Nov 22 18:48:16 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 18:48:16 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+jasen has published files successfully. 
+Published: 
+[A, B, C, D]
+
+Mon Nov 22 18:48:16 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 2 
+Sending to ->/192.168.50.114:59468
+Mon Nov 22 18:48:16 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 4
+Mon Nov 22 18:48:27 EST 2021
+
+-------------------------------------------------
+Remove files request received
+
+Mon Nov 22 18:48:27 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+The registered users
+jasen JASEN-S540/192.168.50.114 3000 [A, B, C, D]
+gaming GAMING-PC/192.168.50.216 4000 [A, B, C, D, E]
+
+Mon Nov 22 18:48:27 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE 4 [Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=59468, TCPport=3000}
+Files: {A, B, C, D}
+, Client{name='gaming', IP='GAMING-PC/192.168.50.216', UDPport=61235, TCPport=4000}
+Files: {A, B, C, D, E}
+]
+Sending to ->GAMING-PC/192.168.50.216:61235
+Mon Nov 22 18:48:27 EST 2021

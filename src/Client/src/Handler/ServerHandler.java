@@ -120,7 +120,7 @@ public class ServerHandler implements Runnable {
                 log = "Retrieve Confirmed: List of available clients shown below:\n";
 
                 for ( ClientObject client: retrieve.getClients()) {
-                    log += client.getName() + " " + client.getIP() + " " + client.getTCPport() + " " + client.getFiles().toString() + "\n";
+                    log += client.getName() + " " + client.getIP() + "TCP: " + client.getTCPport() + " " + client.getFiles() + "\n";
                     System.out.print(client.getFiles());
                 }
 

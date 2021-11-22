@@ -1,10 +1,6 @@
 package Requests;
 
-import Handler.Client;
-import Handler.ClientObject;
-
 import java.io.Serial;
-import java.util.ArrayList;
 
 public class RetrieveAllRequest extends Request{
 

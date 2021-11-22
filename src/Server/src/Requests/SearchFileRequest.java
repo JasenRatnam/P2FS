@@ -9,8 +9,8 @@ public class SearchFileRequest extends Request{
     private String filename;
 
 
-    public SearchFileRequest(RequestType requestType, int reqNumber, String filename) {
-        super(requestType, reqNumber);
+    public SearchFileRequest(int reqNumber, String filename) {
+        super(RequestType.SEARCH_FILE, reqNumber);
         this.filename=filename;
     }
 

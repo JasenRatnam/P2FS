@@ -1,5 +1,5 @@
 Server UDP Port
-1
+1234
 Name,IP,UDPport,TCPport,Filenames
-nabil,Nabils-Machine.local/127.0.0.1,59217,1,hi bonjour,erty
-bibo,DESKTOP-NFNRD1R/192.168.5.1,50056,1,as,s,d
+jasen,JASEN-S540/192.168.50.114,59468,3000,A,B,C,D
+gaming,GAMING-PC/192.168.50.216,61235,4000,A,B,C,D,E

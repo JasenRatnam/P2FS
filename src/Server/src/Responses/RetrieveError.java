@@ -11,8 +11,8 @@ public class RetrieveError extends Request {
     private static final long serialVersionUID = 1L;
     String reason;
 
-    public RetrieveError(RequestType requestType, int reqNumber, String reason) {
-        super(requestType, reqNumber);
+    public RetrieveError(int reqNumber, String reason) {
+        super(RequestType.RETRIEVE_ERROR, reqNumber);
         this.reason = reason;
     }
 

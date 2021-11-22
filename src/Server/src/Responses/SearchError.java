@@ -11,8 +11,8 @@ public class SearchError extends Request {
     private static final long serialVersionUID = 1L;
     String reason;
 
-    public SearchError(RequestType requestType, int reqNumber, String reason) {
-        super(requestType, reqNumber);
+    public SearchError(int reqNumber, String reason) {
+        super(RequestType.SEARCH_ERROR, reqNumber);
         this.reason = reason;
     }
 
