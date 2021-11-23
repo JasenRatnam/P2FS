@@ -126,8 +126,15 @@ public class ServerHandler implements Runnable {
                 Writer.log(log);
             } else if (response instanceof RetrieveError retrieveError)
             {
-                log = "RetrieveAll Denied: Cannot retreive clients from server.\n";
+                log = "Retrieve Denied: Cannot retreive client(s) from server.\n";
                 log += "Because: " + retrieveError.getReason() + "\n";
+                Writer.log(log);
+            } else if (response instanceof RetrieveInfoT retreiveInfo)
+            {
+                log = "Retrieve InfoT Confirmed: Client " + retreiveInfo.getClientName() + " shown below:\n";
+
+                log += retreiveInfo.getClientName() + " " + retreiveInfo.getAddress() + " TCP: " + retreiveInfo.getTCPport() + " FILES:" + retreiveInfo.getListOfFiles() + "\n";
+
                 Writer.log(log);
             }
 

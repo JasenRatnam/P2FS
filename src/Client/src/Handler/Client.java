@@ -1,6 +1,7 @@
 package Handler;
 
 import Requests.*;
+import Responses.RetrieveInfoT;
 
 import java.net.*;
 import java.util.ArrayList;
@@ -251,29 +252,19 @@ public class Client {
                     //A registered user can retrieve information from the server
                     // by sending different kinds of requests.
                     //A user can retrieve for instance the names of all the other registered clients,
-                    if(isRegistered) {
-                        log = "User selected Retrieve All\n";
-                        RetrieveAll();
-                        Writer.log(log);
-                        break;
-                    }
-                    else{
-                        log = "Please register first\n";
-                        Writer.log(log);
-                        continue;
-                    }
+
+                    log = "User selected Retrieve All\n";
+                    RetrieveAll();
+                    Writer.log(log);
+                    break;
+
                 case "6":
                     //A registered user can also request the information about a specific peer.
-                    if(isRegistered) {
-                        log = "User selected Retrieve infoT\n";
-                        Writer.log(log);
-                        break;
-                    }
-                    else{
-                        log = "Please register first\n";
-                        Writer.log(log);
-                        continue;
-                    }
+
+                    log = "User selected Retrieve infoT\n";
+                    Writer.log(log);
+                    RetrieveInfo();
+                    break;
                 case "7":
                     //A user can search for a specific file
                     if(isRegistered) {
@@ -316,6 +307,15 @@ public class Client {
             sc.nextLine();
         }
         exit(1);
+    }
+
+    private static void RetrieveInfo() {
+        //get name of client
+        System.out.print("\tEnter Username to retreive information from: ");
+        String name = sc.next();
+
+        RetrieveInfoTRequest retreiveInfoMessage = new RetrieveInfoTRequest(Client.requestCounter.incrementAndGet(),name);
+        Sender.sendTo(retreiveInfoMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }
 
     /**
@@ -368,7 +368,7 @@ public class Client {
         ClientName=name;
         //create a register request
         RegisterRequest registerMessage = new RegisterRequest(requestCounter.incrementAndGet(), name,
-                clientIp.toString(), clientUDPPort, clientTCPPort);
+                clientIp.getHostAddress(), clientUDPPort, clientTCPPort);
         //send request to server
         Sender.sendTo(registerMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }

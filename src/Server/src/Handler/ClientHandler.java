@@ -6,12 +6,10 @@ import Responses.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.lang.reflect.Array;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 
@@ -118,12 +116,62 @@ public class ClientHandler implements Runnable {
             {
                 RetrieveAll((RetrieveAllRequest) requestInput);
             }
+            else if(requestInput instanceof RetrieveInfoTRequest)
+            {
+                RetrieveInfo((RetrieveInfoTRequest) requestInput);
+            }
             
             //need to add other requests
             else {
                 log = "Cannot handle this request.";
                 Writer.log(log);
             }
+        }
+    }
+
+    private void RetrieveInfo(RetrieveInfoTRequest requestInput) {
+        String clientIP = this.request.getAddress().getHostAddress();
+
+        log = "Retreive InfoT request received\n";
+        Writer.log(log);
+
+        String errorCode = "";
+        boolean registered = false;
+        boolean nameExists = false;
+
+        for ( ClientObject client: Server.clients) {
+            //client is regsitered
+            if (client.getIP().equals(clientIP)) {
+                registered = true;
+                break;
+            }
+        }
+
+        // if not already registered
+        if (!registered) {
+            //ignore
+        } else {
+            //retreived
+            //send retreive
+
+            for (ClientObject client: Server.clients) {
+                //client with name exists
+                if (client.getName().equals(requestInput.getClientName())) {
+                    nameExists = true;
+                    RetrieveInfoT retrieveInfo = new RetrieveInfoT(requestInput.getRQNumb(),client.getName(),client.getIP(),client.getTCPport(),client.getFiles());
+                    Sender.sendTo(retrieveInfo, this.request, ds);
+                    log = "Client: " + clientIP + "has retrieved client:";
+                    log += client.toString() + "\n";
+                    break;
+                }
+            }
+        }
+        if (!nameExists) {
+            //retreive denied
+            errorCode = "Name not found";
+            RetrieveError denied = new RetrieveError(requestInput.getRQNumb(),errorCode);
+            Sender.sendTo(denied, this.request, ds);
+            log = "Client: " + clientIP + " can not retreive because: " + errorCode;
         }
     }
 
@@ -346,7 +394,7 @@ public class ClientHandler implements Runnable {
 
     public  void RetrieveAll(RetrieveAllRequest request)
     {
-        String clientIP = this.request.getAddress().getHostName();
+        String clientIP = this.request.getAddress().getHostAddress();
 
         log = "Retreive All request received\n";
         Writer.log(log);
@@ -360,15 +408,10 @@ public class ClientHandler implements Runnable {
                  break;
             }
         }
-        retreived = true;
 
         // if not already registered
          if (!retreived) {
-            //retreive denied
-             errorCode = "User not found";
-             RetrieveError denied = new RetrieveError(request.getRQNumb(),errorCode);
-             Sender.sendTo(denied, this.request, ds);
-             log = "Client: " + clientIP + " can not retreive because: " + errorCode;
+             //ignore
          } else {
              //retreived
              //send retreive

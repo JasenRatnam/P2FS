@@ -3592,3 +3592,905 @@ Files: {hello, hi}
 ]
 Sending to ->DESKTOP-NFNRD1R/192.168.5.1:51080
 Mon Nov 22 18:55:29 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=59468, TCPport=3000}
+Files: {A, B, C, D}
+
+Restored client: 
+Client{name='gaming', IP='GAMING-PC/192.168.50.216', UDPport=61235, TCPport=4000}
+Files: {A, B, C, D, E}
+
+Restored client: 
+Client{name='bibo', IP='DESKTOP-NFNRD1R/192.168.5.1', UDPport=51080, TCPport=1}
+Files: {hello, hi}
+
+
+Mon Nov 22 19:28:06 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 19:28:06 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Mon Nov 22 19:28:06 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 19:28:21 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Mon Nov 22 19:28:21 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen JASEN-S540/192.168.50.114 UDP: 62619 TCP: 3000
+Mon Nov 22 19:29:13 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 19:29:13 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.114:62619
+Mon Nov 22 19:29:13 EST 2021
+
+-------------------------------------------------
+Client: jasen at JASEN-S540/192.168.50.114 has been registered
+Server has 1 client(s)
+
+Mon Nov 22 19:29:13 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 bob GAMING-PC/192.168.50.216 UDP: 64571 TCP: 3000
+Mon Nov 22 19:29:16 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 19:29:16 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.216:64571
+Mon Nov 22 19:29:16 EST 2021
+
+-------------------------------------------------
+Client: bob at GAMING-PC/192.168.50.216 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 19:29:16 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 2 bob [A, B, C, D]
+Mon Nov 22 19:29:29 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 19:29:29 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bob has published files successfully. 
+Published: 
+[A, B, C, D]
+
+Mon Nov 22 19:29:29 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 2 
+Sending to ->/192.168.50.216:64571
+Mon Nov 22 19:29:29 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 2 jasen [A, B, C, D]
+Mon Nov 22 19:29:39 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 19:29:39 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+jasen has published files successfully. 
+Published: 
+[A, B, C, D]
+
+Mon Nov 22 19:29:39 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 2 
+Sending to ->/192.168.50.114:62619
+Mon Nov 22 19:29:39 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 3
+Mon Nov 22 19:29:53 EST 2021
+
+-------------------------------------------------
+Retreive All request received
+
+Mon Nov 22 19:29:53 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+The registered users
+jasen JASEN-S540/192.168.50.114 3000 [A, B, C, D]
+bob GAMING-PC/192.168.50.216 3000 [A, B, C, D]
+
+Mon Nov 22 19:29:53 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE 3 [Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=62619, TCPport=3000}
+Files: {A, B, C, D}
+, Client{name='bob', IP='GAMING-PC/192.168.50.216', UDPport=64571, TCPport=3000}
+Files: {A, B, C, D}
+]
+Sending to ->GAMING-PC/192.168.50.216:64571
+Mon Nov 22 19:29:53 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-INFOT 4 jasen
+Mon Nov 22 19:30:15 EST 2021
+
+-------------------------------------------------
+Retreive InfoT request received
+
+Mon Nov 22 19:30:15 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-INFOT 4 jasen JASEN-S540/192.168.50.114 3000 [A, B, C, D]
+Sending to ->GAMING-PC/192.168.50.216:64571
+Mon Nov 22 19:30:15 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-INFOT 5 bob
+Mon Nov 22 19:30:25 EST 2021
+
+-------------------------------------------------
+Retreive InfoT request received
+
+Mon Nov 22 19:30:25 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-INFOT 5 bob GAMING-PC/192.168.50.216 3000 [A, B, C, D]
+Sending to ->GAMING-PC/192.168.50.216:64571
+Mon Nov 22 19:30:25 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-INFOT 6 gaming
+Mon Nov 22 19:30:31 EST 2021
+
+-------------------------------------------------
+Retreive InfoT request received
+
+Mon Nov 22 19:30:31 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 6 'Name not found'
+Sending to ->GAMING-PC/192.168.50.216:64571
+Mon Nov 22 19:30:31 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=62619, TCPport=3000}
+Files: {A, B, C, D}
+
+Restored client: 
+Client{name='bob', IP='GAMING-PC/192.168.50.216', UDPport=64571, TCPport=3000}
+Files: {A, B, C, D}
+
+
+Mon Nov 22 19:34:21 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 19:34:21 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Mon Nov 22 19:34:21 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen GAMING-PC/192.168.50.216 UDP: 62723 TCP: 3000
+Mon Nov 22 19:34:34 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 19:34:34 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Registration Denied: name -jasen - already registered
+
+Mon Nov 22 19:34:34 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTER-DENIED 1 'Username already exists'
+Sending to ->/192.168.50.216:62723
+Mon Nov 22 19:34:34 EST 2021
+
+-------------------------------------------------
+Client: jasen at GAMING-PC/192.168.50.216 has not been registered because: Username already exists
+Server has 2 client(s)
+
+Mon Nov 22 19:34:34 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+DE-REGISTER 2 bob
+Mon Nov 22 19:34:46 EST 2021
+
+-------------------------------------------------
+Deregister request received
+
+Mon Nov 22 19:34:46 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Client{name='bob', IP='GAMING-PC/192.168.50.216', UDPport=64571, TCPport=3000}
+Files: {A, B, C, D}
+ has been DeRegistered.
+
+Server has 1 client(s)
+
+Mon Nov 22 19:34:46 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 3 bob GAMING-PC/192.168.50.216 UDP: 62723 TCP: 3000
+Mon Nov 22 19:34:48 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 19:34:48 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 3 
+Sending to ->/192.168.50.216:62723
+Mon Nov 22 19:34:48 EST 2021
+
+-------------------------------------------------
+Client: bob at GAMING-PC/192.168.50.216 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 19:34:48 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 4
+Mon Nov 22 19:35:02 EST 2021
+
+-------------------------------------------------
+Retreive All request received
+
+Mon Nov 22 19:35:02 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 4 'User not found'
+Sending to ->GAMING-PC/192.168.50.216:62723
+Mon Nov 22 19:35:02 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=62619, TCPport=3000}
+Files: {A, B, C, D}
+
+Restored client: 
+Client{name='bob', IP='GAMING-PC/192.168.50.216', UDPport=62723, TCPport=3000}
+Files: {}
+
+
+Mon Nov 22 19:36:42 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 19:36:42 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Mon Nov 22 19:36:42 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 5
+Mon Nov 22 19:36:46 EST 2021
+
+-------------------------------------------------
+Retreive All request received
+
+Mon Nov 22 19:36:46 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 5 'User not found'
+Sending to ->GAMING-PC/192.168.50.216:62723
+Mon Nov 22 19:36:46 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=62619, TCPport=3000}
+Files: {A, B, C, D}
+
+Restored client: 
+Client{name='bob', IP='GAMING-PC/192.168.50.216', UDPport=62723, TCPport=3000}
+Files: {}
+
+
+Mon Nov 22 19:37:07 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 19:37:07 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Mon Nov 22 19:37:07 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 6
+Mon Nov 22 19:37:09 EST 2021
+
+-------------------------------------------------
+Retreive All request received
+
+Mon Nov 22 19:37:09 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 6 'User not found'
+Sending to ->/192.168.50.216:62723
+Mon Nov 22 19:37:09 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=62619, TCPport=3000}
+Files: {A, B, C, D}
+
+Restored client: 
+Client{name='bob', IP='GAMING-PC/192.168.50.216', UDPport=62723, TCPport=3000}
+Files: {}
+
+
+Mon Nov 22 19:37:54 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 19:37:54 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Mon Nov 22 19:37:54 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 7
+Mon Nov 22 19:37:58 EST 2021
+
+-------------------------------------------------
+Retreive All request received
+
+Mon Nov 22 19:37:58 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 7 'User not found'
+Sending to ->/192.168.50.216:62723
+Mon Nov 22 19:37:58 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=62619, TCPport=3000}
+Files: {A, B, C, D}
+
+Restored client: 
+Client{name='bob', IP='GAMING-PC/192.168.50.216', UDPport=62723, TCPport=3000}
+Files: {}
+
+
+Mon Nov 22 19:38:53 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 19:38:53 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Mon Nov 22 19:38:53 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 8
+Mon Nov 22 19:38:58 EST 2021
+
+-------------------------------------------------
+Retreive All request received
+
+Mon Nov 22 19:38:58 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 8 'User not found'
+Sending to ->/192.168.50.216:62723
+Mon Nov 22 19:38:58 EST 2021
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 19:41:04 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Mon Nov 22 19:41:04 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 bob 192.168.50.216 UDP: 58084 TCP: 2000
+Mon Nov 22 19:41:18 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 19:41:18 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.216:58084
+Mon Nov 22 19:41:18 EST 2021
+
+-------------------------------------------------
+Client: bob at 192.168.50.216 has been registered
+Server has 1 client(s)
+
+Mon Nov 22 19:41:18 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+REGISTER 1 jasen JASEN-S540/192.168.50.114 UDP: 60268 TCP: 3000
+Mon Nov 22 19:41:26 EST 2021
+
+-------------------------------------------------
+Register request received
+
+Mon Nov 22 19:41:26 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+REGISTERED 1 
+Sending to ->/192.168.50.114:60268
+Mon Nov 22 19:41:26 EST 2021
+
+-------------------------------------------------
+Client: jasen at JASEN-S540/192.168.50.114 has been registered
+Server has 2 client(s)
+
+Mon Nov 22 19:41:26 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 2 jasen [A, B, C, D]
+Mon Nov 22 19:41:36 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 19:41:36 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+jasen has published files successfully. 
+Published: 
+[A, B, C, D]
+
+Mon Nov 22 19:41:36 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 2 
+Sending to ->/192.168.50.114:60268
+Mon Nov 22 19:41:36 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+PUBLISH 2 bob [A, B, C, D]
+Mon Nov 22 19:41:45 EST 2021
+
+-------------------------------------------------
+Publish request received
+
+Mon Nov 22 19:41:45 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+bob has published files successfully. 
+Published: 
+[A, B, C, D]
+
+Mon Nov 22 19:41:45 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+PUBLISHED 2 
+Sending to ->/192.168.50.216:58084
+Mon Nov 22 19:41:45 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 3
+Mon Nov 22 19:41:56 EST 2021
+
+-------------------------------------------------
+Retreive All request received
+
+Mon Nov 22 19:41:56 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+The registered users
+bob 192.168.50.216 2000 [A, B, C, D]
+jasen JASEN-S540/192.168.50.114 3000 [A, B, C, D]
+
+Mon Nov 22 19:41:56 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE 3 [Client{name='bob', IP='192.168.50.216', UDPport=58084, TCPport=2000}
+Files: {A, B, C, D}
+, Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=60268, TCPport=3000}
+Files: {A, B, C, D}
+]
+Sending to ->/192.168.50.216:58084
+Mon Nov 22 19:41:56 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-INFOT 4 jasen
+Mon Nov 22 19:42:57 EST 2021
+
+-------------------------------------------------
+Retreive InfoT request received
+
+Mon Nov 22 19:42:57 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 4 'User is not registered'
+Sending to ->GAMING-PC/192.168.50.216:58084
+Mon Nov 22 19:42:57 EST 2021
+
+----------------SENDING-------------
+RETRIEVE-ERROR 4 'Name not found'
+Sending to ->GAMING-PC/192.168.50.216:58084
+Mon Nov 22 19:42:57 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-INFOT 5 jasen
+Mon Nov 22 19:43:13 EST 2021
+
+-------------------------------------------------
+Retreive InfoT request received
+
+Mon Nov 22 19:43:13 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 5 'User is not registered'
+Sending to ->GAMING-PC/192.168.50.216:58084
+Mon Nov 22 19:43:13 EST 2021
+
+----------------SENDING-------------
+RETRIEVE-ERROR 5 'Name not found'
+Sending to ->GAMING-PC/192.168.50.216:58084
+Mon Nov 22 19:43:13 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-INFOT 6 bob
+Mon Nov 22 19:43:24 EST 2021
+
+-------------------------------------------------
+Retreive InfoT request received
+
+Mon Nov 22 19:43:24 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 6 'User is not registered'
+Sending to ->GAMING-PC/192.168.50.216:58084
+Mon Nov 22 19:43:24 EST 2021
+
+----------------SENDING-------------
+RETRIEVE-ERROR 6 'Name not found'
+Sending to ->GAMING-PC/192.168.50.216:58084
+Mon Nov 22 19:43:24 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 7
+Mon Nov 22 19:43:28 EST 2021
+
+-------------------------------------------------
+Retreive All request received
+
+Mon Nov 22 19:43:28 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+The registered users
+bob 192.168.50.216 2000 [A, B, C, D]
+jasen JASEN-S540/192.168.50.114 3000 [A, B, C, D]
+
+Mon Nov 22 19:43:28 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE 7 [Client{name='bob', IP='192.168.50.216', UDPport=58084, TCPport=2000}
+Files: {A, B, C, D}
+, Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=60268, TCPport=3000}
+Files: {A, B, C, D}
+]
+Sending to ->GAMING-PC/192.168.50.216:58084
+Mon Nov 22 19:43:28 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-INFOT 8 bob
+Mon Nov 22 19:43:40 EST 2021
+
+-------------------------------------------------
+Retreive InfoT request received
+
+Mon Nov 22 19:43:40 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 8 'User is not registered'
+Sending to ->GAMING-PC/192.168.50.216:58084
+Mon Nov 22 19:43:40 EST 2021
+
+----------------SENDING-------------
+RETRIEVE-ERROR 8 'Name not found'
+Sending to ->GAMING-PC/192.168.50.216:58084
+Mon Nov 22 19:43:40 EST 2021
+
+-------------------------------------------------
+Restoring server...
+Restored client: 
+Client{name='bob', IP='192.168.50.216', UDPport=58084, TCPport=2000}
+Files: {A, B, C, D}
+
+Restored client: 
+Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=60268, TCPport=3000}
+Files: {A, B, C, D}
+
+
+Mon Nov 22 19:46:07 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+opening port..... 
+
+Mon Nov 22 19:46:07 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+Server information: 
+IP: GAMING-PC/192.168.50.216
+Port: 1234
+
+Mon Nov 22 19:46:07 EST 2021
+
+-------------------------------------------------
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-ALL 9
+Mon Nov 22 19:46:09 EST 2021
+
+-------------------------------------------------
+Retreive All request received
+
+Mon Nov 22 19:46:09 EST 2021
+
+-------------------------------------------------
+
+-------------------------------------------------
+The registered users
+bob 192.168.50.216 2000 [A, B, C, D]
+jasen JASEN-S540/192.168.50.114 3000 [A, B, C, D]
+
+Mon Nov 22 19:46:09 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE 9 [Client{name='bob', IP='192.168.50.216', UDPport=58084, TCPport=2000}
+Files: {A, B, C, D}
+, Client{name='jasen', IP='JASEN-S540/192.168.50.114', UDPport=60268, TCPport=3000}
+Files: {A, B, C, D}
+]
+Sending to ->/192.168.50.216:58084
+Mon Nov 22 19:46:09 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-INFOT 10 jasen
+Mon Nov 22 19:46:17 EST 2021
+
+-------------------------------------------------
+Retreive InfoT request received
+
+Mon Nov 22 19:46:17 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-INFOT 10 jasen JASEN-S540/192.168.50.114 3000 [A, B, C, D]
+Sending to ->/192.168.50.216:58084
+Mon Nov 22 19:46:17 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-INFOT 11 bob
+Mon Nov 22 19:46:23 EST 2021
+
+-------------------------------------------------
+Retreive InfoT request received
+
+Mon Nov 22 19:46:23 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-INFOT 11 bob 192.168.50.216 2000 [A, B, C, D]
+Sending to ->/192.168.50.216:58084
+Mon Nov 22 19:46:23 EST 2021
+
+----------------NEW MESSAGE From Client--------------------
+RETRIEVE-INFOT 12 jas
+Mon Nov 22 19:46:30 EST 2021
+
+-------------------------------------------------
+Retreive InfoT request received
+
+Mon Nov 22 19:46:30 EST 2021
+
+-------------------------------------------------
+
+----------------SENDING-------------
+RETRIEVE-ERROR 12 'Name not found'
+Sending to ->/192.168.50.216:58084
+Mon Nov 22 19:46:30 EST 2021
