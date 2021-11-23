@@ -13,7 +13,7 @@ public class DownloadRequest extends Request {
      *
      */
     public DownloadRequest(int rqNumber, String fileName) {
-        super(Request.RequestType.REGISTER, rqNumber);
+        super(Request.RequestType.DOWNLOAD, rqNumber);
         this.fileName = fileName;
     }
 
@@ -29,6 +29,6 @@ public class DownloadRequest extends Request {
 
     @Override
     public String toString() {
-        return RequestType.DOWNLOAD + " " + this.getRQNumb() + " " + getFileName();
+        return Request.RequestType.DOWNLOAD + " " + this.getRQNumb() + " " + getFileName();
     }
 }

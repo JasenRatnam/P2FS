@@ -11,7 +11,7 @@ public class RemoveConfirmed extends Request {
 
     //constructor
     public RemoveConfirmed(int RQNumb){
-        super(RequestType.REMOVED);
+        super(Request.RequestType.REMOVED, RQNumb);
         this.RQNumb = RQNumb;
     }
 
@@ -20,6 +20,6 @@ public class RemoveConfirmed extends Request {
      */
     @Override
     public String toString(){
-        return RequestType.REMOVED + " " + this.getRQNumb()+ " " ;
+        return Request.RequestType.REMOVED + " " + this.getRQNumb()+ " " ;
     }
 }

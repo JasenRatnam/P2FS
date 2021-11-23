@@ -25,10 +25,9 @@ public class Client {
     public static String ClientName;
     public static ConcurrentHashMap<Integer,Object> requestMap = new ConcurrentHashMap<>();
     public static boolean isRegistered = false;
-    public static boolean isPublished = false;
     private static String log;
-    public static ArrayList<String> listOfFile = new ArrayList<String>();
     public static ArrayList<ClientObject> listOfClients = new ArrayList<ClientObject>();
+    public static ArrayList<String> listOfFile = new ArrayList<>();
 
     /**
      * constructor of a client
@@ -49,11 +48,13 @@ public class Client {
             serverPort = getPort("server");
             //ask and get port of TCP
             clientTCPPort = getPort("TCP port");
+            //ask and get port of UDP
+            clientUDPPort = getPort("UDP port");
 
             //connect to UDP socket
-            ds = new DatagramSocket();
+            ds = new DatagramSocket(clientUDPPort);
             clientIp = InetAddress.getLocalHost();
-            clientUDPPort = ds.getLocalPort();
+            //clientUDPPort = ds.getLocalPort();
 
             //client information
             log = "\nClient information: " +
@@ -123,7 +124,7 @@ public class Client {
      * @return a port number
      */
     public static int getPort(String clientOrServer){
-        int port = 0;
+        int port;
 
         //ask and get port of server
         System.out.println("Enter port number of the " + clientOrServer + ": (1-65535)");
@@ -180,6 +181,7 @@ public class Client {
         String val = "";
         while (!val.equals("exit") || isRegistered) {
             System.out.println("\nEnter 'exit' to close client");
+            System.out.println("\nPress ENTER to continue if no response.");
             System.out.println("""
                     Possible commands:
                     1-Register
@@ -282,13 +284,14 @@ public class Client {
                     //set a TCP connection to the peer,
                     log = "User selected Download\n";
                     Writer.log(log);
-                    download(sc);
+                    download();
                     break;
                 case "9":
                     //A registered user can always modify his/her IP address,
                     // UDP socket#, and/or TCP socket#
                     log = "User selected Update contact\n";
                     Writer.log(log);
+                    update();
 
                     break;
                 case "10":
@@ -331,10 +334,50 @@ public class Client {
     }
 
     /**
+     * update client information
+     * registered user can always modify his/her IP address, UDP socket#, and/or TCP socket#
+     */
+    private static void update() {
+        //print current client information
+        log = "\nCurrent Client Information: " +
+                "\nIP: " + clientIp +
+                "\nClient name: " + ClientName +
+                "\nUDP Port: " + clientUDPPort +
+                "\nTCP Port: " + clientTCPPort + "\n";
+        Writer.log(log);
+
+        //get name of client to update
+        System.out.print("\tEnter Username to update: ");
+        String name = sc.next();
+
+        //get new IP
+        InetAddress ip = getIP("new location");
+        //ask and get new UDP port
+        int UDPport = getPort("UDP port");
+        //ask and get new TCP port
+        int TCPport = getPort("TCP port");
+
+        //print new client information
+        log = "\nUpdated information: " +
+                "\nIP: " + ip.toString() +
+                "\nClient name: " + name +
+                "\nUDP Port: " + UDPport +
+                "\nTCP Port: " + TCPport + "\n";
+        Writer.log(log);
+
+        //create a download request
+        UpdateContactRequest updateMessage = new UpdateContactRequest(requestCounter.incrementAndGet(),
+                ip.toString(), UDPport, TCPport, name);
+
+        //send request to server
+        Sender.sendTo(updateMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
+    }
+
+    /**
      * Client selects download option
      * Client wants to a download a specific file from a specific client
      */
-    private static void download(Scanner s){
+    private static void download(){
         //get IP of target client
         InetAddress ip = getIP("target client");
 
@@ -346,11 +389,11 @@ public class Client {
 
             //get name of wanted file
             System.out.print("\tEnter name of wanted file: ");
-            String fileName = s.nextLine();
+            String fileName = Client.sc.nextLine();
 
             //target client information
             log = "\nTarget Client Information: " +
-                    "\nIP: " + ip.toString() +
+                    "\nIP: " + ip +
                     "\nTCP Port: " + port +
                     "\nWant file: " + fileName + "\n";
 
@@ -365,8 +408,8 @@ public class Client {
         else{
             log = "Cannot download a file from yourself.\n";
             log += "Please try again later with an IP address of an another client.\n";
-            Writer.log(log);
         }
+        Writer.log(log);
     }
 
     /**
@@ -377,7 +420,6 @@ public class Client {
         //get name of client
         System.out.print("\tEnter Username to register: ");
         String name = s.next();
-        ClientName=name;
         //create a register request
         RegisterRequest registerMessage = new RegisterRequest(requestCounter.incrementAndGet(), name,
                 clientIp.getHostAddress(), clientUDPPort, clientTCPPort);
@@ -396,54 +438,71 @@ public class Client {
         System.out.print("\tEnter Username to deregister: ");
         String name = s.next();
 
+        //create deregister request
         DeRegisterRequest deregisterMessage = new DeRegisterRequest(Client.requestCounter.incrementAndGet(),
                 name);
 
+        //if deregistering them selves
         if(name.equals(ClientName)) {
             isRegistered = false;
             log = "You have been DeRegistered.\n";
             Writer.log(log);
         }
 
+        //send request to server
         Sender.sendTo(deregisterMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }
 
-
-
+    /**
+     * Clients selects the publish command
+     * send request to server
+     * give name of files to publish
+     */
     public static void publish(Scanner s) {
-        System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
+        //get name of files to publish
+        ArrayList<String> listOfFileToPublish = new ArrayList<>();
+        System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write end):");
         String input = s.nextLine();
-        while(!input.equals("exit")) {
+        while(!input.equals("end")) {
             if(!input.equals("")){
-                listOfFile.add(input);
+                //save the files published to itself
+                listOfFileToPublish.add(input);
             }
-            System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
+            System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write end):");
             input = s.nextLine();
         }
-        PublishRequest publishMessage = new PublishRequest(requestCounter.incrementAndGet(),ClientName,listOfFile);
 
-        //send to the server
+        //create publish request
+        PublishRequest publishMessage = new PublishRequest(requestCounter.incrementAndGet(),ClientName,listOfFileToPublish);
+
+        //send request to the server
          Sender.sendTo(publishMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
     }
 
+    /**
+     * Clients selects the remove command
+     * send request to server
+     * give name of files to remove from client
+     */
     public static void remove(Scanner s) {
-        ArrayList<String> listOfFileToRemove = new ArrayList<String>();
-        System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
+        //get files to remove
+        ArrayList<String> listOfFileToRemove = new ArrayList<>();
+        System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write end): ");
         String input = s.nextLine();
-        while(!input.equals("exit")) {
+        while(!input.equals("end")) {
             if(!input.equals("")){
-                listOfFile.remove(input);
+                //get list of files to remove
                 listOfFileToRemove.add(input);
             }
-            System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
+            System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write end): ");
             input = s.nextLine();
         }
+        //create remove request
         RemoveRequest removeMessage = new RemoveRequest(requestCounter.incrementAndGet(),ClientName,listOfFileToRemove);
 
         //send to server
         Sender.sendTo(removeMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
     }
-
     public static void RetrieveAll() {
 
         RetrieveAllRequest retrieveAllMessage = new RetrieveAllRequest(requestCounter.incrementAndGet());

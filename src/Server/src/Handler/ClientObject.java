@@ -68,12 +68,11 @@ public class ClientObject implements Serializable{
 
     //getters and setters
     public String getFilesString() {
-        String str = "";
-        for(int i=0;i<files.size();i++)
-        {
-            str += "," + files.get(i);
+        StringBuilder str = new StringBuilder();
+        for (String file : files) {
+            str.append(",").append(file);
         }
-        return str;
+        return str.toString();
     }
 
     public void setFiles(ArrayList<String> files) {

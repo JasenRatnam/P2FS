@@ -11,7 +11,7 @@ public class RemoveRequest extends Request {
     private ArrayList<String> listOfFiles;
 
     public RemoveRequest(int reqNumber, String clientName, ArrayList<String> listOfFiles) {
-        super(RequestType.REMOVE, reqNumber);
+        super(Request.RequestType.REMOVE, reqNumber);
         this.clientName = clientName;
         this.listOfFiles = listOfFiles;
     }
@@ -26,6 +26,6 @@ public class RemoveRequest extends Request {
 
     @Override
     public String toString() {
-        return RequestType.REMOVE + " " + this.getRQNumb() + " " + getClientName() + " " + getListOfFiles();
+        return Request.RequestType.REMOVE + " " + this.getRQNumb() + " " + getClientName() + " " + getListOfFiles();
     }
 }

@@ -104,10 +104,12 @@ public class ClientHandler implements Runnable {
             else if (requestInput instanceof DeRegisterRequest) {
                 deregister((DeRegisterRequest) requestInput);
             }
+            //if request is publish
             else if (requestInput instanceof PublishRequest)
             {
                 Publish((PublishRequest) requestInput);
             }
+            //if request is a remove
             else if(requestInput instanceof RemoveRequest)
             {
                 RemoveFiles((RemoveRequest) requestInput);
@@ -123,9 +125,16 @@ public class ClientHandler implements Runnable {
             else if(requestInput instanceof SearchFileRequest)
             {
                 SearchFile((SearchFileRequest) requestInput);
+			}
+            //if request is a update
+            else if(requestInput instanceof UpdateContactRequest)
+            {
+                UpdateClient((UpdateContactRequest) requestInput);
             }
             
             //need to add other requests
+
+            //request not recognised
             else {
                 log = "Cannot handle this request.";
                 Writer.log(log);
@@ -147,9 +156,8 @@ public class ClientHandler implements Runnable {
             //client is regsitered
             if (client.getIP().equals(clientIP)) {
                 registered = true;
-                break;
-            }
-        }
+			}
+		}
 
         // if not already registered
         if (!registered) {
@@ -177,6 +185,63 @@ public class ClientHandler implements Runnable {
             Sender.sendTo(denied, this.request, ds);
             log = "Client: " + clientIP + " can not retreive because: " + errorCode;
         }
+	}
+
+    private void UpdateClient(UpdateContactRequest requestInput) {
+        String username = requestInput.getClientName();
+
+        //save ip of client to change to
+        String IP = requestInput.getIPaddress();
+
+        log = "Update request received\n";
+        Writer.log(log);
+
+        boolean updated = false;
+        String errorCode;
+
+        for ( ClientObject client: Server.clients) {
+            if(client.getName().equals(username)){
+                //update client
+                updated = true;
+                Writer.makeServerBackup();
+                log = client + " has been Updated.\n";
+
+                client.setName(requestInput.getClientName());
+                client.setIP(requestInput.getIPaddress());
+                client.setUDPport(requestInput.getUDPport());
+                client.setTCPport(requestInput.getTCPport());
+                break;
+            }
+        }
+
+        if (!updated){
+            //can't update
+            log = username + " cannot be Updated.";
+            log += "\nCannot find " + username  + "\n";
+
+            //update denied
+            errorCode = "User not found";
+            //send denied code to client who sent request
+
+            UpdateDenied denied = new UpdateDenied(requestInput.getRQNumb(), requestInput.getClientName(), errorCode);
+            Sender.sendTo(denied, this.request, ds);
+
+            log = "Client: " + username + " can not update because: " + errorCode + "\n";
+        } else {
+            //updated
+            //send update
+            Writer.makeServerBackup();
+            UpdateConfirmed confirmation = new UpdateConfirmed(requestInput.getRQNumb(), requestInput.getIPaddress(),
+                    requestInput.getUDPport(), requestInput.getTCPport(),
+                    requestInput.getClientName());
+            Sender.sendTo(confirmation, this.request, ds);
+
+            log = "Client: " + username + " has been updated\n";
+        }
+        Writer.log(log);
+
+        // remove request from list of request
+        remove(requestInput.getRQNumb(), this.request);
     }
 
     /**
@@ -276,75 +341,111 @@ public class ClientHandler implements Runnable {
         remove(request.getRQNumb(), this.request);
     }
 
-
+    /**
+     * publish list of file of client with given name
+     * if no client exists with given name deny
+     */
     public void Publish(PublishRequest request)
     {
-        //save name of client to register
+        //save name of client to publish files
         String username = request.getClientName();
 
+        //list of files to publish
         ArrayList<String> listOfFile = request.getListOfFiles();
+
         log = "Publish request received\n";
         Writer.log(log);
-        boolean Published = false;
-        String errorCode = null;
 
-// match the client with the clients in the server
+        //variables
+        boolean Published = false;
+        String errorCode;
+
+        // match the client with the clients in the server
         for ( ClientObject client: Server.clients) {
+            //client found in registered list
             if (client.getName().equals(username)) {
+                //publish files
                 Published = true;
                 client.setFiles(listOfFile);
+
                 log = username + " has published files successfully. \n";
                 log += "Published: \n" + request.getListOfFiles() + "\n";
                 Writer.log(log);
-                break;
 
+                break;
             }
         }
 
-        // if not already registered
+        // if client is not registered or does not exist
         if (!Published) {
             //published denied
             errorCode = "User not found";
+            //send denied code to client who sent request
+
             PublishDenied denied = new PublishDenied(errorCode, request.getRQNumb());
             Sender.sendTo(denied, this.request, ds);
-            log = "Client: " + username + " can not publish because: " + errorCode;
+
+            log = "Client: " + username + " can not publish because: " + errorCode + "\n";
         } else {
             //published
             //send published
+            Writer.makeServerBackup();
             PublishConfirmed confirmation = new PublishConfirmed(request.getRQNumb());
             Sender.sendTo(confirmation, this.request, ds);
-            log = "Client: " + username + "has published files";
+
+            log = "Client: " + username + " has published files:\n";
+            log += listOfFile + "\n";
 
         }
+        Writer.log(log);
+
+        // remove request from list of request
+        remove(request.getRQNumb(), this.request);
     }
 
+    /**
+     * remove list of file of client with given name
+     * if no client exists with given name deny
+     */
     public void RemoveFiles(RemoveRequest request) {
+        //save name of client to publish files
         String username = request.getClientName();
 
         log = "Remove files request received\n";
         Writer.log(log);
-        String errorCode = "";
+
+        //variables
+        StringBuilder errorCode = new StringBuilder();
         boolean removed = false;
-        
+
+        //list of files to remove
         ArrayList<String> listOfFileToRemove = request.getListOfFiles();
         
         // match the client with the clients in the server
         for (ClientObject client : Server.clients) {
+            //if client name is registered
             if (client.getName().equals(username)) {
+                //if the given files is a sublist of the files client has published
                 if(contains(client.getFiles(),listOfFileToRemove))
                 {
+                    //remove given list of files
                     client.removeFile(listOfFileToRemove);
                     removed=true;
+
+                    //log
                     log = username + " has removed files successfully. \n";
                     log += "Removed: \n" + request.getListOfFiles() + "\n";
                     log += "Current client files \n: " +  client.getFiles() + "\n";
                     Writer.log(log);
+
                     break;
                 }else {
-                    errorCode = "File not found\n";
+                    //given list is not a subset of the published files
+                    errorCode = new StringBuilder("Given files are not a sublist of published files\n");
                     log = username + " cannot remove files." + "\n";
-                    log += " file does not exist" + "\n";
+                    log += errorCode + "\n";
                     Writer.log(log);
+                    break;
                 }
             }
             else{
@@ -352,19 +453,30 @@ public class ClientHandler implements Runnable {
                 log += "\nCannot find " + username  + "\n";
                 log += "\nServer has " + Server.clients.size() + " client(s)\n";
                 Writer.log(log);
-                errorCode += "User not found\n";
+                errorCode.append("User: ").append(username).append(" not found\n");
             }
         }
 
+        //if could not remove
         if(!removed)
         {
             //can't remove
             //send a response
             //send Remove-denied
-            RemoveDenied denied = new RemoveDenied(errorCode, request.getRQNumb());
+            log = "Client: " + username + " can not remove files because: " + errorCode + "\n";
+            Writer.log(log);
+
+            RemoveDenied denied = new RemoveDenied(errorCode.toString(), request.getRQNumb());
             Sender.sendTo(denied, this.request, ds);
         }
         else{
+
+            //removed
+            Writer.makeServerBackup();
+            log = "Client: " + username + "has published files:\n";
+            log += listOfFileToRemove + " removed\n";
+            Writer.log(log);
+
             //send Removed
             RemoveConfirmed confirmation = new RemoveConfirmed(request.getRQNumb());
             Sender.sendTo(confirmation, this.request, ds);
@@ -374,19 +486,24 @@ public class ClientHandler implements Runnable {
         remove(request.getRQNumb(), this.request);
     }
 
+    /**
+     * Method that says if a given list is sublist of another
+     * @param list that holds all files
+     * @param sublist of files to remove
+     * @return if sublist is a sublist of list
+     */
     boolean contains(ArrayList<String> list, ArrayList<String> sublist) {
         boolean contains = true;
-        int l1 = list.size(), l2 = sublist.size();
+        int l1 = list.size();
         int currIndex = 0;
         int i;
-        for(int j=0;j<l2;j++) {
-            String e2 = sublist.get(j);
-            for(i=currIndex;i<l1;i++) {
-                if(e2.equals(list.get(i))) {
+        for (String e2 : sublist) {
+            for (i = currIndex; i < l1; i++) {
+                if (e2.equals(list.get(i))) {
                     break;
                 }
             }
-            if(i == l1) {
+            if (i == l1) {
                 contains = false;
                 break;
             }

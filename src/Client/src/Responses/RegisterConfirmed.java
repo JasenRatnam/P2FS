@@ -14,7 +14,7 @@ public class RegisterConfirmed extends Request {
 
     //constructors
     public RegisterConfirmed(int RQNumb){
-        super(Request.RequestType.CLIENT_REGISTER_CONFIRMED);
+        super(Request.RequestType.CLIENT_REGISTER_CONFIRMED, RQNumb);
         this.RQNumb = RQNumb;
     }
 
