@@ -270,6 +270,7 @@ public class Client {
                     if(isRegistered) {
                         log = "User selected Search file\n";
                         Writer.log(log);
+                        SearchFile(sc);
                         break;
                     }
                     else{
@@ -308,6 +309,17 @@ public class Client {
         }
         exit(1);
     }
+
+    public static void SearchFile(Scanner s) {
+
+        System.out.print("\tPlease enter the name of the file you wish to search for:");
+        String input = s.nextLine();
+
+        SearchFileRequest searchfile = new SearchFileRequest(requestCounter.incrementAndGet(),input);
+        Sender.sendTo(searchfile,ds,Client.serverIp.getHostAddress(),Client.serverPort);
+
+    }
+
 
     private static void RetrieveInfo() {
         //get name of client

@@ -136,6 +136,18 @@ public class ServerHandler implements Runnable {
                 log += retreiveInfo.getClientName() + " " + retreiveInfo.getAddress() + " TCP: " + retreiveInfo.getTCPport() + " FILES:" + retreiveInfo.getListOfFiles() + "\n";
 
                 Writer.log(log);
+            }else if (response instanceof SearchFileResponse fileresponse)
+            {
+                log = "Search file Confirmed: List of client(s) with file shown below:\n";
+                for ( ClientObject client: fileresponse.getClients()) {
+                    log += client.getName() + " " + client.getIP() + " TCP: " + client.getTCPport()  + "\n";
+                }
+                Writer.log(log);
+            }else if(response instanceof SearchError error)
+            {
+                log = "SearchFile Denied: Cannot retreive file from server.\n";
+                log += "Because: " + error.getReason() + "\n";
+                Writer.log(log);
             }
 
             //add other if to handle other possible response by server

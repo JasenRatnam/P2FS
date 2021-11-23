@@ -120,6 +120,10 @@ public class ClientHandler implements Runnable {
             {
                 RetrieveInfo((RetrieveInfoTRequest) requestInput);
             }
+            else if(requestInput instanceof SearchFileRequest)
+            {
+                SearchFile((SearchFileRequest) requestInput);
+            }
             
             //need to add other requests
             else {
@@ -425,6 +429,38 @@ public class ClientHandler implements Runnable {
              Sender.sendTo(retrieveAll, this.request, ds);
              log = "Client: " + clientIP + "has retreived clients";
        }
+    }
+
+    public void SearchFile(SearchFileRequest request)
+    {
+        ArrayList<ClientObject> FoundClients = new ArrayList<>();;
+        String filename = request.getFilename();
+        log = " Search File request received\n";
+
+        Writer.log(log);
+        String errorCode = "";
+        boolean fileFound = false;
+
+        for ( ClientObject client: Server.clients) {
+            //to see if client has file
+            if (client.getFiles().contains(filename)) {
+                fileFound = true;
+                log = filename + " has been found successfully with :\n";
+                log += client.getName() + " " + client.getIP() + " " + client.getTCPport() + "\n" ;
+                FoundClients.add(client);
+                Writer.log(log);
+            }
+        }
+        if (!fileFound) {
+            //file not found
+            errorCode = "File not found with a user(s)";
+            SearchError notfound = new SearchError(request.getRQNumb(),errorCode);
+            Sender.sendTo(notfound, this.request, ds);
+            log = "file: " + filename + " can not retreive because: " + errorCode;
+            Writer.log(log);
+        }
+        SearchFileResponse found = new SearchFileResponse(request.getRQNumb(), FoundClients);
+        Sender.sendTo(FoundClients,this.request, ds);
     }
     /**
      * Remove request from the list of requests
