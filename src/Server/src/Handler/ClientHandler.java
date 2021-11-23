@@ -84,7 +84,8 @@ public class ClientHandler implements Runnable {
      */
     public synchronized void requestHandler(Object requestInput){
         //add request to map of requests
-        if (requestInput instanceof Request request1) {
+        if (requestInput instanceof Request) {
+            Request request1 = (Request) requestInput;
 
             //get client IP and port number
             InetAddress clientIp = request.getAddress();
@@ -142,7 +143,11 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    /**
+     * Handle a request to retrieve infromation about a given client
+     */
     private void RetrieveInfo(RetrieveInfoTRequest requestInput) {
+        //get ip of client sending request
         String clientIP = this.request.getAddress().getHostAddress();
 
         log = "Retreive InfoT request received\n";
@@ -152,46 +157,56 @@ public class ClientHandler implements Runnable {
         boolean registered = false;
         boolean nameExists = false;
 
+        //check if client who sent request is registered
         for ( ClientObject client: Server.clients) {
-            //client is regsitered
+            //client is registered
             if (client.getIP().equals(clientIP)) {
                 registered = true;
 			}
 		}
 
-        // if not already registered
+        // if user who sent request is not  registered
         if (!registered) {
             //ignore
         } else {
-            //retreived
-            //send retreive
+            //user who sent request is registered
+            //send retrieve
 
+            //find client with given name
             for (ClientObject client: Server.clients) {
-                //client with name exists
+                //client with given name exists
                 if (client.getName().equals(requestInput.getClientName())) {
                     nameExists = true;
+                    //crete response and send the information of the client
                     RetrieveInfoT retrieveInfo = new RetrieveInfoT(requestInput.getRQNumb(),client.getName(),client.getIP(),client.getTCPport(),client.getFiles());
                     Sender.sendTo(retrieveInfo, this.request, ds);
                     log = "Client: " + clientIP + "has retrieved client:";
                     log += client.toString() + "\n";
+                    Writer.log(log);
                     break;
                 }
             }
         }
+        //client with given name not found
         if (!nameExists) {
-            //retreive denied
+            //retrieve denied
             errorCode = "Name not found";
+            //send error response
             RetrieveError denied = new RetrieveError(requestInput.getRQNumb(),errorCode);
             Sender.sendTo(denied, this.request, ds);
             log = "Client: " + clientIP + " can not retreive because: " + errorCode;
+            Writer.log(log);
         }
+        // remove request from list of request
+        remove(requestInput.getRQNumb(), this.request);
 	}
 
+    /**
+     * update a clients information
+     */
     private void UpdateClient(UpdateContactRequest requestInput) {
+        //get name of client to update information
         String username = requestInput.getClientName();
-
-        //save ip of client to change to
-        String IP = requestInput.getIPaddress();
 
         log = "Update request received\n";
         Writer.log(log);
@@ -199,38 +214,40 @@ public class ClientHandler implements Runnable {
         boolean updated = false;
         String errorCode;
 
+        //find given client name
         for ( ClientObject client: Server.clients) {
+            //if client exists
             if(client.getName().equals(username)){
                 //update client
                 updated = true;
-                Writer.makeServerBackup();
                 log = client + " has been Updated.\n";
 
-                client.setName(requestInput.getClientName());
                 client.setIP(requestInput.getIPaddress());
                 client.setUDPport(requestInput.getUDPport());
                 client.setTCPport(requestInput.getTCPport());
+                Writer.makeServerBackup();
                 break;
             }
         }
 
+        //if client with name cannot be found
         if (!updated){
             //can't update
-            log = username + " cannot be Updated.";
-            log += "\nCannot find " + username  + "\n";
 
             //update denied
             errorCode = "User not found";
             //send denied code to client who sent request
 
+            //send denied response
             UpdateDenied denied = new UpdateDenied(requestInput.getRQNumb(), requestInput.getClientName(), errorCode);
             Sender.sendTo(denied, this.request, ds);
 
-            log = "Client: " + username + " can not update because: " + errorCode + "\n";
+            log = "Client: " + username + " can not updated because: " + errorCode + "\n";
         } else {
             //updated
             //send update
-            Writer.makeServerBackup();
+
+            //send confirmed response
             UpdateConfirmed confirmation = new UpdateConfirmed(requestInput.getRQNumb(), requestInput.getIPaddress(),
                     requestInput.getUDPport(), requestInput.getTCPport(),
                     requestInput.getClientName());
@@ -370,6 +387,7 @@ public class ClientHandler implements Runnable {
 
                 log = username + " has published files successfully. \n";
                 log += "Published: \n" + request.getListOfFiles() + "\n";
+                log += "Client has files: \n" + client.getFiles() + "\n";
                 Writer.log(log);
 
                 break;
@@ -453,7 +471,7 @@ public class ClientHandler implements Runnable {
                 log += "\nCannot find " + username  + "\n";
                 log += "\nServer has " + Server.clients.size() + " client(s)\n";
                 Writer.log(log);
-                errorCode.append("User: ").append(username).append(" not found\n");
+                errorCode = new StringBuilder("User: " + username + " not found\n");
             }
         }
 
@@ -466,6 +484,7 @@ public class ClientHandler implements Runnable {
             log = "Client: " + username + " can not remove files because: " + errorCode + "\n";
             Writer.log(log);
 
+            //send denied response
             RemoveDenied denied = new RemoveDenied(errorCode.toString(), request.getRQNumb());
             Sender.sendTo(denied, this.request, ds);
         }
@@ -513,72 +532,112 @@ public class ClientHandler implements Runnable {
     }
 
 
+    /**
+     * get all information about client registered on the server
+     */
     public  void RetrieveAll(RetrieveAllRequest request)
     {
+        //get ip of client who sent request
         String clientIP = this.request.getAddress().getHostAddress();
 
-        log = "Retreive All request received\n";
+        log = "Retrieve All request received\n";
         Writer.log(log);
-        String errorCode = "";
-        boolean retreived = false;
 
+        boolean registered = false;
+
+        //check if client who sent request is registered
         for ( ClientObject client: Server.clients) {
             //client is regsitered
             if (client.getIP().equals(clientIP)) {
-                retreived = true;
+                registered = true;
                  break;
             }
         }
 
         // if not already registered
-         if (!retreived) {
+         if (!registered) {
              //ignore
          } else {
-             //retreived
-             //send retreive
+             //sender is registered
+             //send retrieve
              log = "The registered users" + "\n";
              for ( ClientObject client: Server.clients) {
                  log += client.getName() + " " + client.getIP() + " " + client.getTCPport() + " " + client.getFiles() + "\n" ;
              }
              Writer.log(log);
 
+             //send all clients to client
              Retrieve retrieveAll = new Retrieve(request.getRQNumb(),Server.clients);
              Sender.sendTo(retrieveAll, this.request, ds);
-             log = "Client: " + clientIP + "has retreived clients";
+
+             log = "Client: " + clientIP + "has retrieved clients";
        }
     }
 
+    /**
+     * search for a given filename in all clients
+     * send list of clients who have the wanted filename
+     */
     public void SearchFile(SearchFileRequest request)
     {
-        ArrayList<ClientObject> FoundClients = new ArrayList<>();;
-        String filename = request.getFilename();
-        log = " Search File request received\n";
+        //get ip of client who sent request
+        String clientIP = this.request.getAddress().getHostAddress();
 
+        //arraylist to save clients
+        ArrayList<ClientObject> FoundClients = new ArrayList<>();
+
+        //get wanted filename
+        String filename = request.getFilename();
+
+        log = " Search File request received\n";
         Writer.log(log);
+
         String errorCode = "";
         boolean fileFound = false;
 
+        boolean registered = false;
+
+        //check if client who sent request is registered
         for ( ClientObject client: Server.clients) {
-            //to see if client has file
-            if (client.getFiles().contains(filename)) {
-                fileFound = true;
-                log = filename + " has been found successfully with :\n";
-                log += client.getName() + " " + client.getIP() + " " + client.getTCPport() + "\n" ;
-                FoundClients.add(client);
-                Writer.log(log);
+            //client is regsitered
+            if (client.getIP().equals(clientIP)) {
+                registered = true;
+                break;
             }
         }
-        if (!fileFound) {
-            //file not found
-            errorCode = "File not found with a user(s)";
-            SearchError notfound = new SearchError(request.getRQNumb(),errorCode);
-            Sender.sendTo(notfound, this.request, ds);
-            log = "file: " + filename + " can not retreive because: " + errorCode;
-            Writer.log(log);
+
+        // if not already registered
+        if (!registered) {
+            //ignore
+        } else {
+            //search all clients that have the filename
+            for ( ClientObject client: Server.clients) {
+                //to see if client has file
+                if (client.getFiles().contains(filename)) {
+                    fileFound = true;
+                    log = filename + " has been found successfully with :\n";
+                    log += client.getName() + " " + client.getIP() + " " + client.getTCPport() + "\n" ;
+                    FoundClients.add(client);
+                    Writer.log(log);
+                }
+            }
+
+            if (!fileFound) {
+                //file not found
+                errorCode = "File not found in any Client";
+                SearchError notfound = new SearchError(request.getRQNumb(),errorCode);
+                Sender.sendTo(notfound, this.request, ds);
+                log = "file: " + filename + " can not retrieve because: " + errorCode;
+                Writer.log(log);
+            } else {
+                //clients with files found
+                SearchFileResponse found = new SearchFileResponse(request.getRQNumb(), FoundClients);
+                Sender.sendTo(found, this.request, ds);
+            }
+
         }
-        SearchFileResponse found = new SearchFileResponse(request.getRQNumb(), FoundClients);
-        Sender.sendTo(FoundClients,this.request, ds);
     }
+
     /**
      * Remove request from the list of requests
      */

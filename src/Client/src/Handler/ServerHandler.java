@@ -72,7 +72,9 @@ public class ServerHandler implements Runnable {
 
         int RequestID;
         //if response is a known request type
-        if (response instanceof Request res) {
+        if (response instanceof Request) {
+            Request res = (Request) response;
+
             // Get the RequestID
             RequestID = res.getRQNumb();
 
@@ -93,7 +95,9 @@ public class ServerHandler implements Runnable {
 
                 log = "You are now registered.\n";
                 Writer.log(log);
-            } else if (response instanceof RegisterDenied regDen) {
+            } else if (response instanceof RegisterDenied) {
+                RegisterDenied regDen = (RegisterDenied) response;
+
                 //if register is denied
                 Client.isRegistered = false;
 
@@ -107,11 +111,15 @@ public class ServerHandler implements Runnable {
                 //get list of files published
                 //add files to yourself
                 if (Client.requestMap.containsKey(RequestID)) {
+                    Client.listOfFile.clear();
                     PublishRequest req = (PublishRequest) Client.requestMap.get(RequestID);
                     Client.listOfFile.addAll(req.getListOfFiles());
                 }
-            }else if (response instanceof PublishDenied pubDen)
+                log = "Client has total published files: " + Client.listOfFile.toString() + "\n";
+                Writer.log(log);
+            }else if (response instanceof PublishDenied)
             {
+                PublishDenied pubDen = (PublishDenied) response;
                 log = "Publish Denied: files have not been published to server.\n";
                 log += pubDen.getReason() + "\n";
                 Writer.log(log);
@@ -123,13 +131,17 @@ public class ServerHandler implements Runnable {
                     RemoveRequest req = (RemoveRequest) Client.requestMap.get(RequestID);
                     Client.listOfFile.remove(req.getListOfFiles());
                 }
-                log = "Remove confirmed: Files have been Removed from the server.\n";
+                log = "Removed confirmed: Files have been Removed from the server.\n";
+                log += "Client has total published files: " + Client.listOfFile.toString() + "\n";
                 Writer.log(log);
-            }else if (response instanceof RemoveDenied removeDenied) {
+            }else if (response instanceof RemoveDenied) {
+                RemoveDenied removeDenied = (RemoveDenied) response;
+
                 log = "Remove Denied: files have not been Removed from the server.\n";
                 log += removeDenied.getReason() + "\n";
                 Writer.log(log);
-            }else if (response instanceof UpdateConfirmed upConf) {
+            }else if (response instanceof UpdateConfirmed) {
+                UpdateConfirmed upConf = (UpdateConfirmed) response;
                 log = "Update confirmed: Client information has been updated.\n";
 
                 //print new client information
@@ -154,13 +166,17 @@ public class ServerHandler implements Runnable {
                     log += "Update has failed, try again later.";
                     Writer.log(log);
                 }
-            }else if (response instanceof UpdateDenied updDen) {
+            }else if (response instanceof UpdateDenied) {
+                UpdateDenied updDen = (UpdateDenied) response;
+
                 log = "Update Denied: update could not happen.\n";
                 log += updDen.getReason() + "\n";
                 Writer.log(log);
             }
-            else if (response instanceof Retrieve retrieve)
+            else if (response instanceof Retrieve)
             {
+                Retrieve retrieve = (Retrieve) response;
+
                 log = "Retrieve Confirmed: List of available clients shown below:\n";
 
                 for ( ClientObject client: retrieve.getClients()) {
@@ -168,27 +184,35 @@ public class ServerHandler implements Runnable {
                 }
 
                 Writer.log(log);
-            } else if (response instanceof RetrieveError retrieveError)
+            } else if (response instanceof RetrieveError)
             {
+                RetrieveError retrieveError = (RetrieveError) response;
+
                 log = "Retrieve Denied: Cannot retreive client(s) from server.\n";
                 log += "Because: " + retrieveError.getReason() + "\n";
                 Writer.log(log);
-            } else if (response instanceof RetrieveInfoT retreiveInfo)
+            } else if (response instanceof RetrieveInfoT)
             {
+                RetrieveInfoT retreiveInfo = (RetrieveInfoT) response;
+
                 log = "Retrieve InfoT Confirmed: Client " + retreiveInfo.getClientName() + " shown below:\n";
 
                 log += retreiveInfo.getClientName() + " " + retreiveInfo.getAddress() + " TCP: " + retreiveInfo.getTCPport() + " FILES:" + retreiveInfo.getListOfFiles() + "\n";
 
                 Writer.log(log);
-            }else if (response instanceof SearchFileResponse fileresponse)
+            }else if (response instanceof SearchFileResponse)
             {
+                SearchFileResponse fileresponse = (SearchFileResponse) response;
+
                 log = "Search file Confirmed: List of client(s) with file shown below:\n";
                 for ( ClientObject client: fileresponse.getClients()) {
                     log += client.getName() + " " + client.getIP() + " TCP: " + client.getTCPport()  + "\n";
                 }
                 Writer.log(log);
-            }else if(response instanceof SearchError error)
+            }else if(response instanceof SearchError)
             {
+                SearchError error = (SearchError) response;
+
                 log = "SearchFile Denied: Cannot retreive file from server.\n";
                 log += "Because: " + error.getReason() + "\n";
                 Writer.log(log);
@@ -206,6 +230,4 @@ public class ServerHandler implements Runnable {
         }
 
     }
-
-
 }

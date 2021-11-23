@@ -3,8 +3,13 @@ package Requests;
 import java.io.*;
 
 public class Request implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+    //@Serial
+    private static final long serialVersionUID;
+
+    static {
+        serialVersionUID = 1L;
+    }
+
     protected RequestType requestType;
     protected int RQNumb;
 

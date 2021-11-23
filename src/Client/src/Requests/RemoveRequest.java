@@ -1,11 +1,11 @@
 package Requests;
 
-import java.io.Serial;
+//import java.io.Serial;
 import java.util.ArrayList;
 
 public class RemoveRequest extends Request {
 
-    @Serial
+    //@Serial
     private static final long serialVersionUID = 1L;
     private String clientName;
     private ArrayList<String> listOfFiles;

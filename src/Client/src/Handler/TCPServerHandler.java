@@ -94,7 +94,8 @@ public class TCPServerHandler implements Runnable{
      */
     public synchronized void requestHandler(Object input){
         //if the received TCP request is a type of known request
-        if (input instanceof Request request1) {
+        if (input instanceof Request) {
+            Request request1 = (Request) input;
 
             //get client IP and port number
             InetAddress clientIp = client.getInetAddress();

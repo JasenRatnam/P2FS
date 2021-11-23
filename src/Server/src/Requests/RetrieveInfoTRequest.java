@@ -1,10 +1,10 @@
 package Requests;
 
-import java.io.Serial;
+//import java.io.Serial;
 
 public class RetrieveInfoTRequest extends Request {
 
-    @Serial
+    //@Serial
     private static final long serialVersionUID = 1L;
     private String clientName;
 

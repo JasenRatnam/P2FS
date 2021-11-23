@@ -2,14 +2,14 @@ package Responses;
 
 import Requests.Request;
 
-import java.io.Serial;
+//import java.io.Serial;
 
 /**
  * class for response from server when the registrations is denied
  */
 public class RegisterDenied extends Request {
 
-    @Serial
+    //@Serial
     private static final long serialVersionUID = 1L;
     private String reason;
 
