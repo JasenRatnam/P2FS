@@ -1,14 +1,18 @@
 package Handler;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ClientObject {
+public class ClientObject implements Serializable{
 
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String name;
     private String IP;
     private int UDPport;
     private int TCPport;
-    public static ArrayList<String> files = new ArrayList<>();
+    public ArrayList<String> files = new ArrayList<>();
 
 
     /**
@@ -23,6 +27,7 @@ public class ClientObject {
         this.IP = IP;
         this.UDPport = UDPport;
         this.TCPport = TCPport;
+
     }
 
     /**
@@ -30,31 +35,47 @@ public class ClientObject {
      */
     @Override
     public String toString() {
-        return "Client{" +
+        String str = "Client{" +
                 "name='" + name + '\'' +
                 ", IP='" + IP + '\'' +
                 ", UDPport=" + UDPport +
-                ", TCPport=" + TCPport +
-                "}\nFiles: {" +
-                String.join(", ", files)
-                + "}";
+                ", TCPport=" + TCPport;
+        if(files != null) {
+            str += "}\nFiles: {" +
+            String.join(", ", files)  + "}\n";
+        }
+        else{
+            str += "}";
+        }
+        return str;
     }
 
-    public static void addFile(String file) {
+    public void addFile(String file) {
         files.add(file);
     }
 
-    public static void removeFile(String file) {
-        files.remove(file);
+    public void removeFile(ArrayList<String> file) {
+        files.removeAll(file);
+
     }
 
     //getters and setters
-    public static ArrayList<String> getFiles() {
+    public ArrayList<String> getFiles() {
         return files;
     }
 
-    public static void setFiles(ArrayList<String> files) {
-        ClientObject.files = files;
+    //getters and setters
+    public String getFilesString() {
+        String str = "";
+        for(int i=0;i<files.size();i++)
+        {
+            str += "," + files.get(i);
+        }
+        return str;
+    }
+
+    public void setFiles(ArrayList<String> files) {
+        this.files = files;
     }
 
     public String getName() {

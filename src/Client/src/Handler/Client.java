@@ -1,10 +1,10 @@
 package Handler;
 
-import Requests.DeRegisterRequest;
-import Requests.DownloadRequest;
-import Requests.RegisterRequest;
+import Requests.*;
+import Responses.RetrieveInfoT;
 
 import java.net.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -25,7 +25,10 @@ public class Client {
     public static String ClientName;
     public static ConcurrentHashMap<Integer,Object> requestMap = new ConcurrentHashMap<>();
     public static boolean isRegistered = false;
+    public static boolean isPublished = false;
     private static String log;
+    public static ArrayList<String> listOfFile = new ArrayList<String>();
+    public static ArrayList<ClientObject> listOfClients = new ArrayList<ClientObject>();
 
     /**
      * constructor of a client
@@ -193,9 +196,11 @@ public class Client {
             System.out.println("Enter number of the wanted command:");
             val = sc.nextLine();
 
+
             if (val.isEmpty()) {
                 val = "-1";
             }
+
             switch (val) {
                 case "1":
                     //has to register with the server before publishing or discovering what
@@ -222,6 +227,7 @@ public class Client {
                     if(isRegistered) {
                         log = "User selected Publish\n";
                         Writer.log(log);
+                        publish(sc);
                         break;
                     }
                     else{
@@ -234,6 +240,7 @@ public class Client {
                     if(isRegistered) {
                         log = "User selected Remove\n";
                         Writer.log(log);
+                        remove(sc);
                         break;
                     }
                     else{
@@ -245,33 +252,25 @@ public class Client {
                     //A registered user can retrieve information from the server
                     // by sending different kinds of requests.
                     //A user can retrieve for instance the names of all the other registered clients,
-                    if(isRegistered) {
-                        log = "User selected Retrieve All\n";
-                        Writer.log(log);
-                        break;
-                    }
-                    else{
-                        log = "Please register first\n";
-                        Writer.log(log);
-                        continue;
-                    }
+
+                    log = "User selected Retrieve All\n";
+                    RetrieveAll();
+                    Writer.log(log);
+                    break;
+
                 case "6":
                     //A registered user can also request the information about a specific peer.
-                    if(isRegistered) {
-                        log = "User selected Retrieve infoT\n";
-                        Writer.log(log);
-                        break;
-                    }
-                    else{
-                        log = "Please register first\n";
-                        Writer.log(log);
-                        continue;
-                    }
+
+                    log = "User selected Retrieve infoT\n";
+                    Writer.log(log);
+                    RetrieveInfo();
+                    break;
                 case "7":
                     //A user can search for a specific file
                     if(isRegistered) {
                         log = "User selected Search file\n";
                         Writer.log(log);
+                        SearchFile(sc);
                         break;
                     }
                     else{
@@ -309,6 +308,26 @@ public class Client {
             sc.nextLine();
         }
         exit(1);
+    }
+
+    public static void SearchFile(Scanner s) {
+
+        System.out.print("\tPlease enter the name of the file you wish to search for:");
+        String input = s.nextLine();
+
+        SearchFileRequest searchfile = new SearchFileRequest(requestCounter.incrementAndGet(),input);
+        Sender.sendTo(searchfile,ds,Client.serverIp.getHostAddress(),Client.serverPort);
+
+    }
+
+
+    private static void RetrieveInfo() {
+        //get name of client
+        System.out.print("\tEnter Username to retreive information from: ");
+        String name = sc.next();
+
+        RetrieveInfoTRequest retreiveInfoMessage = new RetrieveInfoTRequest(Client.requestCounter.incrementAndGet(),name);
+        Sender.sendTo(retreiveInfoMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }
 
     /**
@@ -358,10 +377,10 @@ public class Client {
         //get name of client
         System.out.print("\tEnter Username to register: ");
         String name = s.next();
-
+        ClientName=name;
         //create a register request
         RegisterRequest registerMessage = new RegisterRequest(requestCounter.incrementAndGet(), name,
-                clientIp.toString(), clientUDPPort, clientTCPPort);
+                clientIp.getHostAddress(), clientUDPPort, clientTCPPort);
         //send request to server
         Sender.sendTo(registerMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }
@@ -388,4 +407,47 @@ public class Client {
 
         Sender.sendTo(deregisterMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }
+
+
+
+    public static void publish(Scanner s) {
+        System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
+        String input = s.nextLine();
+        while(!input.equals("exit")) {
+            if(!input.equals("")){
+                listOfFile.add(input);
+            }
+            System.out.print("\tPlease enter the name of the files you wish to publish(to exit, please write exit):");
+            input = s.nextLine();
+        }
+        PublishRequest publishMessage = new PublishRequest(requestCounter.incrementAndGet(),ClientName,listOfFile);
+
+        //send to the server
+         Sender.sendTo(publishMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
+    }
+
+    public static void remove(Scanner s) {
+        ArrayList<String> listOfFileToRemove = new ArrayList<String>();
+        System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
+        String input = s.nextLine();
+        while(!input.equals("exit")) {
+            if(!input.equals("")){
+                listOfFile.remove(input);
+                listOfFileToRemove.add(input);
+            }
+            System.out.print("\tPlease enter the name of the files you wish to remove(to exit, please write exit): ");
+            input = s.nextLine();
+        }
+        RemoveRequest removeMessage = new RemoveRequest(requestCounter.incrementAndGet(),ClientName,listOfFileToRemove);
+
+        //send to server
+        Sender.sendTo(removeMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
+    }
+
+    public static void RetrieveAll() {
+
+        RetrieveAllRequest retrieveAllMessage = new RetrieveAllRequest(requestCounter.incrementAndGet());
+        Sender.sendTo(retrieveAllMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
+    }
+
 }

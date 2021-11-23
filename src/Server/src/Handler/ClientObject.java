@@ -1,9 +1,13 @@
 package Handler;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ClientObject {
+public class ClientObject implements Serializable{
 
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String name;
     private String IP;
     private int UDPport;
@@ -23,6 +27,7 @@ public class ClientObject {
         this.IP = IP;
         this.UDPport = UDPport;
         this.TCPport = TCPport;
+
     }
 
     /**
@@ -37,7 +42,7 @@ public class ClientObject {
                 ", TCPport=" + TCPport;
         if(files != null) {
             str += "}\nFiles: {" +
-            String.join(", ", files)  + "}";
+            String.join(", ", files)  + "}\n";
         }
         else{
             str += "}";
@@ -50,9 +55,10 @@ public class ClientObject {
         Writer.makeServerBackup();
     }
 
-    public void removeFile(String file) {
-        files.remove(file);
+    public void removeFile(ArrayList<String> file) {
+        files.removeAll(file);
         Writer.makeServerBackup();
+
     }
 
     //getters and setters

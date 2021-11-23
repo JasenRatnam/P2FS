@@ -1,9 +1,7 @@
 package Handler;
 
-import Requests.RegisterRequest;
-import Requests.Request;
-import Responses.RegisterConfirmed;
-import Responses.RegisterDenied;
+import Requests.*;
+import Responses.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -102,6 +100,54 @@ public class ServerHandler implements Runnable {
 
                 log = "Registration Denied: You are not registered.\n";
                 Writer.log(log);
+            } else if (response instanceof PublishConfirmed) {
+                log = "Publish confirmed: Files have been published to server.\n";
+                Writer.log(log);
+            }else if (response instanceof PublishDenied)
+            {
+                log = "Publish Denied: files have not been published to server.\n";
+                Writer.log(log);
+            }else if (response instanceof RemoveConfirmed) {
+
+                log = "Remove confirmed: Files have been Removed from the server.\n";
+                Writer.log(log);
+            }else if (response instanceof RemoveDenied) {
+                log = "Remove Denied: files have not been Removed from the server.\n";
+                Writer.log(log);
+            }
+            else if (response instanceof Retrieve retrieve)
+            {
+                log = "Retrieve Confirmed: List of available clients shown below:\n";
+
+                for ( ClientObject client: retrieve.getClients()) {
+                    log += client.getName() + " " + client.getIP() + " TCP: " + client.getTCPport() + " FILES:" + client.getFiles() + "\n";
+                }
+
+                Writer.log(log);
+            } else if (response instanceof RetrieveError retrieveError)
+            {
+                log = "Retrieve Denied: Cannot retreive client(s) from server.\n";
+                log += "Because: " + retrieveError.getReason() + "\n";
+                Writer.log(log);
+            } else if (response instanceof RetrieveInfoT retreiveInfo)
+            {
+                log = "Retrieve InfoT Confirmed: Client " + retreiveInfo.getClientName() + " shown below:\n";
+
+                log += retreiveInfo.getClientName() + " " + retreiveInfo.getAddress() + " TCP: " + retreiveInfo.getTCPport() + " FILES:" + retreiveInfo.getListOfFiles() + "\n";
+
+                Writer.log(log);
+            }else if (response instanceof SearchFileResponse fileresponse)
+            {
+                log = "Search file Confirmed: List of client(s) with file shown below:\n";
+                for ( ClientObject client: fileresponse.getClients()) {
+                    log += client.getName() + " " + client.getIP() + " TCP: " + client.getTCPport()  + "\n";
+                }
+                Writer.log(log);
+            }else if(response instanceof SearchError error)
+            {
+                log = "SearchFile Denied: Cannot retreive file from server.\n";
+                log += "Because: " + error.getReason() + "\n";
+                Writer.log(log);
             }
 
             //add other if to handle other possible response by server
@@ -114,5 +160,8 @@ public class ServerHandler implements Runnable {
             //remove request ID from list
             Client.requestMap.remove(RequestID);
         }
+
     }
+
+
 }
