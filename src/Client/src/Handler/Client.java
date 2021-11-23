@@ -324,7 +324,7 @@ public class Client {
     }
 
 
-    private static void RetrieveInfo() {
+    public static void RetrieveInfo() {
         //get name of client
         System.out.print("\tEnter Username to retreive information from: ");
         String name = sc.next();
@@ -337,7 +337,7 @@ public class Client {
      * update client information
      * registered user can always modify his/her IP address, UDP socket#, and/or TCP socket#
      */
-    private static void update() {
+    public static void update() {
         //print current client information
         log = "\nCurrent Client Information: " +
                 "\nIP: " + clientIp +
@@ -377,7 +377,7 @@ public class Client {
      * Client selects download option
      * Client wants to a download a specific file from a specific client
      */
-    private static void download(){
+    public static void download(){
         //get IP of target client
         InetAddress ip = getIP("target client");
 
