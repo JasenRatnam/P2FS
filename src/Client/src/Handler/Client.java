@@ -3,6 +3,7 @@ package Handler;
 import Requests.*;
 import Responses.RetrieveInfoT;
 
+import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -353,11 +354,22 @@ public class Client {
         String name = sc.next();
 
         //get new IP
-        InetAddress ip = getIP("new location");
+        InetAddress ip = null;
+        try {
+            ip = InetAddress.getLocalHost();
+        } catch (IOException e)
+        {
+            //e.printStackTrace();
+            log = "Update IOException " + e.getMessage();
+            log += "Update has failed, try again later.";
+            Writer.log(log);
+        }
+                //= getIP("new location");
         //ask and get new UDP port
         int UDPport = getPort("UDP port");
         //ask and get new TCP port
         int TCPport = getPort("TCP port");
+        System.out.println("IP address will be updated to current address.");
 
         //print new client information
         log = "\nUpdated information: " +
@@ -369,7 +381,7 @@ public class Client {
 
         //create a download request
         UpdateContactRequest updateMessage = new UpdateContactRequest(requestCounter.incrementAndGet(),
-                ip.toString(), UDPport, TCPport, name);
+                ip.getHostAddress(), UDPport, TCPport, name);
 
         //send request to server
         Sender.sendTo(updateMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);

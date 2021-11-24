@@ -129,7 +129,7 @@ public class ServerHandler implements Runnable {
                 //remove files to yourself
                 if (Client.requestMap.containsKey(RequestID)) {
                     RemoveRequest req = (RemoveRequest) Client.requestMap.get(RequestID);
-                    Client.listOfFile.remove(req.getListOfFiles());
+                    Client.listOfFile.removeAll(req.getListOfFiles());
                 }
                 log = "Removed confirmed: Files have been Removed from the server.\n";
                 log += "Client has total published files: " + Client.listOfFile.toString() + "\n";
@@ -146,7 +146,7 @@ public class ServerHandler implements Runnable {
 
                 //print new client information
                 log += "\nClient information updated too: " +
-                        "\nIP: " + upConf.getIPaddress().toString() +
+                        "\nIP: " + upConf.getIPaddress() +
                         "\nClient name: " + upConf.getClientName() +
                         "\nUDP Port: " + upConf.getUDPport() +
                         "\nTCP Port: " + upConf.getTCPport() + "\n";
