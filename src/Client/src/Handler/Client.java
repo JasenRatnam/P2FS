@@ -366,22 +366,22 @@ public class Client {
         }
                 //= getIP("new location");
         //ask and get new UDP port
-        int UDPport = getPort("UDP port");
+        //int UDPport = getPort("UDP port");
         //ask and get new TCP port
-        int TCPport = getPort("TCP port");
-        System.out.println("IP address will be updated to current address.");
+        //int TCPport = getPort("TCP port");
+        //System.out.println("IP address will be updated to current address.");
 
         //print new client information
-        log = "\nUpdated information: " +
+        log = "\nClient will be updated to information: " +
                 "\nIP: " + ip.toString() +
                 "\nClient name: " + name +
-                "\nUDP Port: " + UDPport +
-                "\nTCP Port: " + TCPport + "\n";
+                "\nUDP Port: " + clientUDPPort +
+                "\nTCP Port: " + clientTCPPort + "\n";
         Writer.log(log);
 
         //create a download request
         UpdateContactRequest updateMessage = new UpdateContactRequest(requestCounter.incrementAndGet(),
-                ip.getHostAddress(), UDPport, TCPport, name);
+                ip.getHostAddress(), clientUDPPort, clientTCPPort, name);
 
         //send request to server
         Sender.sendTo(updateMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
