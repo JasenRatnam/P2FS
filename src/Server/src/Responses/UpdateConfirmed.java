@@ -2,11 +2,11 @@ package Responses;
 
 import Requests.Request;
 
-import java.io.Serial;
+//import java.io.Serial;
 
 public class UpdateConfirmed extends Request {
 
-    @Serial
+    //@Serial
     private static final long serialVersionUID = 1L;
     private String IPaddress;
     private int UDPport;

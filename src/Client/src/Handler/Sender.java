@@ -138,7 +138,8 @@ public class Sender {
     {
         int RequestID;
         //if TCP response is a known request type
-        if (response instanceof Request res) {
+        if (response instanceof Request) {
+            Request res = (Request) response;
             // Get the RequestID
             RequestID = res.getRQNumb();
 
@@ -153,11 +154,14 @@ public class Sender {
                 Writer.log(log);
                 //remove request ID from list
                 Client.requestMap.remove(RequestID);
-            } else if (response instanceof File chunkOfText) {
+            } else if (response instanceof File) {
+                File chunkOfText = (File) response;
+
                 //start recreating file
                 Writer.downloadFile(chunkOfText.getText(), chunkOfText.getFileName(), false);
             }
-            else if (response instanceof FileEnd chunkOfText) {
+            else if (response instanceof FileEnd) {
+                FileEnd chunkOfText = (FileEnd) response;
                 //end of file creation
                 Writer.downloadFile(chunkOfText.getText(), chunkOfText.getFileName(), true);
                 //remove request ID from list

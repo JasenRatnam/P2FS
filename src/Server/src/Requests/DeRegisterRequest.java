@@ -1,13 +1,13 @@
 package Requests;
 
-import java.io.Serial;
+//import java.io.Serial;
 
 /**
  * class for request from client to register a client
  */
 public class DeRegisterRequest extends Request {
 
-    @Serial
+    //@Serial
     private static final long serialVersionUID = 1L;
     String clientName;
 

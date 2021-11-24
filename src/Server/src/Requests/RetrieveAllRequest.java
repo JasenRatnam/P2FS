@@ -1,11 +1,11 @@
 package Requests;
 
-import java.io.Serial;
+//import java.io.Serial;
 import java.util.ArrayList;
 
 public class RetrieveAllRequest extends Request{
 
-    @Serial
+    //@Serial
     private static final long serialVersionUID = 1L;
 
     public RetrieveAllRequest( int reqNumber) {

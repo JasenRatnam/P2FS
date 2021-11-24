@@ -2,12 +2,12 @@ package Responses;
 
 import Requests.Request;
 
-import java.io.Serial;
+//import java.io.Serial;
 import java.util.ArrayList;
 
 public class RetrieveInfoT extends Request {
 
-    @Serial
+    //@Serial
     private static final long serialVersionUID = 1L;
     private String clientName;
     private String address;

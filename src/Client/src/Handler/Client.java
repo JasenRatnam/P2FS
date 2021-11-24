@@ -3,6 +3,7 @@ package Handler;
 import Requests.*;
 import Responses.RetrieveInfoT;
 
+import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -54,6 +55,8 @@ public class Client {
             //connect to UDP socket
             ds = new DatagramSocket(clientUDPPort);
             clientIp = InetAddress.getLocalHost();
+
+            //not needed
             //clientUDPPort = ds.getLocalPort();
 
             //client information
@@ -156,7 +159,7 @@ public class Client {
     }
 
     /**
-     * start running the client
+     * start running the client listeners
      */
     public void start(){
         //threading listening to any message from the server.
@@ -182,18 +185,17 @@ public class Client {
         while (!val.equals("exit") || isRegistered) {
             System.out.println("\nEnter 'exit' to close client");
             System.out.println("\nPress ENTER to continue if no response.");
-            System.out.println("""
-                    Possible commands:
-                    1-Register
-                    2-Deregister
-                    3-Publish
-                    4-Remove
-                    5-Retrieve All
-                    6-Retrieve infoT
-                    7-Search file
-                    8-Download
-                    9-Update contact
-                    10-Disconnect""");
+            System.out.println("Possible commands:\n" +
+                    "1-Register\n"+
+                    "2-Deregister\n"+
+                    "3-Publish\n"+
+                    "4-Remove\n"+
+                    "5-Retrieve All\n" +
+                    "6-Retrieve infoT\n"+
+                    "7-Search file\n"+
+                    "8-Download\n"+
+                    "9-Update contact\n"+
+                    "10-Disconnect\n");
 
             System.out.println("Enter number of the wanted command:");
             val = sc.nextLine();
@@ -269,17 +271,10 @@ public class Client {
                     break;
                 case "7":
                     //A user can search for a specific file
-                    if(isRegistered) {
-                        log = "User selected Search file\n";
-                        Writer.log(log);
-                        SearchFile(sc);
-                        break;
-                    }
-                    else{
-                        log = "Please register first\n";
-                        Writer.log(log);
-                        continue;
-                    }
+                    log = "User selected Search file\n";
+                    Writer.log(log);
+                    SearchFile(sc);
+                    break;
                 case "8":
                     //set a TCP connection to the peer,
                     log = "User selected Download\n";
@@ -313,22 +308,30 @@ public class Client {
         exit(1);
     }
 
+    /**
+     * Search a given filename in the server
+     */
     public static void SearchFile(Scanner s) {
 
+        //get name of wanted
         System.out.print("\tPlease enter the name of the file you wish to search for:");
         String input = s.nextLine();
 
+        //send request to server
         SearchFileRequest searchfile = new SearchFileRequest(requestCounter.incrementAndGet(),input);
         Sender.sendTo(searchfile,ds,Client.serverIp.getHostAddress(),Client.serverPort);
 
     }
 
-
+    /**
+     * retrieve information about a given client
+     */
     public static void RetrieveInfo() {
         //get name of client
-        System.out.print("\tEnter Username to retreive information from: ");
+        System.out.print("\tEnter Username to retrieve information from: ");
         String name = sc.next();
 
+        //send request to server
         RetrieveInfoTRequest retreiveInfoMessage = new RetrieveInfoTRequest(Client.requestCounter.incrementAndGet(),name);
         Sender.sendTo(retreiveInfoMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
     }
@@ -351,11 +354,22 @@ public class Client {
         String name = sc.next();
 
         //get new IP
-        InetAddress ip = getIP("new location");
+        InetAddress ip = null;
+        try {
+            ip = InetAddress.getLocalHost();
+        } catch (IOException e)
+        {
+            //e.printStackTrace();
+            log = "Update IOException " + e.getMessage();
+            log += "Update has failed, try again later.";
+            Writer.log(log);
+        }
+                //= getIP("new location");
         //ask and get new UDP port
         int UDPport = getPort("UDP port");
         //ask and get new TCP port
         int TCPport = getPort("TCP port");
+        System.out.println("IP address will be updated to current address.");
 
         //print new client information
         log = "\nUpdated information: " +
@@ -367,7 +381,7 @@ public class Client {
 
         //create a download request
         UpdateContactRequest updateMessage = new UpdateContactRequest(requestCounter.incrementAndGet(),
-                ip.toString(), UDPport, TCPport, name);
+                ip.getHostAddress(), UDPport, TCPport, name);
 
         //send request to server
         Sender.sendTo(updateMessage, ds, Client.serverIp.getHostAddress(), Client.serverPort);
@@ -503,8 +517,13 @@ public class Client {
         //send to server
         Sender.sendTo(removeMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
     }
+
+    /**
+     * retrieve information about all registered clients
+     */
     public static void RetrieveAll() {
 
+        //send request to server
         RetrieveAllRequest retrieveAllMessage = new RetrieveAllRequest(requestCounter.incrementAndGet());
         Sender.sendTo(retrieveAllMessage,ds,Client.serverIp.getHostAddress(),Client.serverPort);
     }
